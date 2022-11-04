@@ -6,6 +6,7 @@ import { MerchantUpdateComponent } from './merchant-update/merchant-update.compo
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "../homepage/home/home.component";
+import {AdminRoutingModule} from "./admin-routing.module";
 
 
 
@@ -22,6 +23,7 @@ import {HomeComponent} from "../homepage/home/home.component";
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

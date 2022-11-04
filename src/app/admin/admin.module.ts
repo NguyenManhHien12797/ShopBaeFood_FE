@@ -4,6 +4,8 @@ import {MerchantListComponent} from "./merchant-list/merchant-list.component";
 import { MerchantCreateComponent } from './merchant-create/merchant-create.component';
 import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
+import {RouterModule, Routes} from "@angular/router";
+import {HomeComponent} from "../homepage/home/home.component";
 
 
 
@@ -19,7 +21,7 @@ import { AdminpageComponent } from './adminpage/adminpage.component';
     AdminpageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class AdminModule { }

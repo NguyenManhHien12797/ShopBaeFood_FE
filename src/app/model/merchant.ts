@@ -7,4 +7,5 @@ export interface Merchant {
   imageBanner: string;
   openTime: string;
   closeTime: string;
+  status: string;
 }

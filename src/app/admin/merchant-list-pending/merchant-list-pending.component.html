@@ -1,0 +1,32 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">OpenTime</th>
+      <th scope="col">CloseTime</th>
+      <th scope="col" colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let merchant of merchants">
+      <td>{{merchant.id}}</td>
+      <td><img src="{{merchant.avatar}}" alt="" style="height: 40px;
+    width: 40px;
+    border-radius: 50%;"></td>
+      <td class="merchant-item">{{merchant.name}}</td>
+      <td class="merchant-item">{{merchant.phone}}</td>
+      <td class="merchant-item">{{merchant.address}}</td>
+      <td class="merchant-item">{{merchant.openTime}}</td>
+      <td class="merchant-item">{{merchant.closeTime}}</td>
+      <td class="action-icon" (click)="acceptMerchant(merchant.id, merchant)"><i class="fa-solid fa-check"></i> Đồng ý</td>
+      <td class="action-icon" (click)="refuseMerchant(merchant.id, merchant)"><i class="fa-solid fa-x"></i> Từ chối</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

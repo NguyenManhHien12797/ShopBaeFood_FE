@@ -1,0 +1,45 @@
+<main >
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Quản lý người bán</h1>
+  </div>
+
+  <a routerLink="pending">Chờ duyệt</a> | <a routerLink="active">Đang hoạt động</a> | <a routerLink="block">Đang bị khóa</a>
+  <div *ngIf="url==='/admin/merchant-list'; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">OpenTime</th>
+        <th scope="col">CloseTime</th>
+        <th scope="col" colspan="2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let merchant of merchants">
+        <td>{{merchant.id}}</td>
+        <td><img src="{{merchant.avatar}}" alt="" style="height: 40px;
+    width: 40px;
+    border-radius: 50%;"></td>
+        <td class="merchant-item">{{merchant.name}}</td>
+        <td class="merchant-item">{{merchant.phone}}</td>
+        <td class="merchant-item">{{merchant.address}}</td>
+        <td class="merchant-item">{{merchant.openTime}}</td>
+        <td class="merchant-item">{{merchant.closeTime}}</td>
+        <td class="action-icon"><a href="#"><i class="fa-regular fa-pen-to-square"></i></a></td>
+        <td class="action-icon"><a href="#"><i class="fa-solid fa-trash"></i></a></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #elseBlock>
+    <router-outlet ></router-outlet>
+  </ng-template>
+
+
+</main>

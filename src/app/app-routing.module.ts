@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {AdminpageComponent} from "./admin/adminpage/adminpage.component";
 
-const routes: Routes= [{
+const routes: Routes= [
+  {
   path: "",
   loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule)
 },

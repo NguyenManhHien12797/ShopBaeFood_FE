@@ -18,4 +18,8 @@ export class MerchantService {
     return this.http.get<any>(API_URL+ '/api/merchant');
   }
 
+  updateMerchant(id: number, merchant: Merchant): Observable<Merchant>{
+    console.log("update")
+    return this.http.put<Merchant>(`${API_URL}/api/merchant/${id}`, merchant);
+  }
 }

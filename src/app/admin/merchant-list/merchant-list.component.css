@@ -142,3 +142,23 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+.action-icon{
+  font-size: 26px;
+  width: 50px;
+}
+.action-icon a{
+  color: #3f3f3f;
+}
+.action-icon a:hover{
+  color: #a19f9f;
+}
+.merchant-item{
+  padding-top: 10px;
+  font-size: 20px;
+}
+
+th{
+  font-size: 22px;
+  text-align: center;
+}

@@ -6,6 +6,10 @@ import { MerchantUpdateComponent } from './merchant-update/merchant-update.compo
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "../homepage/home/home.component";
+import {AdminRoutingModule} from "./admin-routing.module";
+import { MerchantListPendingComponent } from './merchant-list-pending/merchant-list-pending.component';
+import { MerchantListActiveComponent } from './merchant-list-active/merchant-list-active.component';
+import { MerchantListBlockComponent } from './merchant-list-block/merchant-list-block.component';
 
 
 
@@ -14,7 +18,10 @@ import {HomeComponent} from "../homepage/home/home.component";
     MerchantCreateComponent,
     MerchantListComponent,
     MerchantUpdateComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    MerchantListPendingComponent,
+    MerchantListActiveComponent,
+    MerchantListBlockComponent
   ],
   exports: [
     MerchantListComponent,
@@ -22,6 +29,8 @@ import {HomeComponent} from "../homepage/home/home.component";
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule,
+    RouterModule
   ]
 })
 export class AdminModule { }

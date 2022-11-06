@@ -23344,3 +23344,11 @@ input.required-data, select.required-data {
     margin: 0
   }
 }
+
+.user-acc-admin{
+  margin-right: 15px;
+  color: #ee4d2d;
+}
+.user-acc-admin:hover{
+  color: #f69987;
+}

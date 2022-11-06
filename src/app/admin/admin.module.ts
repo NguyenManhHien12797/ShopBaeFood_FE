@@ -30,7 +30,8 @@ import { MerchantListBlockComponent } from './merchant-list-block/merchant-list-
   imports: [
     CommonModule,
     AdminRoutingModule,
-    RouterModule
+    RouterModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

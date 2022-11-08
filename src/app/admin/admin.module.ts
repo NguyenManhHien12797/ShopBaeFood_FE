@@ -29,7 +29,6 @@ import { MerchantListBlockComponent } from './merchant-list-block/merchant-list-
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
     RouterModule,
     AdminRoutingModule
   ]

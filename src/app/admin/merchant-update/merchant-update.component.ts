@@ -11,5 +11,4 @@ export class MerchantUpdateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

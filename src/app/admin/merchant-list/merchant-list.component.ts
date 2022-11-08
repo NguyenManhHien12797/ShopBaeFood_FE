@@ -26,6 +26,7 @@ export class MerchantListComponent implements OnInit {
   getAllMerchant(){
     this.merchantService.getAllMerchant().subscribe(merchant =>{
       this.merchants = merchant.filter(value => value.status === 'active');
+      console.log(merchant)
     })
   }
 }

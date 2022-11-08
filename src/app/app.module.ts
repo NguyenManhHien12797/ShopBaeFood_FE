@@ -10,6 +10,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
 import {MerchantModule} from "./merchant/merchant.module";
 
+
 @NgModule({
   declarations: [
     AppComponent

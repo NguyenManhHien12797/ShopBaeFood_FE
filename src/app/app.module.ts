@@ -8,10 +8,19 @@ import {AdminModule} from "./admin/admin.module";
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
+import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductDeleteComponent } from './product-delete/product-delete.component';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductDeleteComponent,
+
   ],
   imports: [
     BrowserModule,

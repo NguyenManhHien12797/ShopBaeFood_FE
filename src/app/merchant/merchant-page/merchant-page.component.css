@@ -11057,15 +11057,6 @@ button.close {
   z-index: 1
 }
 
-
-.opentime-status-icon {
-  position: absolute;
-  top: -2px;
-  left: -18px;
-  width: 20px;
-  z-index: 1
-}
-
 .opentime-status:after {
   content: "";
   position: absolute;
@@ -14834,7 +14825,8 @@ a.text-rebranding-primary:focus, a.text-rebranding-primary:hover {
   right: 0;
   z-index: 99;
   background-color: #fff;
-  height: 70px
+  height: 70px;
+  box-shadow: 3px 3px 3px #dddd;
 }
 
 .container-header .icon-search-dark {
@@ -14853,7 +14845,6 @@ a.text-rebranding-primary:focus, a.text-rebranding-primary:hover {
   position: absolute;
   right: 100%;
   cursor: pointer;
-  margin-right: 72px;
   padding-left: 0
 }
 
@@ -14930,6 +14921,11 @@ a.text-rebranding-primary:focus, a.text-rebranding-primary:hover {
 
 .container-header .user-acc .dropdown {
   cursor: pointer
+}
+
+.container-header .user-acc{
+  font-size: 20px;
+  color: #ee4d2d;
 }
 
 .container-header .user-acc .dropdown-menu {
@@ -15030,7 +15026,9 @@ a.text-rebranding-primary:focus, a.text-rebranding-primary:hover {
 .main-nav {
   padding-left: 48px;
   padding-right: 0;
-  white-space: nowrap
+  white-space: nowrap;
+  font-size: 20px;
+  color:  #ee4d2d;
 }
 
 .main-nav .nav-item {
@@ -18574,19 +18572,14 @@ button.history-table-status.gray {
 
 .now-banner {
   height: 100vh;
-  /*position: relative;*/
+  position: fixed;
   top: 70px;
   left: 0;
   right: 0;
   z-index: 0;
   background-image: url(../../../assets/img/main-banner.jpg);
   background-size: cover;
-  overflow-y: scroll;
-}
-
-.now-banner::-webkit-scrollbar {
-  width: 0 !important;
-  display: none;
+  overflow: hidden
 }
 
 .now-banner .container {
@@ -18597,7 +18590,7 @@ button.history-table-status.gray {
 .now-search {
   color: #fff;
   width: 470px;
-  z-index: 100;
+  z-index: 2;
   position: absolute;
   top: 50%;
   left: 20px;
@@ -18662,19 +18655,14 @@ button.history-table-status.gray {
   margin-top: -40px
 }
 
-.now-banner-container{
-  position: relative;
-  /*overflow-y: scroll;*/
-}
-
 .contain-main-home .main-right-home {
   float: right;
   width: 670px;
   margin-top: 48px;
-  /*position: absolute;*/
-  /*z-index: 100;*/
+  position: relative;
+  z-index: auto;
   margin-bottom: 75px;
-  min-height: calc(100vh - 123px);
+  min-height: calc(100vh - 123px)
 }
 
 .main-right-home .now-list-restaurant {
@@ -23364,15 +23352,6 @@ input.required-data, select.required-data {
   }
 }
 
-.user-acc-admin{
-  margin-right: 15px;
-  color: #ee4d2d;
+.now-container-content{
+  background-color: #ffffff;
 }
-.user-acc-admin:hover{
-  color: #f69987;
-}
-
-.wrapper-item{
-  background-color: #f6f6f6;
-}
-

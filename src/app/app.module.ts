@@ -8,6 +8,7 @@ import {AdminModule} from "./admin/admin.module";
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
+import {MerchantModule} from "./merchant/merchant.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {AccountModule} from "./account/account.module";
     HomepageModule,
     HttpClientModule,
     AdminModule,
+    MerchantModule,
     AppRoutingModule,
     AccountModule
   ],

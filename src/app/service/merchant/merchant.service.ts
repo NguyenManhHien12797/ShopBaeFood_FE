@@ -13,7 +13,10 @@ export class MerchantService {
 
 
   constructor(private http: HttpClient) { }
-
+  getIdUser(): any{
+    // @ts-ignore
+    return JSON.parse(localStorage.getItem("user")).id;
+  }
   getAllMerchant(): Observable<Merchant[]>{
     return this.http.get<any>(API_URL+ '/api/merchant');
   }
@@ -24,4 +27,7 @@ export class MerchantService {
     console.log("update")
     return this.http.put<Merchant>(`${API_URL}/api/merchant/${id}`, merchant);
   }
+  // findMerchantById(id: number): Observable<Merchant>{
+  //   return  this.http.get<any>(`${API_URL}/api/merchant/${id}`);
+  // }
 }

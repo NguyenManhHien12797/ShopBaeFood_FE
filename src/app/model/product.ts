@@ -6,6 +6,4 @@ export interface Product {
   oldPrice: number;
   newPrice: number;
   image: string;
-  category:string;
-
 }

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {FilebaseService} from "../../service/filebase/filebase.service";
 import swal from "sweetalert";
 import {ProductService} from "../../service/product/product.service";
 import {finalize, Observable} from "rxjs";
@@ -30,8 +29,7 @@ export class ProductCreateComponent implements OnInit {
   constructor(private productService: ProductService,
               private merchantSevice: MerchantService,
               private router: Router,
-              private storage: AngularFireStorage,
-              private filebaseService: FilebaseService) {
+              private storage: AngularFireStorage) {
     // @ts-ignore
     let id = JSON.parse(localStorage.getItem("user")).id;
     console.log(id)

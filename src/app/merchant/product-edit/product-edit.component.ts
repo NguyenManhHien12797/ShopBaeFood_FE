@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product/product.service";
 import {MerchantService} from "../../service/merchant/merchant.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import swal from "sweetalert";
 import {finalize} from "rxjs";
+import {Product} from "../../model/product";
 
 @Component({
   selector: 'app-product-edit',
@@ -13,6 +14,8 @@ import {finalize} from "rxjs";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+  product: Product;
+  id: number
   editForm: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     newPrice: new FormControl("", [Validators.required]),
@@ -28,7 +31,8 @@ export class ProductEditComponent implements OnInit {
   constructor(private productService: ProductService,
               private merchantSevice: MerchantService,
               private router: Router,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private activatedRoute: ActivatedRoute) {
     // @ts-ignore
     let id = JSON.parse(localStorage.getItem("user")).id;
     console.log(id)
@@ -39,6 +43,11 @@ export class ProductEditComponent implements OnInit {
     });
     this.editForm.patchValue({deleteFlag: true})
     // console.log("alo"+this.merchant);
+      this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.getProduct(this.id);
+    })
   }
 
   // merchant: Merchant;
@@ -71,8 +80,8 @@ export class ProductEditComponent implements OnInit {
   edit() {
     const form = this.editForm.value;
     console.log(form)
-    swal("Thêm thành công", "good", "success")
-    this.productService.createProduct(form)
+    swal("Sửa thành công", "good", "success")
+    this.productService.updateProduct(this.product.id,form)
       .subscribe(() => {
         this.router.navigate(['/merchant/product-list'])
       });
@@ -106,5 +115,12 @@ export class ProductEditComponent implements OnInit {
       this.imgSrc = '../../../assets/img_1.png'
       this.selectedImage = null;
     }
+  }
+
+  private getProduct(id: number) {
+    this.productService.getProduct(id).subscribe(product=>{
+      this.product=product;
+      this.imgSrc=product.image;
+    })
   }
 }

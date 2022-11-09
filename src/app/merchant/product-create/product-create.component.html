@@ -1,1 +1,40 @@
-<p>product-create works!</p>
+<form [formGroup]="createForm" (ngSubmit)="create()">
+  <div class="mb-3 row">
+    <label for="name" class="col-sm-2 col-form-label">Tên</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="newPrice" class="col-sm-2 col-form-label">Giá mới</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="newPrice" formControlName="newPrice">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="oldPrice" class="col-sm-2 col-form-label">Giá cũ</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="oldPrice" formControlName="oldPrice">
+    </div>
+  </div><div class="mb-3 row">
+    <label for="numberOrder" class="col-sm-2 col-form-label">Số lượng bán</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="numberOrder" formControlName="numberOrder">
+    </div>
+  </div><div class="mb-3 row">
+    <label for="shortDescription" class="col-sm-2 col-form-label">Mô tả</label>
+    <div class="col-sm-10">
+      <textarea type="text" rows="5" class="form-control" id="shortDescription" formControlName="shortDescription"></textarea>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="customFile" class="col-sm-2 col-form-label">Thêm ảnh</label>
+    <div class="col-sm-10">
+      <input type="file" class="form-control" id="customFile"/>
+    </div>
+  </div>
+  <button class="btn btn-dark" routerLink="/merchant/product-list">Hủy</button>
+
+  <button class="btn btn-danger">Thêm</button>
+</form>

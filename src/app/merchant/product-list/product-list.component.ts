@@ -12,7 +12,6 @@ import swal from "sweetalert";
 })
 export class ProductListComponent implements OnInit {
   id: number
-
   constructor(private merchantService: MerchantService,
               private productService: ProductService,
               private router: Router,
@@ -38,11 +37,11 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(idArr: number,id: number) {
-    const pro = this.findProductById(id);
     swal({
-      title: "Delete product",
-      text: `Name: ${pro.name}
-Description: ${pro.shortDecription}`,
+      title: "Xóa sản phẩm",
+      text: `Tên: ${this.products[idArr].name}
+      Số lượng bán: ${this.products[idArr].numberOrder}
+Mô tả: ${this.products[idArr].shortDecription}`,
       icon: "warning",
       // @ts-ignore
       buttons: true,
@@ -50,7 +49,7 @@ Description: ${pro.shortDecription}`,
     })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Done, you deleted it", {
+          swal("Xong, bạn đã xóa", {
             icon: "success",
           });
           this.productService.deleteProduct(id).subscribe(
@@ -62,7 +61,7 @@ Description: ${pro.shortDecription}`,
             }
           );
         } else {
-          swal("you choose not to delete");
+          swal("Bạn đã chọn không xóa");
         }
       });
   }

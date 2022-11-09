@@ -9,6 +9,7 @@ import {MerchantListBlockComponent} from "../admin/merchant-list-block/merchant-
 import {MerchantPageComponent} from "./merchant-page/merchant-page.component";
 import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductEditComponent} from "./product-edit/product-edit.component";
+import {ProductCreateComponent} from "./product-create/product-create.component";
 
 const routes: Routes = [{
   path: "merchant",
@@ -18,8 +19,12 @@ const routes: Routes = [{
     component:ProductListComponent
   },
     {
-      path:"edit/:id",
+      path:"product-edit/:id",
       component:ProductEditComponent
+    },
+    {
+      path:"product-create",
+      component:ProductCreateComponent
     }
   ],
 }

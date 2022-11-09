@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       if (data == null) {
         this.message = "Nguoi dung khong ton tai hoac sai mat khau"
       } else {
-        localStorage.setItem("data",JSON.stringify(data))
+        localStorage.setItem("user",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
         for (let i = 0; i <data.roles.length ; i++) {
           if(data.roles[i].authority=='ROLE_ADMIN'){

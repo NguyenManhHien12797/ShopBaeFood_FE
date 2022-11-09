@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'http://localhost:8080',
+  firebaseConfig: {
+    apiKey: "AIzaSyAORq4I0-PSBdIEjOFB61T_quLjOITBDvs",
+    authDomain: "shopbae-f1ccb.firebaseapp.com",
+    projectId: "shopbae-f1ccb",
+    storageBucket: "shopbae-f1ccb.appspot.com",
+    messagingSenderId: "1079499701224",
+    appId: "1:1079499701224:web:878b101b85d0e06464025d",
+    measurementId: "G-LXM1ZXYTZ8"
+  }
 };
 
 /*

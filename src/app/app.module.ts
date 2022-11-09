@@ -8,6 +8,12 @@ import {AdminModule} from "./admin/admin.module";
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
+import {MerchantModule} from "./merchant/merchant.module";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {environment} from "../environments/environment";
+
 
 @NgModule({
   declarations: [
@@ -18,8 +24,12 @@ import {AccountModule} from "./account/account.module";
     HomepageModule,
     HttpClientModule,
     AdminModule,
+    MerchantModule,
     AppRoutingModule,
-    AccountModule
+    AccountModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

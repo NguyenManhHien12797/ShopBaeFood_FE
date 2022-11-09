@@ -1,3 +1,5 @@
+import {Product} from "./product";
+
 export interface Merchant {
   id: number;
   name: string;
@@ -8,4 +10,5 @@ export interface Merchant {
   openTime: string;
   closeTime: string;
   status: string;
+  productList: Product[]
 }

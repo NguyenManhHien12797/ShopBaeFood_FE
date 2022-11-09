@@ -13,7 +13,6 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

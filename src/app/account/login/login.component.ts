@@ -31,12 +31,23 @@ export class LoginComponent implements OnInit {
   login() {
     const form = this.loginForm.value;
     this.accountService.login(form).subscribe(data => {
+
       if (data == null) {
         this.message = "Nguoi dung khong ton tai hoac sai mat khau"
       } else {
         localStorage.setItem("user",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
-        this.router.navigate(['/home'])
+        for (let i = 0; i <data.roles.length ; i++) {
+          if(data.roles[i].authority=='ROLE_ADMIN'){
+            this.router.navigate(['/admin']);
+            break;
+          }else if(data.roles[i].authority=='ROLE_MERCHANT'){
+            this.router.navigate(['/merchant'])
+            break;
+          }else {
+            this.router.navigate(['/home'])
+          }
+        }
       }
     })
   }

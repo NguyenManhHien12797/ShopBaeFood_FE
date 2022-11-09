@@ -1,3 +1,5 @@
+import {Merchant} from "./merchant";
+
 export interface Product {
   id: number;
   name: string;
@@ -6,4 +8,6 @@ export interface Product {
   oldPrice: number;
   newPrice: number;
   image: string;
+  merchant: Merchant;
+  deleteFlag: boolean;
 }

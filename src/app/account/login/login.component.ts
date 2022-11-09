@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
-    userName: new FormControl("", [Validators.required]),
+    username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")])
   })
   message : string = "";
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   get username() {
-    return this.loginForm.get("userName")
+    return this.loginForm.get("username")
   }
 
   get password() {
@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       if (data == null) {
         this.message = "Nguoi dung khong ton tai hoac sai mat khau"
       } else {
-        localStorage.setItem("user",JSON.stringify(data))
+        localStorage.setItem("data",JSON.stringify(data))
+        localStorage.setItem("user",JSON.stringify(data.merchant))
         localStorage.setItem("token",JSON.stringify(data.token))
         for (let i = 0; i <data.roles.length ; i++) {
           if(data.roles[i].authority=='ROLE_ADMIN'){

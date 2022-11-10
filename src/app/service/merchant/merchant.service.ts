@@ -11,8 +11,6 @@ const API_URL = `${environment.apiUrl}`;
 })
 export class MerchantService {
   httpOptions: any;
-
-<<<<<<< HEAD
   constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -24,14 +22,11 @@ export class MerchantService {
     }
   }
 
-=======
 
-  constructor(private http: HttpClient) { }
   getIdUser(): any{
     // @ts-ignore
     return JSON.parse(localStorage.getItem("user")).id;
   }
->>>>>>> f1f8a3cb364c7e6992cefdf071e0f10aed43c26a
   getAllMerchant(): Observable<Merchant[]>{
     // let token = 'Bearer '+ JSON.parse(localStorage.getItem("token")!);
     // console.log("vao merchant")

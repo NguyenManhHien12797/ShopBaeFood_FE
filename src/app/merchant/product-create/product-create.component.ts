@@ -18,7 +18,7 @@ export class ProductCreateComponent implements OnInit {
     name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     newPrice: new FormControl("", [Validators.required]),
     oldPrice: new FormControl("", [Validators.required]),
-    image: new FormControl(""),
+    image: new FormControl("https://firebasestorage.googleapis.com/v0/b/shopbae-f1ccb.appspot.com/o/_1668098290964?alt=media&token=007d3fa2-b386-4ce4-993d-e8ebb48ab05d"),
     shortDescription: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     merchant: new FormControl(""),
     deleteFlag: new FormControl("")

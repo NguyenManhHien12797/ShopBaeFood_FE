@@ -1,13 +1,13 @@
 <div class="now-list-restaurant" >
   <div class="list-restaurant" >
-    <div class="item-restaurant" *ngFor="let product of products"><a class="item-content" routerLink="chi-tiet-san-pham">
+    <div class="item-restaurant" *ngFor="let merchant of merchants"><a class="item-content" routerLink="chi-tiet-san-pham/+{{merchant.id}}">
       <div class="img-restaurant"><img
-        src="{{product.image}}" class=""></div>
+        src="{{merchant.avatar}}" class=""></div>
       <div class="info-restaurant">
         <div class="info-basic-res"><h4 class="name-res" title="McDonald's - Hồ Gươm"><span
           class="icon icon-quality-merchant"
-          title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>{{product.name}}</h4>
-          <div class="address-res" title="2 Hàng Bài, P. Tràng Tiền, Hoàn Kiếm, Hà Nội">{{product.shortDescription}}
+          title=""></span>{{merchant.name}}</h4>
+          <div class="address-res" title="">{{merchant.address}}
           </div>
         </div>
         <p class="kind-restaurant"> Nhà hàng</p>

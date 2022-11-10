@@ -14,8 +14,10 @@ import {Product} from "../../model/product";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  product: Product;
+  // @ts-ignore
+  product: Product={};
   id: number
+
   editForm: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     newPrice: new FormControl("", [Validators.required]),
@@ -37,13 +39,9 @@ export class ProductEditComponent implements OnInit {
     let id = JSON.parse(localStorage.getItem("user")).id;
     console.log(id)
     this.merchantSevice.findMerchantById(id).subscribe(merchant => {
-
       this.editForm.patchValue({merchant: merchant})
       // console.log(merchant)
     });
-    this.editForm.patchValue({deleteFlag: true})
-    // console.log("alo"+this.merchant);
-
   }
 
   // merchant: Merchant;
@@ -79,10 +77,8 @@ export class ProductEditComponent implements OnInit {
   }
 
   edit() {
-    const form = this.editForm.value;
-    console.log(form)
     swal("Sửa thành công", "good", "success")
-    this.productService.updateProduct(this.product.id,form)
+    this.productService.updateProduct(this.product.id,this.product)
       .subscribe(() => {
         this.router.navigate(['/merchant/product-list'])
       });
@@ -121,7 +117,7 @@ export class ProductEditComponent implements OnInit {
   private getProduct(id: number) {
     this.productService.getProduct(id).subscribe(product=>{
       this.product=product;
-      console.log("product"+product)
+      console.log("product"+product.id)
       this.imgSrc=product.image;
     })
   }

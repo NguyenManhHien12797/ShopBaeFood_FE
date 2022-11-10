@@ -32,7 +32,7 @@ export class ProductCreateComponent implements OnInit {
               private storage: AngularFireStorage) {
     // @ts-ignore
     let id = JSON.parse(localStorage.getItem("user")).id;
-    console.log(id)
+    console.log("merchantId"+id)
     this.merchantSevice.findMerchantById(id).subscribe(merchant => {
 
       this.createForm.patchValue({merchant: merchant})
@@ -97,6 +97,7 @@ export class ProductCreateComponent implements OnInit {
             fileRef.getDownloadURL().subscribe(url => {
               console.log("url" + url)
               this.createForm.patchValue({image: url})
+              console.log(this.createForm)
             })
           })
         ).subscribe();

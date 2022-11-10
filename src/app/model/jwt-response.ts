@@ -3,5 +3,4 @@ export interface JwtResponse {
   username? : string;
   token? : string;
   roles? : any;
-  merchant?: any;
 }

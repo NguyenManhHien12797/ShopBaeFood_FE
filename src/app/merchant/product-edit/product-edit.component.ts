@@ -43,17 +43,18 @@ export class ProductEditComponent implements OnInit {
     });
     this.editForm.patchValue({deleteFlag: true})
     // console.log("alo"+this.merchant);
-      this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
-      // @ts-ignore
-      this.id = +paramMap.get('id');
-      this.getProduct(this.id);
-    })
+
   }
 
   // merchant: Merchant;
 
   ngOnInit(): void {
-
+    this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.getProduct(this.id);
+      console.log("idParam:"+this.id);
+    })
 
   }
 
@@ -120,6 +121,7 @@ export class ProductEditComponent implements OnInit {
   private getProduct(id: number) {
     this.productService.getProduct(id).subscribe(product=>{
       this.product=product;
+      console.log("product"+product)
       this.imgSrc=product.image;
     })
   }

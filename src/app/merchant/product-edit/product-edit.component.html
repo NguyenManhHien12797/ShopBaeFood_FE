@@ -12,7 +12,7 @@
   <div class="mb-3 row">
     <label for="name" class="col-sm-2 col-form-label">Tên</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" [(ngModel)]="product.name"><br>
+      <input type="text" name="name" class="form-control" id="name" [(ngModel)]="product.name"><br>
       <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
         <div [hidden]="!name?.errors?.['required']">
           <p style="color: red"> Tên không được trống </p>
@@ -31,7 +31,7 @@
   <div class="mb-3 row">
     <label for="newPrice" class="col-sm-2 col-form-label">Giá mới</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control" id="newPrice" [(ngModel)]="product.newPrice"><br>
+      <input type="number" name="newPrice" class="form-control" id="newPrice" [(ngModel)]="product.newPrice"><br>
       <div *ngIf="!newPrice?.valid && (newPrice?.dirty || newPrice?.touched)">
         <div [hidden]="!newPrice?.errors?.['required']">
           <p style="color: red">Giá mới không được trống </p>
@@ -43,7 +43,7 @@
   <div class="mb-3 row">
     <label for="oldPrice" class="col-sm-2 col-form-label">Giá cũ</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control" id="oldPrice" [(ngModel)]="product.oldPrice"><br>
+      <input type="number" name="oldPrice" class="form-control" id="oldPrice" [(ngModel)]="product.oldPrice"><br>
       <div *ngIf="!oldPrice?.valid && (oldPrice?.dirty || oldPrice?.touched)">
         <div [hidden]="!oldPrice?.errors?.['required']">
           <p style="color: red">Giá cũ không được trống </p>
@@ -55,7 +55,7 @@
   <div class="mb-3 row">
     <label for="shortDescription" class="col-sm-2 col-form-label">Mô tả</label>
     <div class="col-sm-10">
-      <textarea type="text" rows="5" class="form-control" id="shortDescription" [(ngModel)]="product.shortDecription"></textarea><br>
+      <textarea type="text" rows="5" name="shortDescription" class="form-control" id="shortDescription" [(ngModel)]="product.shortDescription"></textarea><br>
       <div *ngIf="!shortDescription?.valid && (shortDescription?.dirty || shortDescription?.touched)">
         <div [hidden]="!shortDescription?.errors?.['required']">
           <p style="color: red"> Mô tả không được trống </p>

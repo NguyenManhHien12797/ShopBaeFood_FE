@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
   getAllProduct(id: number) {
     this.productService.getAllProductByMerchant(id).subscribe(products => {
       this.products = products
-      console.log(this.products);
+      console.log("products",this.products+"id"+id);
     })
   }
 
@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit {
       title: "Xóa sản phẩm",
       text: `Tên: ${this.products[idArr].name}
       Số lượng bán: ${this.products[idArr].numberOrder}
-Mô tả: ${this.products[idArr].shortDecription}`,
+Mô tả: ${this.products[idArr].shortDescription}`,
       icon: "warning",
       // @ts-ignore
       buttons: true,
@@ -65,9 +65,9 @@ Mô tả: ${this.products[idArr].shortDecription}`,
         }
       });
   }
-
-  private findProductById(id: number): any {
-    return this.productService.getProduct(id);
-  }
+  //
+  // private findProductById(id: number): any {
+  //   return this.productService.getProduct(id);
+  // }
 
 }

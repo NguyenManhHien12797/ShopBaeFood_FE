@@ -3,7 +3,7 @@ import {Merchant} from "./merchant";
 export interface Product {
   id: number;
   name: string;
-  shortDecription:string;
+  shortDescription:string;
   numberOrder:string;
   oldPrice: number;
   newPrice: number;

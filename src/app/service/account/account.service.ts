@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {Role} from "../../model/role";
 import {BehaviorSubject, Observable} from "rxjs";
 import {JwtResponse} from "../../model/jwt-response";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AppUser} from "../../model/appUser";
 import {LoginForm} from "../../model/login-form";
 import {ChangepassDTO} from "../../model/changepass-dto";
@@ -23,21 +23,21 @@ export class AccountService {
     }
   ]
 
-  public currentUser: Observable<JwtResponse>;
-  public currentUserSubject: BehaviorSubject<AppUser>;
-
+  httpOptions: any;
   constructor(private http: HttpClient) {
-    // @ts-ignore
-    this.currentUserSubject = new BehaviorSubject<JwtResponse>(JSON.parse(localStorage.getItem('user')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    // this.httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   'No-Auth':'true',
+    //   'Access-Control-Allow-Origin': 'http://localhost:4200/',
+    //   'Access-Control-Allow-Origin-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    // }
   }
 
-  public get currentUserValue(): JwtResponse {
-    return this.currentUserSubject.value;
-  }
 
-  login(loginForm: LoginForm): Observable<JwtResponse> {
-    return this.http.post<LoginForm>(`${API_URL}/login`, loginForm);
+  login(loginForm: LoginForm): Observable<any> {
+    return this.http.post<LoginForm>(`${API_URL}/api/public/login`, loginForm);
   }
 
   register(user : AppUser): Observable<AppUser>{
@@ -50,10 +50,9 @@ export class AccountService {
     this.currentUserSubject.next(null);
   }
 
-  getUserById(): Observable<AppUser> {
-    let user_id = this.currentUserValue.id;
-    return this.http.get<AppUser>(`${API_URL}/user/${user_id}`);
-  }
+  // getUserById(): Observable<AppUser> {
+  //   return this.http.get<AppUser>(`${API_URL}/user/${user_id}`);
+  // }
 
   editUserById(id: number, appUser: AppUser): Observable<AppUser> {
     return this.http.put<AppUser>(`${API_URL}/user/${id}`,appUser)

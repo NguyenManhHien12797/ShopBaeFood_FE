@@ -25,7 +25,7 @@ export class MerchantService {
 
   getIdUser(): any{
     // @ts-ignore
-    return JSON.parse(localStorage.getItem("user")).id;
+    return JSON.parse(localStorage.getItem("data")).merchant.id;
   }
   getAllMerchant(): Observable<Merchant[]>{
     // let token = 'Bearer '+ JSON.parse(localStorage.getItem("token")!);
@@ -42,7 +42,7 @@ export class MerchantService {
     console.log("update")
     return this.http.put<Merchant>(`${API_URL}/api/merchant/${id}`, merchant);
   }
-  // findMerchantById(id: number): Observable<Merchant>{
-  //   return  this.http.get<any>(`${API_URL}/api/merchant/${id}`);
-  // }
+  findMerchantById(id: number): Observable<Merchant>{
+    return  this.http.get<Merchant>(`${API_URL}/api/merchant/${id}`);
+  }
 }

@@ -12,6 +12,8 @@ import swal from "sweetalert";
 })
 export class ProductListComponent implements OnInit {
   id: number
+  nameSearch: string;
+
   constructor(private merchantService: MerchantService,
               private productService: ProductService,
               private router: Router,
@@ -32,16 +34,16 @@ export class ProductListComponent implements OnInit {
   getAllProduct(id: number) {
     this.productService.getAllProductByMerchant(id).subscribe(products => {
       this.products = products
-      console.log(this.products);
+      console.log("products", this.products + "id" + id);
     })
   }
 
-  deleteProduct(idArr: number,id: number) {
+  deleteProduct(idArr: number, id: number) {
     swal({
       title: "Xóa sản phẩm",
       text: `Tên: ${this.products[idArr].name}
       Số lượng bán: ${this.products[idArr].numberOrder}
-Mô tả: ${this.products[idArr].shortDecription}`,
+Mô tả: ${this.products[idArr].shortDescription}`,
       icon: "warning",
       // @ts-ignore
       buttons: true,
@@ -54,7 +56,7 @@ Mô tả: ${this.products[idArr].shortDecription}`,
           });
           this.productService.deleteProduct(id).subscribe(
             next => {
-                  this.products.splice(idArr, 1);
+              this.products.splice(idArr, 1);
             },
             error => {
               alert("error")
@@ -66,8 +68,16 @@ Mô tả: ${this.products[idArr].shortDecription}`,
       });
   }
 
-  private findProductById(id: number): any {
-    return this.productService.getProduct(id);
-  }
+  //
+  // private findProductById(id: number): any {
+  //   return this.productService.getProduct(id);
+  // }
 
+  search() {
+    console.log(this.nameSearch);
+    console.log(this.merchantService.getIdUser())
+    this.productService.searchProduct(this.merchantService.getIdUser(), this.nameSearch).subscribe(product => {
+      this.products = product;
+    })
+  }
 }

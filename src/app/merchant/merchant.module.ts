@@ -7,7 +7,7 @@ import {RouterModule} from "@angular/router";
 import { MerchantDetailComponent } from './merchant-detail/merchant-detail.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -23,11 +23,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     ProductListComponent,
     MerchantPageComponent
   ],
-  imports: [
-    CommonModule,
-    MerchantRoutingModule,
-    RouterModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MerchantRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class MerchantModule { }

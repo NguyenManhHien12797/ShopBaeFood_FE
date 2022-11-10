@@ -9,6 +9,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
 import {MerchantModule} from "./merchant/merchant.module";
 import {Auth_interceptor} from "./service/auth_interceptor";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 
 
 @NgModule({
@@ -22,7 +26,10 @@ import {Auth_interceptor} from "./service/auth_interceptor";
     AdminModule,
     MerchantModule,
     AppRoutingModule,
-    AccountModule
+    AccountModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: Auth_interceptor, multi: true

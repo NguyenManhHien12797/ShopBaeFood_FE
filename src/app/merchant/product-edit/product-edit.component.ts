@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ProductService} from "../../service/product/product.service";
+import {MerchantService} from "../../service/merchant/merchant.service";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import swal from "sweetalert";
+import {finalize} from "rxjs";
+import {Product} from "../../model/product";
 
 @Component({
   selector: 'app-product-edit',
@@ -6,10 +14,108 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+  // @ts-ignore
+  product: Product={
+  };
+  id: number
 
-  constructor() { }
+  // editForm: FormGroup = new FormGroup({
+  //   name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
+  //   newPrice: new FormControl("", [Validators.required]),
+  //   oldPrice: new FormControl("", [Validators.required]),
+  //   image: new FormControl(""),
+  //   shortDescription: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
+  //   merchant: new FormControl(""),
+  //   deleteFlag: new FormControl("")
+  // })
+  imgSrc: any = '../../../assets/img/favicon.png';
+  selectedImage: any = null;
 
-  ngOnInit(): void {
+  constructor(private productService: ProductService,
+              private merchantSevice: MerchantService,
+              private router: Router,
+              private storage: AngularFireStorage,
+              private activatedRoute: ActivatedRoute) {
   }
 
+  // merchant: Merchant;
+
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.getProduct(this.id);
+      console.log("idParam:"+this.id);
+      console.log(this.product)
+    })
+
+  }
+
+  // get name() {
+  //   return this.editForm.get("name")
+  // }
+  //
+  // get newPrice() {
+  //   return this.editForm.get("newPrice")
+  // }
+  //
+  // get numberOrder() {
+  //   return this.editForm.get("numberOrder")
+  // }
+  //
+  // get shortDescription() {
+  //   return this.editForm.get("shortDescription")
+  // }
+  //
+  // get oldPrice() {
+  //   return this.editForm.get("oldPrice")
+  // }
+
+  edit() {
+
+    swal("Sửa thành công", "good", "success")
+    this.productService.updateProduct(this.product.id,this.product)
+      .subscribe(() => {
+        this.router.navigate(['/merchant/product-list'])
+      });
+  }
+
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0])
+      this.selectedImage = event.target.files[0];
+      //upload file lên firebase
+      if (this.selectedImage != null) {
+        console.log("ten file " + this.selectedImage.name)
+        const filePath = `${this.selectedImage.name.split('.').splice(0, -1).join('.')}_${new Date().getTime()}`
+        console.log("filePath " + filePath)
+        const fileRef = this.storage.ref(filePath);
+        console.log(fileRef)
+        this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              console.log("url" + url)
+              this.product.image=url;
+              // this.editForm.patchValue({image: url})
+            })
+          })
+        ).subscribe();
+      }
+
+      //
+    } else {
+      this.imgSrc = '../../../assets/img_1.png'
+      this.selectedImage = null;
+    }
+  }
+
+  private getProduct(id: number) {
+    this.productService.getProduct(id).subscribe(product=>{
+      this.product=product;
+      console.log("product"+product.id)
+      this.imgSrc=product.image;
+    })
+  }
 }

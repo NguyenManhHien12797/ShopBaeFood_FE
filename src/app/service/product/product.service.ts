@@ -36,4 +36,8 @@ export class ProductService {
     // @ts-ignore
     return this.http.patch<Product>(API_URL+`/api/products/${id}`)
   }
+  searchProduct(id:number, name: string):Observable<Product[]>{
+    // @ts-ignore
+    return this.http.get<any>(API_URL+`/api/products/search/${id}?name=`+name)
+  }
 }

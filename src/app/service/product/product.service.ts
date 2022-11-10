@@ -16,4 +16,24 @@ export class ProductService {
   getAllProduct(): Observable<Product[]>{
     return this.http.get<any>(API_URL+ '/api/products');
   }
+  getAllProductByMerchant(id: number): Observable<Product[]>{
+    return this.http.get<any>(API_URL+ `/api/products/merchant/${id}`);
+  }
+
+  createProduct(product: Product): Observable<Product>{
+    return this.http.post<Product>(API_URL+"/api/products/", product)
+  }
+
+  getProduct(id:number): Observable<Product>{
+    return this.http.get<Product>(API_URL+`/api/products/${id}`)
+  }
+
+  updateProduct(id: number | undefined, product: Product): Observable<Product>{
+    return this.http.put<Product>(API_URL+`/api/products/${id}`,product)
+  }
+
+  deleteProduct(id:number):Observable<Product>{
+    // @ts-ignore
+    return this.http.patch<Product>(API_URL+`/api/products/${id}`)
+  }
 }

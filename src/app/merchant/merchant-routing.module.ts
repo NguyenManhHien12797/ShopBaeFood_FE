@@ -8,6 +8,8 @@ import {MerchantListActiveComponent} from "../admin/merchant-list-active/merchan
 import {MerchantListBlockComponent} from "../admin/merchant-list-block/merchant-list-block.component";
 import {MerchantPageComponent} from "./merchant-page/merchant-page.component";
 import {ProductListComponent} from "./product-list/product-list.component";
+import {ProductEditComponent} from "./product-edit/product-edit.component";
+import {ProductCreateComponent} from "./product-create/product-create.component";
 
 const routes: Routes = [{
   path: "merchant",
@@ -15,7 +17,16 @@ const routes: Routes = [{
   children:[{
     path:"product-list",
     component:ProductListComponent
-  }]
+  },
+    {
+      path:"product-edit/:id",
+      component:ProductEditComponent
+    },
+    {
+      path:"product-create",
+      component:ProductCreateComponent
+    }
+  ],
 }
 ]
 

@@ -15,18 +15,19 @@ import {Product} from "../../model/product";
 })
 export class ProductEditComponent implements OnInit {
   // @ts-ignore
-  product: Product={};
+  product: Product={
+  };
   id: number
 
-  editForm: FormGroup = new FormGroup({
-    name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
-    newPrice: new FormControl("", [Validators.required]),
-    oldPrice: new FormControl("", [Validators.required]),
-    image: new FormControl(""),
-    shortDescription: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
-    merchant: new FormControl(""),
-    deleteFlag: new FormControl("")
-  })
+  // editForm: FormGroup = new FormGroup({
+  //   name: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
+  //   newPrice: new FormControl("", [Validators.required]),
+  //   oldPrice: new FormControl("", [Validators.required]),
+  //   image: new FormControl(""),
+  //   shortDescription: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
+  //   merchant: new FormControl(""),
+  //   deleteFlag: new FormControl("")
+  // })
   imgSrc: any = '../../../assets/img/favicon.png';
   selectedImage: any = null;
 
@@ -35,13 +36,6 @@ export class ProductEditComponent implements OnInit {
               private router: Router,
               private storage: AngularFireStorage,
               private activatedRoute: ActivatedRoute) {
-    // @ts-ignore
-    let id = JSON.parse(localStorage.getItem("user")).id;
-    console.log(id)
-    this.merchantSevice.findMerchantById(id).subscribe(merchant => {
-      this.editForm.patchValue({merchant: merchant})
-      // console.log(merchant)
-    });
   }
 
   // merchant: Merchant;
@@ -52,31 +46,33 @@ export class ProductEditComponent implements OnInit {
       this.id = +paramMap.get('id');
       this.getProduct(this.id);
       console.log("idParam:"+this.id);
+      console.log(this.product)
     })
 
   }
 
-  get name() {
-    return this.editForm.get("name")
-  }
-
-  get newPrice() {
-    return this.editForm.get("newPrice")
-  }
-
-  get numberOrder() {
-    return this.editForm.get("numberOrder")
-  }
-
-  get shortDescription() {
-    return this.editForm.get("shortDescription")
-  }
-
-  get oldPrice() {
-    return this.editForm.get("oldPrice")
-  }
+  // get name() {
+  //   return this.editForm.get("name")
+  // }
+  //
+  // get newPrice() {
+  //   return this.editForm.get("newPrice")
+  // }
+  //
+  // get numberOrder() {
+  //   return this.editForm.get("numberOrder")
+  // }
+  //
+  // get shortDescription() {
+  //   return this.editForm.get("shortDescription")
+  // }
+  //
+  // get oldPrice() {
+  //   return this.editForm.get("oldPrice")
+  // }
 
   edit() {
+
     swal("Sửa thành công", "good", "success")
     this.productService.updateProduct(this.product.id,this.product)
       .subscribe(() => {
@@ -101,7 +97,8 @@ export class ProductEditComponent implements OnInit {
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               console.log("url" + url)
-              this.editForm.patchValue({image: url})
+              this.product.image=url;
+              // this.editForm.patchValue({image: url})
             })
           })
         ).subscribe();

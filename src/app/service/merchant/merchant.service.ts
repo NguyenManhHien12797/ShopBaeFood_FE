@@ -25,7 +25,7 @@ export class MerchantService {
 
   getIdUser(): any{
     // @ts-ignore
-    return JSON.parse(localStorage.getItem("user")).id;
+    return JSON.parse(localStorage.getItem("data")).merchant.id;
   }
   getAllMerchant(): Observable<Merchant[]>{
     // let token = 'Bearer '+ JSON.parse(localStorage.getItem("token")!);

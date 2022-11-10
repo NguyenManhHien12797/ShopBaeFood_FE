@@ -13,17 +13,17 @@
     <label for="name" class="col-sm-2 col-form-label">Tên</label>
     <div class="col-sm-10">
       <input type="text" name="name" class="form-control" id="name" [(ngModel)]="product.name"><br>
-      <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
-        <div [hidden]="!name?.errors?.['required']">
-          <p style="color: red"> Tên không được trống </p>
-        </div>
-        <div [hidden]="!name?.errors?.['minlength']">
-          <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-        </div>
-        <!--    <div [hidden]="!name?.errors?.['pattern']">-->
-        <!--      <p style="color: red"> Tên chữ không được dùng ký tự khác  </p>-->
-        <!--    </div>-->
-      </div>
+<!--      <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">-->
+<!--        <div [hidden]="!name?.errors?.['required']">-->
+<!--          <p style="color: red"> Tên không được trống </p>-->
+<!--        </div>-->
+<!--        <div [hidden]="!name?.errors?.['minlength']">-->
+<!--          <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;    <div [hidden]="!name?.errors?.['pattern']">&ndash;&gt;-->
+<!--        &lt;!&ndash;      <p style="color: red"> Tên chữ không được dùng ký tự khác  </p>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--      </div>-->
     </div>
 
   </div>
@@ -38,11 +38,11 @@
     <label for="newPrice" class="col-sm-2 col-form-label">Giá mới</label>
     <div class="col-sm-10">
       <input type="number" name="newPrice" class="form-control" id="newPrice" [(ngModel)]="product.newPrice"><br>
-      <div *ngIf="!newPrice?.valid && (newPrice?.dirty || newPrice?.touched)">
-        <div [hidden]="!newPrice?.errors?.['required']">
-          <p style="color: red">Giá mới không được trống </p>
-        </div>
-      </div>
+<!--      <div *ngIf="!newPrice?.valid && (newPrice?.dirty || newPrice?.touched)">-->
+<!--        <div [hidden]="!newPrice?.errors?.['required']">-->
+<!--          <p style="color: red">Giá mới không được trống </p>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 
@@ -50,11 +50,11 @@
     <label for="oldPrice" class="col-sm-2 col-form-label">Giá cũ</label>
     <div class="col-sm-10">
       <input type="number" name="oldPrice" class="form-control" id="oldPrice" [(ngModel)]="product.oldPrice"><br>
-      <div *ngIf="!oldPrice?.valid && (oldPrice?.dirty || oldPrice?.touched)">
-        <div [hidden]="!oldPrice?.errors?.['required']">
-          <p style="color: red">Giá cũ không được trống </p>
-        </div>
-      </div>
+<!--      <div *ngIf="!oldPrice?.valid && (oldPrice?.dirty || oldPrice?.touched)">-->
+<!--        <div [hidden]="!oldPrice?.errors?.['required']">-->
+<!--          <p style="color: red">Giá cũ không được trống </p>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 
@@ -62,14 +62,14 @@
     <label for="shortDescription" class="col-sm-2 col-form-label">Mô tả</label>
     <div class="col-sm-10">
       <textarea type="text" rows="5" name="shortDescription" class="form-control" id="shortDescription" [(ngModel)]="product.shortDescription"></textarea><br>
-      <div *ngIf="!shortDescription?.valid && (shortDescription?.dirty || shortDescription?.touched)">
-        <div [hidden]="!shortDescription?.errors?.['required']">
-          <p style="color: red"> Mô tả không được trống </p>
-        </div>
-        <div [hidden]="!shortDescription?.errors?.['minlength']">
-          <p style="color: red"> Mô tả ít nhất có 3 ký tự </p>
-        </div>
-      </div>
+<!--      <div *ngIf="!shortDescription?.valid && (shortDescription?.dirty || shortDescription?.touched)">-->
+<!--        <div [hidden]="!shortDescription?.errors?.['required']">-->
+<!--          <p style="color: red"> Mô tả không được trống </p>-->
+<!--        </div>-->
+<!--        <div [hidden]="!shortDescription?.errors?.['minlength']">-->
+<!--          <p style="color: red"> Mô tả ít nhất có 3 ký tự </p>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
 
     <!--    <div [hidden]="!shortDescription?.errors?.['pattern']">-->

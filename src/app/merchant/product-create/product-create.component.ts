@@ -31,7 +31,7 @@ export class ProductCreateComponent implements OnInit {
               private router: Router,
               private storage: AngularFireStorage) {
     // @ts-ignore
-    let id = JSON.parse(localStorage.getItem("user")).id;
+    let id = JSON.parse(localStorage.getItem("data")).merchant.id;
     console.log("merchantId"+id)
     this.merchantSevice.findMerchantById(id).subscribe(merchant => {
 

@@ -62,7 +62,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a class="breadcrumb-link" rel="nofollow" routerLink="/home">Home</a></li>
-          <li class="breadcrumb-item"><a class="breadcrumb-link" rel="nofollow" routerLink="/home/list-merchant">List-merchant</a></li>
+          <li class="breadcrumb-item"><a class="breadcrumb-link" rel="nofollow" routerLink="/home/list-merchant">list-merchant</a></li>
           <li class="breadcrumb-item"><a class="breadcrumb-link" rel="nofollow" >{{merchant.name}}</a></li>
         </ol>
       </nav>
@@ -346,7 +346,7 @@
             <div class="search-items"><p class="input-group"><i class="fas fa-search"></i><input type="search"
                                                                                                  name="searchKey"
                                                                                                  placeholder="Tìm món"
-                                                                                                 value=""></p></div>
+                                                                                                 (input)="search()" [(ngModel)]="nameSearch"></p></div>
             <div id="restaurant-item">
               <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List"
                    role="grid" tabindex="0"

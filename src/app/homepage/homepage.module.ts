@@ -6,6 +6,7 @@ import {AdminModule} from "../admin/admin.module";
 import {HomepageRoutingModule} from "./homepage-routing.module";
 import { AllMerchantListComponent } from './all-merchant-list/all-merchant-list.component';
 import { MerchantDetailComponent } from './merchant-detail/merchant-detail.component';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -19,11 +20,12 @@ import { MerchantDetailComponent } from './merchant-detail/merchant-detail.compo
     HomeComponent,
     AllMerchantListComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    HomepageRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        HomepageRoutingModule,
+        FormsModule
+    ]
 })
 export class HomepageModule {
 }

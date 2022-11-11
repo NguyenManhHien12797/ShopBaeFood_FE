@@ -14,6 +14,7 @@ export class MerchantDetailComponent implements OnInit {
   id: number;
   merchant: Merchant;
   products: Product[]=[];
+  nameSearch: string;
   // @ts-ignore
   // idMerchant:any=this.merchant.id
   constructor(private activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class MerchantDetailComponent implements OnInit {
       this.id = +paramMap.get('id');
       this.getMerchant(this.id);
       console.log("idParam:"+this.id)
+      this.getProductByMerchant(this.id)
     })
 
   }
@@ -36,12 +38,16 @@ export class MerchantDetailComponent implements OnInit {
     this.merchantService.findMerchantById(id).subscribe(merchant=>{
       this.merchant=merchant;
       console.table(merchant);
-      this.getProductByMerchant(merchant.id);
     })
   }
   private getProductByMerchant(id: any){
     this.productService.getAllProductByMerchant(id).subscribe(products=>{
       this.products= products;
+    })
+  }
+  search() {
+    this.productService.searchProduct(this.id, this.nameSearch).subscribe(product => {
+      this.products = product;
     })
   }
 }

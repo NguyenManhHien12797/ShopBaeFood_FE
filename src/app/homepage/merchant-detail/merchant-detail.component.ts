@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {MerchantService} from "../../service/merchant/merchant.service";
+import {Merchant} from "../../model/merchant";
+import {Product} from "../../model/product";
+import {ProductService} from "../../service/product/product.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -6,10 +11,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./merchant-detail.component.css']
 })
 export class MerchantDetailComponent implements OnInit {
+  id: number;
+  merchant: Merchant;
+  products: Product[]=[];
+  // @ts-ignore
+  // idMerchant:any=this.merchant.id
+  constructor(private activatedRoute: ActivatedRoute,
+              private merchantService: MerchantService,
+              private productService: ProductService) {
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.getMerchant(this.id);
+      console.log("idParam:"+this.id)
+    })
+
+  }
+
+  private getMerchant(id: any) {
+    this.merchantService.findMerchantById(id).subscribe(merchant=>{
+      this.merchant=merchant;
+      console.table(merchant);
+      this.getProductByMerchant(merchant.id);
+    })
+  }
+  private getProductByMerchant(id: any){
+    this.productService.getAllProductByMerchant(id).subscribe(products=>{
+      this.products= products;
+    })
+  }
 }

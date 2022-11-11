@@ -13,14 +13,13 @@ const routes: Routes = [{
     path:"home",
     component: HomeComponent,
     children: [{
-      path:"danh-sach-tat-ca-san-pham",
-      component: AllMerchantListComponent
-    },
-      {
-        path:"danh-sach-tat-ca-san-pham/chi-tiet-san-pham",
+      path:"list-merchant",
+      component: AllMerchantListComponent,
+      children: [{
+        path:"merchant-detail/:id",
         component: MerchantDetailComponent
-      }
-    ]
+      }]
+    }]
   },
 ]
 

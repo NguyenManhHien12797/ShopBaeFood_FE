@@ -16,7 +16,8 @@ import { MerchantDetailComponent } from './merchant-detail/merchant-detail.compo
     MerchantDetailComponent
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    AllMerchantListComponent
   ],
   imports: [
     CommonModule,

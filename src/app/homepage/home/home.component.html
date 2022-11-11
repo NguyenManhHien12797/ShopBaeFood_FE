@@ -177,8 +177,8 @@
       </div>
     </header>
 
-    <div *ngIf="url === '/home/danh-sach-tat-ca-san-pham'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
+    <div *ngIf="url === '/home'; then thenBlock else elseBlock"></div>
+    <ng-template #elseBlock>
 
       <div class="wrapper-item">
         <div class="container">
@@ -297,10 +297,10 @@
           <hr>
         </div>
       </div>
-
-
     </ng-template >
-    <ng-template  #elseBlock>
+    <ng-template   #thenBlock>
+
+
       <div class="now-banner ver_vi" style=" top: 70px;">
         <div class="container  now-banner-container">
           <div class="now-search">
@@ -314,7 +314,7 @@
                 href="/ha-noi/danh-sach-dia-diem-giao-tan-noi?q="><button type="button"
                                                                           class="btn btn-search"><span class="fa fa-search"></span></button></a></div>
             </div>
-            <div class="category-list-filter"><a routerLink="danh-sach-tat-ca-san-pham"><span
+            <div class="category-list-filter"><a routerLink="list-merchant"><span
               class="category-item ">All</span></a><a
               href="/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi"><span
               class="category-item ">Đồ ăn</span></a><a
@@ -1332,13 +1332,6 @@
         </div>
       </div>
     </ng-template>
-
-<!--    <div *ngIf="url === '/home/danh-sach-tat-ca-san-pham/chi-tiet-san-pham'; then thenBlock1"></div>-->
-<!--      <ng-template #thenBlock1>-->
-<!--&lt;!&ndash;        <app-product-detail></app-product-detail>&ndash;&gt;-->
-<!--        <router-outlet></router-outlet>-->
-<!--      </ng-template>-->
-
 
 
   </div>

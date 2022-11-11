@@ -39,8 +39,11 @@ export class AccountService {
     return this.http.post<LoginForm>(`${API_URL}/api/public/login`, loginForm);
   }
 
-  register(user : AppUser): Observable<AppUser>{
-    return this.http.post<AppUser>(`${API_URL}/api/public/register`,user);
+  register(user : any): Observable<any>{
+    return this.http.post<any>(`${API_URL}/api/public/register`,user);
+  }
+  registerMerchant(user : any): Observable<any>{
+    return this.http.post<any>(`${API_URL}/api/public/register/merchant`,user);
   }
 
   logout() {
@@ -59,5 +62,9 @@ export class AccountService {
 
   changePassword(id: number,changePass : ChangepassDTO): Observable<AppUser> {
     return this.http.post<AppUser>(`${API_URL}/user/${id}`,changePass)
+  }
+  forgotpass(mail:any): Observable<any>{
+    // @ts-ignore
+    return  this.http.post<any>(`${API_URL}/api/public/mail/forgotpass?email=`+mail)
   }
 }

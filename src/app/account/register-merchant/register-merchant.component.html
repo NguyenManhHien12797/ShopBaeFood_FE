@@ -224,74 +224,74 @@
         </div>
         <p class="text">Hoặc đăng nhập bằng tài khoản của bạn</p>
         <form [formGroup]="registerForm" (ngSubmit)="register()" >
-        <div class="form-login-input">
-          <div class="field-group">
-            <div class="input-group"><i class="far fa-envelope"></i><input type="text"
-                                                                           placeholder="Tên đăng nhập" value="" formControlName="userName">
-              <div *ngIf="!userName?.valid && (userName?.dirty || userName?.touched)">
-                <div [hidden]="!userName?.errors?.['required']">
+          <div class="form-login-input">
+            <div class="field-group">
+              <div class="input-group"><i class="far fa-envelope"></i><input type="text"
+                                                                             placeholder="Tên đăng nhập" value="" formControlName="userName">
+                <div *ngIf="!userName?.valid && (userName?.dirty || userName?.touched)">
+                  <div [hidden]="!userName?.errors?.['required']">
+                    <p style="color: red"> Tên không được trống </p>
+                  </div>
+                  <div [hidden]="!userName?.errors?.['minlength']">
+                    <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group"><i class="fas fa-lock"></i><input type="password" placeholder="Mật khẩu"
+                                                                         value="" formControlName="password"><div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                <div [hidden]="!password?.errors?.['required']">
                   <p style="color: red"> Tên không được trống </p>
                 </div>
-                <div [hidden]="!userName?.errors?.['minlength']">
+                <div [hidden]="!password?.errors?.['minlength']">
                   <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
                 </div>
-              </div>
-            </div>
-            <div class="input-group"><i class="fas fa-lock"></i><input type="password" placeholder="Mật khẩu"
-                                                                       value="" formControlName="password"><div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
-              <div [hidden]="!password?.errors?.['required']">
-                <p style="color: red"> Tên không được trống </p>
-              </div>
-              <div [hidden]="!password?.errors?.['minlength']">
-                <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-              </div>
-            </div></div>
+              </div></div>
 
-            <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập email"
-                                                                       value="" formControlName="email"><div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
-              <div [hidden]="!email?.errors?.['required']">
-                <p style="color: red"> Tên không được trống </p>
-              </div>
-              <div [hidden]="!email?.errors?.['minlength']">
-                <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-              </div>
-            </div></div>
-            <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập tên chủ tài khoản"
-                                                                       value="" formControlName="name"><div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
-              <div [hidden]="!name?.errors?.['required']">
-                <p style="color: red"> Tên không được trống </p>
-              </div>
-              <div [hidden]="!name?.errors?.['minlength']">
-                <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-              </div>
-            </div></div>
-            <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập số điện thoại"
-                                                                       value="" formControlName="phone"><div *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
-              <div [hidden]="!phone?.errors?.['required']">
-                <p style="color: red"> Tên không được trống </p>
-              </div>
-              <div [hidden]="!phone?.errors?.['minlength']">
-                <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-              </div>
-            </div></div>
-            <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập địa chỉ"
-                                                                       value="" formControlName="address"><div *ngIf="!address?.valid && (address?.dirty || address?.touched)">
-              <div [hidden]="!address?.errors?.['required']">
-                <p style="color: red"> Tên không được trống </p>
-              </div>
-              <div [hidden]="!address?.errors?.['minlength']">
-                <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
-              </div>
-            </div></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="float-left"><input type="checkbox" id="RememberMe" checked=""><label for="RememberMe">Lưu
-              thông tin đăng nhập</label></div>
-            <span class="float-right"><a href="/forgotPassword">Quên mật
+              <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập email"
+                                                                             value="" formControlName="email"><div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                <div [hidden]="!email?.errors?.['required']">
+                  <p style="color: red"> Tên không được trống </p>
+                </div>
+                <div [hidden]="!email?.errors?.['minlength']">
+                  <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                </div>
+              </div></div>
+              <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập tên chủ tài khoản"
+                                                                             value="" formControlName="name"><div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+                <div [hidden]="!name?.errors?.['required']">
+                  <p style="color: red"> Tên không được trống </p>
+                </div>
+                <div [hidden]="!name?.errors?.['minlength']">
+                  <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                </div>
+              </div></div>
+              <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập số điện thoại"
+                                                                         value="" formControlName="phone"><div *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
+                <div [hidden]="!phone?.errors?.['required']">
+                  <p style="color: red"> Tên không được trống </p>
+                </div>
+                <div [hidden]="!phone?.errors?.['minlength']">
+                  <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                </div>
+              </div></div>
+              <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập địa chỉ"
+                                                                         value="" formControlName="address"><div *ngIf="!address?.valid && (address?.dirty || address?.touched)">
+                <div [hidden]="!address?.errors?.['required']">
+                  <p style="color: red"> Tên không được trống </p>
+                </div>
+                <div [hidden]="!address?.errors?.['minlength']">
+                  <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                </div>
+              </div></div>
+            </div>
+            <div class="form-group clearfix">
+              <div class="float-left"><input type="checkbox" id="RememberMe" checked=""><label for="RememberMe">Lưu
+                thông tin đăng nhập</label></div>
+              <span class="float-right"><a href="/forgotPassword">Quên mật
                                     khẩu?</a></span>
+            </div>
+            <button class="btn btn-block btn-submit">Đăng ký</button>
           </div>
-          <button class="btn btn-block btn-submit">Đăng ký</button>
-        </div>
         </form>
         {{message}}
         <br>

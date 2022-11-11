@@ -11,7 +11,9 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
     userName: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")])
+    password: new FormControl("", [Validators.required]),
+    // password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")])
+
   })
   message : string = "";
 
@@ -30,12 +32,14 @@ export class LoginComponent implements OnInit {
   }
   login() {
     const form = this.loginForm.value;
+    console.log(form);
     this.accountService.login(form).subscribe(data => {
+      console.log(data);
 
       if (data == null) {
         this.message = "Nguoi dung khong ton tai hoac sai mat khau"
       } else {
-        localStorage.setItem("user",JSON.stringify(data))
+        localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
         for (let i = 0; i <data.roles.length ; i++) {
           if(data.roles[i].authority=='ROLE_ADMIN'){

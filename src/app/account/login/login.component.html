@@ -221,8 +221,10 @@
         <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-login-input">
           <div class="field-group">
-            <div class="input-group"><i class="far fa-envelope"></i><input class="input100" id="username" type="text" name="username" placeholder="username"
+            <div class="input-group"><i class="far fa-envelope"></i><input class="input100" id="userName" type="text" name="userName" placeholder="userName"
                                                                            formControlName="userName">
+
+
               <!--          <div class="wrap-input100 validate-input">-->
               <!--            <input class="input100" id="username" type="text" name="username" placeholder="username"-->
               <!--                   formControlName="username">-->
@@ -238,7 +240,7 @@
               </div>
             </div>
 
-            <div class="input-group"><i class="fas fa-lock"></i><input class="input100" type="password" name="pass" placeholder="Password" formControlName="password"></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input class="input100" type="password" name="password" placeholder="Password" formControlName="password"></div>
 <!--              valid-->
               <div *ngIf="!password?.valid && password?.touched">
                 <div [hidden]="!password?.errors?.['required']">

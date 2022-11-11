@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {HomepageModule} from "./homepage/homepage.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AdminModule} from "./admin/admin.module";
-import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {AccountModule} from "./account/account.module";
 import {MerchantModule} from "./merchant/merchant.module";
+import {Auth_interceptor} from "./service/auth_interceptor";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 
 
 @NgModule({
@@ -31,7 +31,9 @@ import {environment} from "../environments/environment";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: Auth_interceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

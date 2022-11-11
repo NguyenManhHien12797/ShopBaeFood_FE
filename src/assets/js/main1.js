@@ -27844,7 +27844,7 @@ webpackJsonp([1], {
             if (Object(l.f)(h)) r.props.sendMessageConnect(t, e); else {
               var m = p.remote_configurations["order.chat.auto_reply_interval"] || d.f,
                 f = i()().isBefore(i()(h.send_time, u.i.DATETIME).add(m, "seconds")),
-                v = Object(g.a)({messageList: a.messageList, userId: o, currentOrder: c, userName: s});
+                v = Object(g.a)({messageList: a.messageList, userId: o, currentOrder: c, username: s});
               Object(l.f)(v) || !v.isAutoReply || f ? r.props.sendMessageConnect(t, e) : r.props.sendMessageConnect(t, e, function () {
                 var e = Object(g.d)(t, v.message);
                 r.props.newMessageReceivedConnect(e)
@@ -28003,7 +28003,7 @@ webpackJsonp([1], {
       t.a = Object(c.b)(function (e) {
         return {
           user_id: e.auth.user.uid,
-          userName: e.auth.user.name,
+          username: e.auth.user.name,
           userToken: e.auth.token,
           minimalMetadata: e.app.minimalMetadata,
           isLoading: e.chat.isLoading,
@@ -35757,7 +35757,7 @@ webpackJsonp([1], {
                   messageList: y,
                   userId: O,
                   currentOrder: v,
-                  userName: w
+                  username: w
                 }), !Object(a.f)(S) && S.isAutoReply && (C = Object(r.d)(e, S.message), _(p(C))))) : _(l(g));
               case 6:
               case"end":

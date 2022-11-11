@@ -23414,3 +23414,14 @@ input.required-data, select.required-data {
 }
 
 
+.nav-bar-cart{
+  font-size: 20px;
+  color: #525252;
+  margin: 0 20px;
+}
+
+.nav-bar-cart:hover{
+  cursor: pointer;
+}
+
+

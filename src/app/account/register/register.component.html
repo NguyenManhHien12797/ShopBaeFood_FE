@@ -6,7 +6,7 @@
 <script>
   (function (w, d, s, l, i) {
     w[l] = w[l] || [];
-    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     var f = d.getElementsByTagName(s)[0],
       j = d.createElement(s),
       dl = l != 'dataLayer' ? '&l=' + l : '';
@@ -16,20 +16,21 @@
   })(window, document, 'script', 'dataLayer', 'GTM-KZSQTX3');
 </script>
 <style>
-  .font15
-  {
-    font-size:15px;
+  .font15 {
+    font-size: 15px;
   }
-  .font14
-  {
-    font-size:14px;
+
+  .font14 {
+    font-size: 14px;
   }
 </style>
 
 <body class="portal" style="font-size:calc(8px + 0.5vw);">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSQTX3" height="0" width="0"
-                  style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSQTX3" height="0" width="0"
+          style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div id="app">
   <div class="wrapper">
@@ -44,7 +45,8 @@
             <div class="select-local col-auto">
               <div class="dropdown">
                 <div class="dropdown-toggle" role="button" id="local-dropdown"
-                     data-toggle="dropdown" aria-haspopup="true">Hà Nội</div>
+                     data-toggle="dropdown" aria-haspopup="true">Hà Nội
+                </div>
                 <div class="dropdown-menu" style="font-size:14px">
                   <div class="dropdown-item"><span class="name col">TP. HCM</span><span
                     class="count col-auto">85849 địa điểm</span></div>
@@ -87,9 +89,11 @@
 
             <div class="main-nav col"><a class="nav-item active" href="/ha-noi/food">Đồ ăn</a><a
               class="nav-item " href="/ha-noi/fresh">Thực phẩm</a><a class="nav-item "
-                                                                     href="/ha-noi/liquor">Bia</a><a class="nav-item " href="/ha-noi/flowers">Hoa</a><a
+                                                                     href="/ha-noi/liquor">Bia</a><a class="nav-item "
+                                                                                                     href="/ha-noi/flowers">Hoa</a><a
               class="nav-item " href="/ha-noi/fmcg">Siêu thị</a><a class="nav-item "
-                                                                   href="/ha-noi/medicine">Thuốc</a><a class="nav-item " href="/ha-noi/pets">Thú
+                                                                   href="/ha-noi/medicine">Thuốc</a><a class="nav-item "
+                                                                                                       href="/ha-noi/pets">Thú
               cưng</a></div>
 
             <div class="language dropdown col-auto">
@@ -105,7 +109,7 @@
             </div>
             <div class="user-acc col-auto">
               <button type="button" onclick="login()" class="btn btn-none-bg btn-login">
-                <span class="font14">Đăng nhập</span>
+                <span routerLink="/login" class="font14">Đăng nhập</span>
               </button>
             </div>
           </div>
@@ -207,10 +211,14 @@
             type="hidden" name="client_id"
             value="229327170580-69v69v4s94p2tvf4qi3g0qb901b2pg99.apps.googleusercontent.com"><input
             type="hidden" name="redirect_uri" value="https://shopeefood.vn/account/login"><input type="hidden"
-                                                                                                 name="scope" value="email profile openid"><input type="hidden" name="state" value="/"><input
+                                                                                                 name="scope"
+                                                                                                 value="email profile openid"><input
+            type="hidden" name="state" value="/"><input
             type="hidden" name="response_type" value="permission id_token"><input type="hidden"
-                                                                                  name="fetch_basic_profile" value="true"><input type="hidden" name="nonce"
-                                                                                                                                 value="AO9thoqUvirPjVc4KOM61c001.snqMhG">
+                                                                                  name="fetch_basic_profile"
+                                                                                  value="true"><input type="hidden"
+                                                                                                      name="nonce"
+                                                                                                      value="AO9thoqUvirPjVc4KOM61c001.snqMhG">
             <div class="item plus"><i class="fab fa-google-plus-g"></i>Google</div>
           </form>
         </div>
@@ -221,13 +229,25 @@
                                                                            placeholder="Tên đăng nhập" value=""></div>
             <div class="input-group"><i class="fas fa-lock"></i><input type="password" placeholder="Mật khẩu"
                                                                        value=""></div>
+
+            <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập email"
+                                                                       value=""></div>
+            <div class="input-group"><i class="far fa-envelope"></i><input type="text" placeholder="Nhập tên chủ tài khoản"
+                                                                       value=""></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập số điện thoại"
+                                                                       value=""></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="text" placeholder="Nhập địa chỉ"
+                                                                       value=""></div>
           </div>
           <div class="form-group clearfix">
             <div class="float-left"><input type="checkbox" id="RememberMe" checked=""><label for="RememberMe">Lưu
-              thông tin đăng nhập</label></div><span class="float-right"><a href="/forgotPassword">Quên mật
+              thông tin đăng nhập</label></div>
+            <span class="float-right"><a href="/forgotPassword">Quên mật
                                     khẩu?</a></span>
-          </div><button class="btn btn-block btn-submit">Đăng ký</button>
-        </div><br>
+          </div>
+          <button class="btn btn-block btn-submit">Đăng ký</button>
+        </div>
+        <br>
         <div class="login-mess-policy">Chúng tôi không sử dụng thông tin của bạn với bất kỳ mục đích nào. Bằng cách đăng
           nhập hoặc đăng ký, bạn đồng ý với <a
             style="color: #0495ba; border-bottom: 2px solid; text-decoration: none !important;" target="_blank"
@@ -237,7 +257,7 @@
     <!-- end form login -->
 
 
-    <div class="now-container-coporation" >
+    <div class="now-container-coporation">
       <p class="seo-footer-link__head">Danh mục</p>
       <div class="seo-footer-link__body">
         <div class="seo-footer-link__item"><a href="#">
@@ -348,11 +368,41 @@
   </div>
 
 
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>!function (r) { var n = window.webpackJsonp; window.webpackJsonp = function (e, u, c) { for (var f, i, p, a = 0, l = []; a < e.length; a++)i = e[a], o[i] && l.push(o[i][0]), o[i] = 0; for (f in u) Object.prototype.hasOwnProperty.call(u, f) && (r[f] = u[f]); for (n && n(e, u, c); l.length;)l.shift()(); if (c) for (a = 0; a < c.length; a++)p = t(t.s = c[a]); return p }; var e = {}, o = { 2: 0 }; function t(n) { if (e[n]) return e[n].exports; var o = e[n] = { i: n, l: !1, exports: {} }; return r[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports } t.m = r, t.c = e, t.d = function (r, n, e) { t.o(r, n) || Object.defineProperty(r, n, { configurable: !1, enumerable: !0, get: e }) }, t.n = function (r) { var n = r && r.__esModule ? function () { return r.default } : function () { return r }; return t.d(n, "a", n), n }, t.o = function (r, n) { return Object.prototype.hasOwnProperty.call(r, n) }, t.p = "/", t.oe = function (r) { throw console.error(r), r } }([]);
+<script>!function (r) {
+  var n = window.webpackJsonp;
+  window.webpackJsonp = function (e, u, c) {
+    for (var f, i, p, a = 0, l = []; a < e.length; a++) i = e[a], o[i] && l.push(o[i][0]), o[i] = 0;
+    for (f in u) Object.prototype.hasOwnProperty.call(u, f) && (r[f] = u[f]);
+    for (n && n(e, u, c); l.length;) l.shift()();
+    if (c) for (a = 0; a < c.length; a++) p = t(t.s = c[a]);
+    return p
+  };
+  var e = {}, o = {2: 0};
+
+  function t(n) {
+    if (e[n]) return e[n].exports;
+    var o = e[n] = {i: n, l: !1, exports: {}};
+    return r[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports
+  }
+
+  t.m = r, t.c = e, t.d = function (r, n, e) {
+    t.o(r, n) || Object.defineProperty(r, n, {configurable: !1, enumerable: !0, get: e})
+  }, t.n = function (r) {
+    var n = r && r.__esModule ? function () {
+      return r.default
+    } : function () {
+      return r
+    };
+    return t.d(n, "a", n), n
+  }, t.o = function (r, n) {
+    return Object.prototype.hasOwnProperty.call(r, n)
+  }, t.p = "/", t.oe = function (r) {
+    throw console.error(r), r
+  }
+}([]);
 </script>
 <script defer="" src="./assets/js/main1.js"></script>
 <script defer="" src="./assets/js/main2.js"></script>

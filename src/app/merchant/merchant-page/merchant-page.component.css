@@ -23365,3 +23365,45 @@ input.required-data, select.required-data {
 .now-container-content{
   background-color: #ffffff;
 }
+
+
+.user-acc-img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+.user-acc-wr{
+  display: flex;
+}
+.user-acc-contain{
+  position: relative;
+}
+.user-acc-dropdown{
+  position: absolute;
+  background-color: #f7f7f7;
+  width: 140px;
+  padding: 10px 0 20px 20px;
+  border-radius: 5px;
+  display: none;
+}
+.user-acc-admin{
+  display: block;
+  margin-bottom: 15px;
+}
+
+.user-acc-contain:hover .user-acc-dropdown{
+  display: block;
+}
+
+.user-acc-dropdown span:hover{
+  cursor: pointer;
+}
+
+.user-acc-contain span:hover{
+  cursor: pointer;
+}
+.user-acc-contain span{
+  color: #232323;
+  font-size: 16px;
+}

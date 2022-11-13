@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AppUser} from "../../model/appUser";
 import {LoginForm} from "../../model/login-form";
 import {ChangepassDTO} from "../../model/changepass-dto";
+import {Account} from "../../model/account";
 const API_URL= environment.apiUrl
 @Injectable({
   providedIn: 'root'
@@ -23,16 +24,8 @@ export class AccountService {
     }
   ]
 
-  httpOptions: any;
   constructor(private http: HttpClient) {
-    // this.httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json'
-    //   }),
-    //   'No-Auth':'true',
-    //   'Access-Control-Allow-Origin': 'http://localhost:4200/',
-    //   'Access-Control-Allow-Origin-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    // }
+
   }
 
   login(loginForm: LoginForm): Observable<JwtResponse> {
@@ -60,4 +53,18 @@ export class AccountService {
   changePassword(id: number,changePass : ChangepassDTO): Observable<AppUser> {
     return this.http.post<AppUser>(`${API_URL}/user/${id}`,changePass)
   }
+
+  getAccountToMerchant(id: number):Observable<any>{
+    return this.http.get<any>(`${API_URL}/api/account/merchant/${id}`);
+  }
+
+  getAccountToId(id: number):Observable<any>{
+    return this.http.get<any>(`${API_URL}/api/account/${id}`);
+  }
+
+  updateAccountMerchant(id: number, acc: Account):Observable<any>{
+    return this.http.patch<any>(`${API_URL}/api/account/merchant/${id}`, acc);
+  }
+
+
 }

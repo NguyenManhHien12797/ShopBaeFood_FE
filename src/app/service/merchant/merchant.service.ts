@@ -33,16 +33,15 @@ export class MerchantService {
     // console.log(token)
     // const headers = new HttpHeaders().set("Authorization",token);
     // console.log(headers)
-    return this.http.get<any>(API_URL+ '/api/merchant');
+    return this.http.get<any>(API_URL+ '/api/public/merchant');
   }
   // updateActiveMerchant(id: number, merchant: Merchant): Observable<Merchant> {
   //   return this.http.put(`${API_URL}/merchants/${id}`, merchant);
   // }
   updateMerchant(id: number, merchant: Merchant): Observable<Merchant>{
-    console.log("update")
     return this.http.put<Merchant>(`${API_URL}/api/merchant/${id}`, merchant);
   }
   findMerchantById(id: number): Observable<Merchant>{
-    return  this.http.get<Merchant>(`${API_URL}/api/merchant/${id}`);
+    return  this.http.get<Merchant>(`${API_URL}/api/public/merchant/${id}`);
   }
 }

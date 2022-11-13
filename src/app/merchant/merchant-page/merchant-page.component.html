@@ -29,23 +29,14 @@
           </ng-template>
 
           <ng-template #elseBlockAcc>
-
-
             <div class="user-acc-contain">
-              <img class="user-acc-img" src="{{acc.avatar}}" alt="">
-              <span>{{acc.name}}</span>
+              <img class="user-acc-img" src="{{data.avatar}}" alt="">
+              <span>{{data.name}}</span>
               <div class="user-acc-dropdown">
                 <span (click)="logout()"><i class="fa-solid fa-right-to-bracket"></i> Đăng xuất</span>
               </div>
-
-
-
             </div>
-
-
           </ng-template>
-
-
         </div>
       </div>
     </div>
@@ -144,32 +135,32 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="mercha" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">
+          <li class="nav-item" >
+            <a class="nav-link active" aria-current="page" routerLink="merchant-dashboard" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="merchant-list" routerLinkActive="selected">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="merchant-order" routerLinkActive="selected">
               <span data-feather="file" class="align-text-bottom"></span>
               Quản lý đơn hàng
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="product-list" routerLinkActive="selected">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="product-list" routerLinkActive="selected">
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               Quản lý sản phẩm
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="product" routerLinkActive="selected">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="merchant-transport" routerLinkActive="selected">
               <span data-feather="users" class="align-text-bottom"></span>
               Quản lý đơn vị vận chuyển
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="merchant-info" routerLinkActive="selected">
               <span data-feather="users" class="align-text-bottom"></span>
               Thiết lập Shop
             </a>
@@ -180,7 +171,36 @@
 
     <!--    <app-merchant-list class="col-md-9 ms-sm-auto col-lg-10 px-md-4"></app-merchant-list>-->
     <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <router-outlet></router-outlet>
+
+<!--      <ng-template [ngIf] = "url == '/merchant/merchant-dashboard'">-->
+<!--        <app-dashboard></app-dashboard>-->
+<!--      </ng-template>-->
+
+<!--      <ng-template [ngIf] = "url == '/merchant/merchant-order'">-->
+<!--        <app-merchant-order-list></app-merchant-order-list>-->
+<!--      </ng-template>-->
+
+<!--      <ng-template [ngIf] = "url == '/merchant/product-list'">-->
+<!--        <app-product-list></app-product-list>-->
+<!--      </ng-template>-->
+
+<!--      <ng-template [ngIf] = "url == url">-->
+<!--        <app-product-edit></app-product-edit>-->
+<!--      </ng-template>-->
+
+<!--      <ng-template [ngIf] = "url == '/merchant/product-create'">-->
+<!--        <app-product-create></app-product-create>-->
+<!--      </ng-template>-->
+
+      <div *ngIf="url == '/merchant/merchant-info'; then thenBlockInfo else elseBlockInfo"></div>
+      <ng-template #thenBlockInfo>
+        <app-merchant-info (newAccountEvent)="addNewAccount($event)"></app-merchant-info>
+      </ng-template>
+
+      <ng-template #elseBlockInfo>
+        <router-outlet></router-outlet>
+      </ng-template>
+
     </div>
   </div>
 </div>
@@ -295,5 +315,4 @@
   </div>
 </div>
 <hr>
-
 

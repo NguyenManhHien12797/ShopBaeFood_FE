@@ -37,13 +37,24 @@ html {
 }
 .selected{
   color: white;
-  background: #d51c1c;
-  border-radius: 17px;
+  background: #f16464;
+  border-radius: 5px;
+  transform: translateX(20px);
+}
+
+.selected:hover{
+  color: white;
 }
 nav a {
   display: inline-block;
-  padding: 5px;
-  margin-right: 5px;
+  width: 100%;
+}
+
+.nav-item-hover:hover{
+  color: white;
+  background: #f16464;
+  border-radius: 5px;
+  transform: translateX(20px);
 }
 
 @-ms-viewport {
@@ -11725,7 +11736,8 @@ a.bg-danger:focus, a.bg-danger:hover, button.bg-danger:focus, button.bg-danger:h
 }
 
 .bg-light {
-  background-color: #ebebeb !important
+  background-color: #ebebeb !important;
+  box-shadow: 5px 5px 10px #d1d0d0;
 }
 
 a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover {
@@ -23363,7 +23375,7 @@ input.required-data, select.required-data {
 }
 
 .now-container-content{
-  background-color: #ffffff;
+  background-color: #f2f2f2;
 }
 
 

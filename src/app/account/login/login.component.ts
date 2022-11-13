@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
         for (let i = 0; i <data.roles.length ; i++) {
-          if(data.roles[i].authority=='ROLE_ADMIN'){
+          if(data.roles[i]=='ROLE_ADMIN'){
             this.router.navigate(['/admin']);
             break;
-          }else if(data.roles[i].authority=='ROLE_MERCHANT'){
+          }else if(data.roles[i]=='ROLE_MERCHANT'){
             this.router.navigate(['/merchant'])
             break;
           }else {
@@ -54,5 +54,7 @@ export class LoginComponent implements OnInit {
         }
       }
     })
+
+
   }
 }

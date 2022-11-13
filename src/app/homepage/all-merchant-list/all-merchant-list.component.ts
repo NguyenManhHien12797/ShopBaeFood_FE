@@ -18,6 +18,8 @@ export class AllMerchantListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduct();
+    console.log("all")
+    console.log( this.getAllProduct())
   }
 
   acc: AccountToken;

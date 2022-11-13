@@ -7,6 +7,7 @@ import {HomepageRoutingModule} from "./homepage-routing.module";
 import { AllMerchantListComponent } from './all-merchant-list/all-merchant-list.component';
 import { MerchantDetailComponent } from './merchant-detail/merchant-detail.component';
 import {FormsModule} from "@angular/forms";
+import { UserInfoComponent } from './user-info/user-info.component';
 
 
 
@@ -14,7 +15,8 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     HomeComponent,
     AllMerchantListComponent,
-    MerchantDetailComponent
+    MerchantDetailComponent,
+    UserInfoComponent
   ],
   exports: [
     HomeComponent,

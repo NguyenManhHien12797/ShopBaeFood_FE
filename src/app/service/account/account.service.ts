@@ -28,7 +28,7 @@ export class AccountService {
 
   }
 
-  login(loginForm: LoginForm): Observable<JwtResponse> {
+  login(loginForm: LoginForm): Observable<any> {
     return this.http.post<LoginForm>(`${API_URL}/api/public/login`, loginForm);
   }
 

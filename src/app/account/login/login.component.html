@@ -218,16 +218,7 @@
           <div class="field-group">
             <div class="input-group"><i class="far fa-envelope"></i><input class="input100" id="userName" type="text" name="userName" placeholder="Tên đăng nhập"
                                                                            formControlName="userName">
-
-
-              <!--          <div class="wrap-input100 validate-input">-->
-              <!--            <input class="input100" id="username" type="text" name="username" placeholder="username"-->
-              <!--                   formControlName="username">-->
-              <!--            <span class="focus-input100"></span>-->
-              <!--            <span class="symbol-input100">-->
-              <!--							<i class="fa fa-id-card" aria-hidden="true"></i>-->
-              <!--						</span>-->
-              <!--          </div>-->
+             <span style="color: red"> {{message}}</span>
 <!--valid user-->
             <div *ngIf="!username?.valid && username?.touched">
               <div [hidden]="!username?.errors?.['required']">
@@ -256,7 +247,7 @@
               thông tin đăng nhập</label></div><span class="float-right"><a routerLink="/forgotPassword">Quên mật
                                     khẩu?</a></span>
           </div><button class="btn btn-block btn-submit">Đăng nhập</button>
-            {{message}}
+
           <a routerLink="/register" class="btn btn-block btn-dark">Đăng ký</a>
         </div><br>
 

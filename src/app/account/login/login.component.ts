@@ -32,12 +32,10 @@ export class LoginComponent implements OnInit {
   }
   login() {
     const form = this.loginForm.value;
-    console.log(form);
     this.accountService.login(form).subscribe(data => {
-      console.log(data);
-
-      if (data == null) {
-        this.message = "Nguoi dung khong ton tai hoac sai mat khau"
+      if (data == null || data.message =="Sai roi") {
+        this.message = "Nguoi dung khong ton tai hoac sai mat khau";
+        window.localStorage.clear();
       } else {
         localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
@@ -53,7 +51,11 @@ export class LoginComponent implements OnInit {
           }
         }
       }
-    })
+    },error => {
+      this.message ="Nguoi dung khong ton tai hoac sai mat khau";
+      window.localStorage.clear();
+      }
+      )
 
 
   }

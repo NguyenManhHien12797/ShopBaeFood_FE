@@ -66,7 +66,8 @@
                       <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-store"></i> Kênh người bán</a>
                     </ng-template>
                     <ng-template #elseBlockMerchant>
-                      <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
+                      <a class="user-acc-admin" routerLink="/register-merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
+                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
                     </ng-template>
 
                     <div *ngIf="message == 'admin'; then thenBlockAdmin"></div>

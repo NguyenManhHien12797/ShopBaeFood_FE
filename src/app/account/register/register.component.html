@@ -245,10 +245,10 @@
                                                                          value="" formControlName="password">
                 <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
                   <div [hidden]="!password?.errors?.['required']">
-                    <p style="color: red"> Tên không được trống </p>
+                    <p style="color: red"> Mật khẩu không được trống </p>
                   </div>
                   <div [hidden]="!password?.errors?.['minlength']">
-                    <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                    <p style="color: red"> Mật khẩu phải nhiều hơn 3 ký tự </p>
                   </div>
                 </div>
               </div>
@@ -257,10 +257,10 @@
                                                                              value="" formControlName="email">
                 <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
                   <div [hidden]="!email?.errors?.['required']">
-                    <p style="color: red"> Tên không được trống </p>
+                    <p style="color: red"> Email không được trống </p>
                   </div>
                   <div [hidden]="!email?.errors?.['minlength']">
-                    <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                    <p style="color: red"> Email phải nhiều hơn 3 ký tự </p>
                   </div>
                   <div [hidden]="!email?.errors?.['pattern']">
                     <p style="color: red"> Email phải đúng định dạng </p>
@@ -284,10 +284,10 @@
                                                                           value="" formControlName="phone">
                 <div *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
                   <div [hidden]="!phone?.errors?.['required']">
-                    <p style="color: red"> Tên không được trống </p>
+                    <p style="color: red"> Số điện thoại không được trống </p>
                   </div>
                   <div [hidden]="!phone?.errors?.['minlength']">
-                    <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                    <p style="color: red"> Số điện thoại phải nhiều hơn 9 ký tự </p>
                   </div><div [hidden]="!phone?.errors?.['pattern']">
                     <p style="color: red"> Số điện thoại không đúng định dạng </p>
                   </div>
@@ -297,10 +297,10 @@
                                                                          value="" formControlName="address">
                 <div *ngIf="!address?.valid && (address?.dirty || address?.touched)">
                   <div [hidden]="!address?.errors?.['required']">
-                    <p style="color: red"> Tên không được trống </p>
+                    <p style="color: red"> Địa chỉ không được trống </p>
                   </div>
                   <div [hidden]="!address?.errors?.['minlength']">
-                    <p style="color: red"> Tên phải nhiều hơn 3 ký tự </p>
+                    <p style="color: red"> Địa chỉ phải nhiều hơn 3 ký tự </p>
                   </div>
                 </div>
               </div>

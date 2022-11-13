@@ -3,11 +3,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register-merchant',
+  templateUrl: './register-merchant.component.html',
+  styleUrls: ['./register-merchant.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterMerchantComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     userName: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     password: new FormControl("", [Validators.required]),
@@ -37,11 +37,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-      this.accountService.register(this.registerForm.value).subscribe((data)=>{
-        console.log(data)
-        if(data==null){
-          this.message="Đăng ký thành công"
-        }
-      })
+    this.accountService.registerMerchant(this.registerForm.value).subscribe((data)=>{
+      console.log(data)
+      if(!data==null){
+        this.message="Đăng ký thành công"
+      }
+    })
   }
 }

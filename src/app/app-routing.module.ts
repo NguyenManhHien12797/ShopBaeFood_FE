@@ -24,10 +24,6 @@ const routes: Routes= [
     component: UserInfoComponent
   },
   {
-    path: "register-merchant",
-    component: UserInfoComponent
-  },
-  {
     path: "cart",
     loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   },

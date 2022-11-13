@@ -6,7 +6,7 @@ import {OderComponent} from "./oder/oder.component";
 
 
 const routes: Routes = [{
-  path:"",
+  path:"cart",
   component:CartUserComponent,
 
   children:[{

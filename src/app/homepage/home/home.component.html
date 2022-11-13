@@ -1,4 +1,3 @@
-
 <div id="app">
   <div class="wrapper">
     <header class="main-header">
@@ -66,12 +65,8 @@
                       <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-store"></i> Kênh người bán</a>
                     </ng-template>
                     <ng-template #elseBlockMerchant>
-<<<<<<< HEAD
-                      <a class="user-acc-admin" routerLink="/register-merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
-                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
-=======
                       <a class="user-acc-admin" routerLink="/register/merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
->>>>>>> 320eb75cdbd4e4d233a9a4e783f6befd05df2c75
+                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
                     </ng-template>
 
                     <div *ngIf="message == 'admin'; then thenBlockAdmin"></div>
@@ -87,7 +82,7 @@
 
                 </div>
 
-                <div class="nav-bar-cart"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="nav-bar-cart" routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></div>
               </ng-template>
 
 

@@ -13,6 +13,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {CartModule} from "./cart/cart.module";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
     HomepageModule,
     HttpClientModule,
     AdminModule,
+    CartModule,
     MerchantModule,
     AppRoutingModule,
     AccountModule,

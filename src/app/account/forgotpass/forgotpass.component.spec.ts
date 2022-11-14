@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MerchantDetailComponent } from './merchant-detail.component';
+import { ForgotpassComponent } from './forgotpass.component';
 
-describe('MerchantDetailComponent', () => {
-  let component: MerchantDetailComponent;
-  let fixture: ComponentFixture<MerchantDetailComponent>;
+describe('ForgotpassComponent', () => {
+  let component: ForgotpassComponent;
+  let fixture: ComponentFixture<ForgotpassComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MerchantDetailComponent ]
+      declarations: [ ForgotpassComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MerchantDetailComponent);
+    fixture = TestBed.createComponent(ForgotpassComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

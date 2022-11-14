@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
+import {UserInfoComponent} from "./homepage/user-info/user-info.component";
 
 const routes: Routes= [
   {
@@ -17,6 +18,14 @@ const routes: Routes= [
   {
     path: "merchant",
     loadChildren: () => import('./merchant/merchant.module').then(m => m.MerchantModule)
+  },
+  {
+    path: "user-info",
+    component: UserInfoComponent
+  },
+  {
+    path: "cart",
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   },
   {
     path: "",

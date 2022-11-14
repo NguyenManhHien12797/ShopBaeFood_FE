@@ -1,7 +1,3 @@
-<!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZSQTX3" height="0" width="0"-->
-<!--                  style="display:none;visibility:hidden"></iframe></noscript>-->
-<!-- End Google Tag Manager (noscript) -->
-
 <div id="app">
   <div class="wrapper">
     <header class="main-header">
@@ -49,12 +45,47 @@
                   class="font14">&nbsp;&nbsp;Tiếng Việt</span></div>
               </div>
             </div>
-            <div class="user-acc col-auto">
-              <a class="user-acc-admin" routerLink="/admin">Kênh admin</a>
-              <a class="user-acc-admin" routerLink="/merchant">Kênh người bán</a>
-              <a routerLink="/login"><button type="button"  class="btn btn-none-bg btn-login">
-                <span class="font14">Đăng nhập</span>
-              </button></a>
+            <div class="user-acc col-auto user-acc-wr">
+              <div *ngIf="message === 'chua dang nhap'; then thenBlockAcc else elseBlockAcc"></div>
+              <ng-template #thenBlockAcc>
+                <a routerLink="/login"><button type="button"  class="btn btn-none-bg btn-login">
+                  <span class="font14">Đăng nhập</span>
+                </button></a>
+              </ng-template>
+
+              <ng-template #elseBlockAcc>
+
+                <div class="user-acc-contain">
+                  <img class="user-acc-img" src="{{acc.avatar}}" alt="">
+                  <span>{{acc.name}}</span>
+                  <div class="user-acc-dropdown">
+
+                    <div *ngIf="message == 'merchant'; then thenBlockMerchant else elseBlockMerchant"></div>
+                    <ng-template #thenBlockMerchant>
+                      <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-store"></i> Kênh người bán</a>
+                    </ng-template>
+                    <ng-template #elseBlockMerchant>
+                      <a class="user-acc-admin" routerLink="/register/merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
+                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
+                    </ng-template>
+
+                    <div *ngIf="message == 'admin'; then thenBlockAdmin"></div>
+                    <ng-template #thenBlockAdmin>
+                      <a class="user-acc-admin" routerLink="/admin"> <i class="fa-solid fa-lock"></i> Kênh admin</a>
+                    </ng-template>
+
+                    <hr>
+                    <span (click)="logout()"><i class="fa-solid fa-right-to-bracket"></i> Đăng xuất</span>
+                  </div>
+
+
+
+                </div>
+
+                <div class="nav-bar-cart" routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></div>
+              </ng-template>
+
+
             </div>
           </div>
         </div>
@@ -83,7 +114,7 @@
                                         its name to</p><span class="btn btn-red font18" title="ShopeeFood"
                                                              style="cursor: pointer;font-size: 18px !important;background-color: #cf2127;color: #fff;border-color: #cf2127;"><span
               class="txt-bold"
-              style="font-weight: 700 !important;">ShopeeFood</span></span>
+              style="font-weight: 700 !important;">ShopBeaFood</span></span>
                                 </span>
               <p class="update-version">Cập nhật phiên bản mới</p>
               <div class="down-apps"><a target="_blank" rel="noopener noreferrer"
@@ -145,8 +176,8 @@
       </div>
     </header>
 
-    <div *ngIf="url === '/home/danh-sach-tat-ca-san-pham'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
+    <div *ngIf="url === '/home'; then thenBlock else elseBlock"></div>
+    <ng-template #elseBlock>
 
       <div class="wrapper-item">
         <div class="container">
@@ -265,10 +296,10 @@
           <hr>
         </div>
       </div>
-
-
     </ng-template >
-    <ng-template  #elseBlock>
+    <ng-template   #thenBlock>
+
+
       <div class="now-banner ver_vi" style=" top: 70px;">
         <div class="container  now-banner-container">
           <div class="now-search">
@@ -282,7 +313,7 @@
                 href="/ha-noi/danh-sach-dia-diem-giao-tan-noi?q="><button type="button"
                                                                           class="btn btn-search"><span class="fa fa-search"></span></button></a></div>
             </div>
-            <div class="category-list-filter"><a routerLink="danh-sach-tat-ca-san-pham"><span
+            <div class="category-list-filter"><a routerLink="list-merchant"><span
               class="category-item ">All</span></a><a
               href="/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi"><span
               class="category-item ">Đồ ăn</span></a><a
@@ -1300,13 +1331,6 @@
         </div>
       </div>
     </ng-template>
-
-<!--    <div *ngIf="url === '/home/danh-sach-tat-ca-san-pham/chi-tiet-san-pham'; then thenBlock1"></div>-->
-<!--      <ng-template #thenBlock1>-->
-<!--&lt;!&ndash;        <app-product-detail></app-product-detail>&ndash;&gt;-->
-<!--        <router-outlet></router-outlet>-->
-<!--      </ng-template>-->
-
 
 
   </div>

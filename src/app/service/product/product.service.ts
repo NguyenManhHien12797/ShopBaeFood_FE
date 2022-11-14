@@ -14,10 +14,10 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllProduct(): Observable<Product[]>{
-    return this.http.get<any>(API_URL+ '/api/products');
+    return this.http.get<any>(API_URL+ '/api/public/products');
   }
   getAllProductByMerchant(id: number): Observable<Product[]>{
-    return this.http.get<any>(API_URL+ `/api/products/merchant/${id}`);
+    return this.http.get<any>(API_URL+ `/api/public/products/merchant/${id}`);
   }
 
   createProduct(product: Product): Observable<Product>{
@@ -25,7 +25,7 @@ export class ProductService {
   }
 
   getProduct(id:number): Observable<Product>{
-    return this.http.get<Product>(API_URL+`/api/products/${id}`)
+    return this.http.get<Product>(API_URL+`/api/public/products/${id}`)
   }
 
   updateProduct(id: number | undefined, product: Product): Observable<Product>{
@@ -38,6 +38,6 @@ export class ProductService {
   }
   searchProduct(id:number, name: string):Observable<Product[]>{
     // @ts-ignore
-    return this.http.get<any>(API_URL+`/api/products/search/${id}?name=`+name)
+    return this.http.get<any>(API_URL+`/api/public/products/search/${id}?name=`+name)
   }
 }

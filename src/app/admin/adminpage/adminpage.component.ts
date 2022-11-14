@@ -23,9 +23,10 @@ export class AdminpageComponent implements OnInit {
 
   ngDoCheck(): void {
     this.url = this.router.url;
-    console.log(this.url)
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
+      this.router.navigate(['/home'])
+
     }else {
       if(this.getAccountToken().roles.includes("ROLE_USER")){
         this.acc = this.getAccountToken().user;

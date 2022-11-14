@@ -18,8 +18,6 @@ export class AllMerchantListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduct();
-    console.log("all")
-    console.log( this.getAllProduct())
   }
 
   acc: AccountToken;
@@ -30,7 +28,6 @@ export class AllMerchantListComponent implements OnInit {
 
   ngDoCheck(): void {
     this.url = this.router.url;
-    console.log(this.url)
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
     }else {
@@ -49,7 +46,6 @@ export class AllMerchantListComponent implements OnInit {
 
 
     }
-    console.log(this.message);
   }
 
   url: string = this.router.url;
@@ -70,7 +66,6 @@ export class AllMerchantListComponent implements OnInit {
   getAllProduct(){
     this.merchantService.getAllMerchant().subscribe(merchant =>{
       this.merchants = merchant;
-      console.log(merchant)
     })
   }
 

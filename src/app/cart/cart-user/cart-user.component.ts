@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../service/cart/cart.service";
+import {Product} from "../../model/product";
+import {Router} from "@angular/router";
+import {Cart} from "../../model/cart";
 
 @Component({
   selector: 'app-cart-user',
@@ -8,28 +11,52 @@ import {CartService} from "../../service/cart/cart.service";
 })
 export class CartUserComponent implements OnInit {
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getCartByUserId();
   }
 
+
+  ngDoCheck(): void {
+  }
+
   message:string;
+  products: Product[] = [];
+  carts: Cart[] =[];
+
+
 
   getCartByUserId(){
     let id = JSON.parse(localStorage.getItem("data")!).user.id;
-    console.log("vao cart")
-    console.log(id)
-    console.log(JSON.parse(localStorage.getItem("data")!).user)
     this.cartService.getCartByUserId(id).subscribe(data =>{
-      if(data.message == "Khong co du lieu"){
-       this.message = "Khong co du lieu";
+      if(data.length == 0){
+       this.message = "khong co du lieu";
       } else {
-        console.log(data);
+        this.carts = data;
+        for (let i =0; i<this.carts.length; i++){
+          this.carts[i].price= this.carts[i].product.oldPrice;
+        this.carts[i].totalPrice= this.carts[i].price*this.carts[i].quantity;
+          console.log(this.carts[i].totalPrice)
+          console.log(this.carts[i].price)
+          console.log(this.carts[i].quantity)
+        }
+
       }
     },error => {
-      console.log("Khong co san pham")
-      this.message = "Khong loi roi";
+      this.message = "khong co du lieu";
+    })
+  }
+
+  getTotal(num:number, price:number){
+    return num*price;
+  }
+
+  deleteProductCart(id: number){
+    this.cartService.deleteProductCart(id).subscribe(()=>{
+      console.log("delete");
+      this.getCartByUserId();
     })
   }
 

@@ -3,8 +3,10 @@ import {Router} from "@angular/router";
 import {AccountToken} from "../../model/accountToken";
 import {Role} from "../../model/role";
 import {Product} from "../../model/product";
+import {CartService} from "../../service/cart/cart.service";
 import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
+import {Cart} from "../../model/cart";
 
 @Component({
   selector: 'app-home',
@@ -14,26 +16,31 @@ import {Merchant} from "../../model/merchant";
 export class HomeComponent implements OnInit {
 
   constructor( private router: Router,
-               private merchantService: MerchantService) { }
+               private cartService: CartService,
+               private merchantService: MerchantService) {
+
+  }
 
   acc: AccountToken;
   data: any;
   message: string;
+  messagecart: string;
   role: Role;
+  products: Product[] = [];
+  carts: Cart[] =[];
   merchants: Merchant[]=[];
-  i:number=9;
+  i: number = 9;
 
   ngOnInit(): void {
     this.getMerchant()
-
   }
 
   ngDoCheck(): void {
     console.log(this.merchants)
     this.url = this.router.url;
-    console.log(this.url)
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
+      // this.router.navigate(['/login'])
     }else {
       if(this.getAccountToken().roles.includes("ROLE_USER")){
         this.acc = this.getAccountToken().user;
@@ -48,9 +55,7 @@ export class HomeComponent implements OnInit {
         this.message= "admin";
       }
 
-
     }
-    console.log(this.message);
   }
 
   url: string = this.router.url;
@@ -58,6 +63,30 @@ export class HomeComponent implements OnInit {
   getAccountToken(){
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
+
+  }
+
+
+
+  getCartByUserId(){
+    let data = JSON.parse(localStorage.getItem("data")!);
+    if(data.user !== null){
+      this.cartService.getCartByUserId(data.user.id).subscribe(data =>{
+        if(data.length == 0){
+          this.messagecart = "khong co du lieu";
+        } else {
+          this.carts = data;
+          console.log(this.carts)
+          for (let i =0; i<this.carts.length; i++){
+            this.carts[i].price= this.carts[i].product.oldPrice;
+            this.carts[i].totalPrice= this.carts[i].price*this.carts[i].quantity;
+          }
+
+        }
+      },error => {
+        this.messagecart = "khong co du lieu";
+      })
+    }
 
   }
 

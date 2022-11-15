@@ -46,6 +46,7 @@ export class MerchantInfoComponent implements OnInit {
   }
 
   disabeled: boolean = true;
+  adisabeled: boolean = false;
 
   showFormUpdate(){
     this.disabeled= false;
@@ -56,6 +57,7 @@ export class MerchantInfoComponent implements OnInit {
   }
 
   showPreview(event: any) {
+    this.adisabeled=!this.adisabeled
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
@@ -69,6 +71,7 @@ export class MerchantInfoComponent implements OnInit {
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.account.merchant.avatar = url;
+              this.adisabeled=!this.adisabeled;
             })
           })
         ).subscribe();

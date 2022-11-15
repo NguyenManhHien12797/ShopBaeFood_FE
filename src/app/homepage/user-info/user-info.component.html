@@ -1,3 +1,433 @@
+<header class="main-header">
+
+  <div class="container-header">
+    <div class="container">
+      <div class="header-content navbar row  justify-content-between align-items-center">
+        <div class="logo-now col-auto"><span><a href="index.html"><img
+          src="./assets/img/shopeefoodvn.png"
+          alt="ShopeeFood"></a></span></div>
+
+        <div class="main-nav col"><span>Kênh người bán</span></div>
+
+        <div class="language dropdown col-auto">
+          <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><img src="./assets/img/vi.png">
+          </div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item"><img src="./assets/img/en.png"><span
+              class="font14">&nbsp;&nbsp;Tiếng Anh</span></div>
+            <div class="dropdown-item"><img src="./assets/img/vi.png"><span
+              class="font14">&nbsp;&nbsp;Tiếng Việt</span></div>
+          </div>
+        </div>
+        <div class="user-acc col-auto user-acc-wr">
+          <div *ngIf="message === 'chua dang nhap'; then thenBlockAcc else elseBlockAcc"></div>
+          <ng-template #thenBlockAcc>
+            <a routerLink="/login"><button type="button"  class="btn btn-none-bg btn-login">
+              <span class="font14">Đăng nhập</span>
+            </button></a>
+          </ng-template>
+
+          <ng-template #elseBlockAcc>
+            <div class="user-acc-contain">
+              <img class="user-acc-img" [src]="account.user.avatar" alt="">
+              <span>{{account.user.name}}</span>
+              <div class="user-acc-dropdown">
+                <span (click)="logout()"><i class="fa-solid fa-right-to-bracket"></i> Đăng xuất</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-search" id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="modal-search-form"><span class="sub-title">Đặt Đồ ăn, giao hàng từ 20'... có
+                                    37422 địa điểm ở Hà Nội từ 00:00 - 23:59</span>
+          <form><input class="search-input" name="search-input" type="text" autocomplete="off"
+                       value=""></form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-new-app" id="modal-new-app" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="img-now"><img
+          src="#"
+          alt="App now"></div>
+        <div class="info-now"><span>
+                                    <h3 style="font-size: 36px;font-weight: lighter;margin-bottom: 0;">Hello you!</h3>
+                                    <p style="font-size: 15px;margin-top: 9px;margin-bottom: 9px;">We are pleased to
+                                        inform you that our application<span class="bold"> ShopeeFood</span> is changed
+                                        its name to</p><span class="btn btn-red font18" title="ShopeeFood"
+                                                             style="cursor: pointer;font-size: 18px !important;background-color: #cf2127;color: #fff;border-color: #cf2127;"><span
+          class="txt-bold"
+          style="font-weight: 700 !important;">ShopBeaFood</span></span>
+                                </span>
+          <p class="update-version">Cập nhật phiên bản mới</p>
+          <div class="down-apps"><a target="_blank" rel="noopener noreferrer"
+                                    href="https://itunes.apple.com/us/app/deliverynow/id1137866760" class="down-app"
+                                    title="App Store"><span class="icon icon-app-store-sm"></span></a><a
+            target="_blank" rel="noopener noreferrer"
+            href="https://play.google.com/store/apps/details?id=com.deliverynow"
+            class="down-app" title="Google play"><span
+            class="icon icon-gg-play-sm"></span></a></div>
+        </div>
+        <div class="box-now-merchant clearfix">
+          <div class="img-merchant">
+            <div class="float-left mar-right10"><span class="icon icon-merchant-lg"></span>
+            </div>
+            <div class="float-left"><a target="_blank" rel="noopener noreferrer"
+                                       href="https://itunes.apple.com/US/app/id1296706589?mt=8" class="down-apps"
+                                       title="App Store"><span class="icon icon-app-store-sm"></span></a><a
+              target="_blank" rel="noopener noreferrer"
+              href="https://play.google.com/store/apps/details?id=com.sea.foody.nowmerchant&amp;amp;hl=vi"
+              class="down-apps" title="Google play"><span
+              class="icon icon-gg-play-sm"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-get-local" id="userLocationId" tabindex="-1" role="dialog"
+       data-backdrop="static" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="modal-header">Bạn muốn giao đến đâu?</div>
+        <div class="modal-body">
+          <div class="search-local">
+            <div class="primary-local">
+              <div class="row align-items-center no-gutters">
+                <div class="col-auto"><i class="icon icon-search-gray"></i></div>
+                <div class="col"><input type="text" id="address" name="address"
+                                        placeholder="Nhập địa chỉ giao hàng" value=""></div>
+                <div class="col-auto"><i class="icon icon-location"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="list-local">
+            <div class="suggest-local">
+              <div class="location-items"></div>
+              <div class="find-map">
+                <div class="row align-items-center no-gutters">
+                  <div class="col-auto"><i class="icon icon-thumbtack"></i></div>
+                  <div class="col pl-3"><span class="txt-blue link">Tìm trên bản đồ</span>
+                  </div>
+                  <div class="col-auto mr-3"><i class="icon-arrow-thin right"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
+<div class="now-container-coporation now-container-content">
+  <div class="row">
+<!--    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">-->
+<!--      <div class="position-sticky pt-3 sidebar-sticky">-->
+<!--        <ul class="nav flex-column">-->
+<!--          <li class="nav-item" >-->
+<!--            <a class="nav-link active" aria-current="page" routerLink="merchant-dashboard" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">-->
+<!--              <span data-feather="home" class="align-text-bottom"></span>-->
+<!--              Dashboard-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item " >-->
+<!--            <a class="nav-link nav-item-hover" routerLink="merchant-order" routerLinkActive="selected">-->
+<!--              <span data-feather="file" class="align-text-bottom"></span>-->
+<!--              Quản lý đơn hàng-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item " >-->
+<!--            <a class="nav-link nav-item-hover" routerLink="product-list" routerLinkActive="selected">-->
+<!--              <span data-feather="shopping-cart" class="align-text-bottom"></span>-->
+<!--              Quản lý sản phẩm-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item " >-->
+<!--            <a class="nav-link nav-item-hover" routerLink="merchant-transport" routerLinkActive="selected">-->
+<!--              <span data-feather="users" class="align-text-bottom"></span>-->
+<!--              Quản lý đơn vị vận chuyển-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item " >-->
+<!--            <a class="nav-link nav-item-hover" routerLink="merchant-info" routerLinkActive="selected">-->
+<!--              <span data-feather="users" class="align-text-bottom"></span>-->
+<!--              Thiết lập Shop-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </nav>-->
+
+    <!--    <app-merchant-list class="col-md-9 ms-sm-auto col-lg-10 px-md-4"></app-merchant-list>-->
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+      <!--      <ng-template [ngIf] = "url == '/merchant/merchant-dashboard'">-->
+      <!--        <app-dashboard></app-dashboard>-->
+      <!--      </ng-template>-->
+
+      <!--      <ng-template [ngIf] = "url == '/merchant/merchant-order'">-->
+      <!--        <app-merchant-order-list></app-merchant-order-list>-->
+      <!--      </ng-template>-->
+
+      <!--      <ng-template [ngIf] = "url == '/merchant/product-list'">-->
+      <!--        <app-product-list></app-product-list>-->
+      <!--      </ng-template>-->
+
+      <!--      <ng-template [ngIf] = "url == url">-->
+      <!--        <app-product-edit></app-product-edit>-->
+      <!--      </ng-template>-->
+
+      <!--      <ng-template [ngIf] = "url == '/merchant/product-create'">-->
+      <!--        <app-product-create></app-product-create>-->
+      <!--      </ng-template>-->
+
+<div *ngIf="account">
+        <div class="container-fluid m-md-5 border">
+
+          <div class="row">
+            <div class="title title-strong">Tài Khoản</div>
+            <div class="desc">Thay đổi thiết lập cơ bản</div>
+          </div>
+          <div class="setting-card">
+            <div class="setting-card-inner">
+              <div class="">
+                <div class="setting-card-row desc">
+                  <div class="main"><i data-v-0e576418="" class="icon shopee-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path
+                        d="M8 1a4 4 0 0 1 2.126 7.389A5.999 5.999 0 0 1 14 14v.5a.5.5 0 1 1-1 0V14a5 5 0 0 0-10 0v.5a.5.5 0 1 1-1 0V14a6.002 6.002 0 0 1 3.874-5.612A4 4 0 0 1 8 1zm0 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
+                    </svg>
+                  </i>
+                    <div class=" width-info ">
+                      <div class="title">Hồ sơ của tôi</div> <!----></div>
+                    <div class="info">
+                      <div class="account-profile">
+                        <div class="account-profile-item">
+                          <label for="image">
+                            <img [src]="imgSrc" class="account-profile-avatar" >
+                          </label>
+
+                          <input type="file" id="image" hidden [disabled]="disabeled" (change)="showPreview($event)" (change)="showimg()" >
+                          <input class="account-profile-text" style="margin-left: 8px;" [disabled]="disabeled" [(ngModel)]="account.user.name" value="{{account.user.name}}">
+
+                          <div> <img [src]="imgSrc" class="img" height="125" width="100" alt="Img" style='display:{{show}}'><br></div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="shopee-popover shopee-popover--light">
+                      <div class="shopee-popover__ref">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="setting-card-row desc">
+                  <div class="main">
+                    <i class="icon shopee-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path
+                          d="M13.473 10.365c2.035 1.298 1.368 2.653-1.092 4.015-2.337 1.294-5.135-.642-7.889-3.396l-.417-.424-.413-.436c-2.29-2.47-3.72-4.93-2.561-7.024C2.462.64 3.818-.027 5.116 2.007c1.119 1.754.801 2.468.432 3.065l-.176.28c-.278.463-.675.85-.566 1.316.045.192.47.876 1.596 2.027l.184.186c1.263 1.263 2.048 1.752 2.227 1.794.424.1.782-.22 1.19-.488l.478-.298.143-.08.151-.075c.546-.24 1.284-.271 2.698.63zm-2.355.313l-.107.06-.46.286-.387.263-.177.108c-.452.26-.897.372-1.402.254-.463-.109-1.3-.715-2.302-1.666l-.408-.4-.385-.393c-.959-1.005-1.545-1.812-1.658-2.295-.105-.448-.028-.85.173-1.25l.125-.226.305-.457.31-.498c.243-.424.234-.743-.263-1.58l-.21-.339-.137-.204c-.65-.91-1.106-.66-2.16 1.243-.808 1.462.13 3.498 2.813 6.275l.411.418c2.997 2.997 5.163 4.078 6.697 3.228l.37-.21c1.62-.94 1.73-1.376.776-2.018l-.286-.181c-.923-.566-1.3-.598-1.638-.418z"></path>
+                      </svg>
+                    </i>
+                    <div class=" width-info">
+                      <div class="title">Số điện thoại</div>
+                    </div>
+                    <div class="info">
+                      <input class="info-input" [disabled]="disabeled" [(ngModel)]="account.user.phone" value="{{account.user.phone}}">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="setting-card-row desc ">
+                  <div class="main"><i class="icon shopee-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path
+                        d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zm0 1.6L8.277 8.416a.5.5 0 0 1-.467.047l-.087-.047L2 4.601V12h12V4.6zm-.903-.6H2.902L8 7.4 13.097 4z"></path>
+                    </svg>
+                  </i>
+                    <div class="width-info">
+                      <div class="title">Email</div>
+                    </div>
+                    <div class="info">
+                      <input class="info-input" [disabled]="disabeled" [(ngModel)]="account.email" value="{{account.email}}">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="setting-card-row desc">
+                  <div class="main"><i class="icon shopee-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                            d="M8 1a4 4 0 0 1 4 4v1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5a4 4 0 0 1 4-4zm5 6H3v7h10V7zM8 9a.5.5 0 0 1 .5.5v2a.5.5 0 1 1-1 0v-2A.5.5 0 0 1 8 9zm0-7a3 3 0 0 0-2.995 2.824L5 5v1h6V5a3 3 0 0 0-2.824-2.995L8 2z"></path>
+                    </svg>
+                  </i>
+                    <div class=" width-info">
+                      <div class="title">Mật khẩu đăng nhập</div>
+                    </div>
+                    <div class="info">
+                      <input class="info-input subtitle" [disabled]="disabeled" [(ngModel)]="account.password" value="{{account.password}}">
+                    </div>
+                  </div>
+                </div>
+
+                <!--        <div class="setting-card-row desc">-->
+                <!--          <div class="main">-->
+                <!--            <i class="shopee-icon-i fa-regular fa-clock"></i>-->
+
+                <!--            <div class="width-info">-->
+                <!--              <div class="title">Giờ hoạt động</div>-->
+                <!--            </div>-->
+                <!--            <div class="info">-->
+                <!--              <input class="info-input-opentime info-input" [disabled]="disabeled" [(ngModel)]="account.merchant.openTime" value="{{account.merchant.openTime}}">-->
+                <!--              <span>&#45;&#45;</span>-->
+                <!--              <input class="info-input-closetime info-input" [disabled]="disabeled" [(ngModel)]="account.merchant.closeTime" value="{{account.merchant.closeTime}}">-->
+                <!--            </div>-->
+
+                <!--          </div>-->
+                <!--        </div>-->
+
+              </div>
+            </div>
+          </div>
+
+          <div style="align-content: center">
+            <button [disabled]="!disabeled" type="button" class="right-button" (click)="showFormUpdate()">
+              <span>Cập nhật</span>
+            </button>
+            <button [disabled]="disabeled||adisabeled"  type="button" class="right-button-2" (click)="updateUserInfo()">
+              <span>Lưu</span>
+            </button></div>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="now-container-coporation" >
+  <p class="seo-footer-link__head">Danh mục</p>
+  <div class="seo-footer-link__body">
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Thuốc</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-hoa-my-pham-giao-tan-noi"
+        class="seo-footer-link__sub-item">Hoá mỹ phẩm</a><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-bcs-giao-tan-noi"
+        class="seo-footer-link__sub-item">BCS</a><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-thiet-bi-giao-tan-noi"
+        class="seo-footer-link__sub-item">Thiết bị</a><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-thuoc-tay-giao-tan-noi"
+        class="seo-footer-link__sub-item">Thuốc tây</a><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-khau-trang-giao-tan-noi"
+        class="seo-footer-link__sub-item">Khẩu trang</a><a
+        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-khan-cap-giao-tan-noi"
+        class="seo-footer-link__sub-item">Khẩn cấp</a></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Thú cưng</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"><a
+        href="#"
+        class="seo-footer-link__sub-item">Thú cưng</a></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Đồ ăn HN</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"><a
+        href="#"
+        class="seo-footer-link__sub-item">Đồ ăn HN</a></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Đặt bàn HN</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Thực phẩm HN</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Sản phẩm HN</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="#">
+      <p class="seo-footer-link__title">Sản phẩm</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"><a
+        href="#"
+        class="seo-footer-link__sub-item">Mỹ phẩm</a><a
+        href="#"
+        class="seo-footer-link__sub-item">Đồ chơi</a><a
+        href="#"
+        class="seo-footer-link__sub-item">Sữa</a><a
+        href="#"
+        class="seo-footer-link__sub-item">Tã bỉm</a><a
+        href="#"
+        class="seo-footer-link__sub-item">Dụng cụ</a><a
+        href="#"
+        class="seo-footer-link__sub-item">Quần áo</a><a
+        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-giay-dep-giao-tan-noi"
+        class="seo-footer-link__sub-item">Giày dép</a><a
+        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-dien-tu-giao-tan-noi"
+        class="seo-footer-link__sub-item">Điện tử</a><a
+        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-trang-suc-giao-tan-noi"
+        class="seo-footer-link__sub-item">Trang sức</a></ul>
+    </div>
+    <div class="seo-footer-link__item"><a href="https://shopeefood.vn/ha-noi/flowers">
+      <p class="seo-footer-link__title">Hoa</p>
+    </a>
+      <ul class="seo-footer-link__sub-item-wrapper"><a
+        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-chia-buon-giao-tan-noi"
+        class="seo-footer-link__sub-item">Chia buồn</a><a
+        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-cay-canh-giao-tan-noi"
+        class="seo-footer-link__sub-item">Cây cảnh</a><a
+        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-chuc-mung-giao-tan-noi"
+        class="seo-footer-link__sub-item">Chúc mừng</a><a
+        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-sinh-nhat-giao-tan-noi"
+        class="seo-footer-link__sub-item">Sinh nhật</a><a
+        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-tinh-yeu-giao-tan-noi"
+        class="seo-footer-link__sub-item">Tình yêu</a></ul>
+    </div>
+  </div>
+</div>
+<div class="now-container-coporation" style="margin-top: 0px;">
+  <div class="container-inner">
+
+    <div class="block-last">
+      <p class="title-block">Địa chỉ công ty</p>
+      <span>
+                                <p>Công Ty Cổ Phần Foody</p>
+                                <p>Lầu G, Tòa nhà Jabes 1,</p>
+                                <p>số 244 đường Cống Quỳnh, phường Phạm Ngũ Lão, Quận 1, TPHCM</p>
+                                <p>Giấy CN ĐKDN số: 0311828036</p>
+                                <p>do Sở Kế hoạch và Đầu tư TP.HCM cấp ngày 11/6/2012,</p>
+                                <p>sửa đổi lần thứ 23, ngày 10/12/2020</p>
+                                <p>Số điện thoại: 1900 2042</p>
+                                <p>Email: <a href="mailto:support@shopeefood.vn"> support@shopeefood.vn</a></p>
+                            </span>
+    </div>
+  </div>
+</div>
+<hr>
+
 
 <!--<header class="main-header">-->
 
@@ -136,253 +566,3 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</header>-->
-
-
-
-
-<!--<div class="now-container-coporation now-container-content">-->
-<!--  <div class="row">-->
-
-<!--    &lt;!&ndash;    <app-merchant-list class="col-md-9 ms-sm-auto col-lg-10 px-md-4"></app-merchant-list>&ndash;&gt;-->
-<!--    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">-->
-
-
-<!--&lt;!&ndash;      -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--      <div class="container">-->
-<!--        <div class="row">-->
-<!--          <div class="title title-strong">Tài Khoản</div>-->
-<!--          <div class="desc">Thay đổi thiết lập cơ bản</div>-->
-<!--        </div>-->
-<!--        <div class="setting-card">-->
-<!--          <div class="setting-card-inner">-->
-<!--            <div class="">-->
-<!--              <div class="setting-card-row">-->
-<!--                <div class="main"><i data-v-0e576418="" class="icon shopee-icon">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">-->
-<!--                    <path-->
-<!--                      d="M8 1a4 4 0 0 1 2.126 7.389A5.999 5.999 0 0 1 14 14v.5a.5.5 0 1 1-1 0V14a5 5 0 0 0-10 0v.5a.5.5 0 1 1-1 0V14a6.002 6.002 0 0 1 3.874-5.612A4 4 0 0 1 8 1zm0 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>-->
-<!--                  </svg>-->
-<!--                </i>-->
-<!--                  <div class="desc width-info">-->
-<!--                    <div class="title">Hồ sơ của tôi</div> &lt;!&ndash;&ndash;&gt;</div>-->
-<!--                  <div class="info">-->
-<!--                    <div class="account-profile">-->
-<!--                      <div class="account-profile-item">-->
-<!--                        <label for="image">-->
-<!--                          <img [src]="imgSrc" class="account-profile-avatar" >-->
-<!--                        </label>-->
-<!--                        <input type="file" id="image" hidden [disabled]="disabeled" (change)="showPreview($event)" (change)="showimg()" >-->
-<!--                        <input class="account-profile-text" style="margin-left: 8px;" [disabled]="disabeled" [(ngModel)]="account.merchant.name" value="{{account.merchant.name}}">-->
-
-<!--                        <div> <img [src]="imgSrc" class="img" height="125" width="100" alt="Img" style='display:{{show}}'><br></div>-->
-
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                  <div class="shopee-popover shopee-popover&#45;&#45;light">-->
-<!--                    <div class="shopee-popover__ref">-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-
-
-
-<!--              <div class="setting-card-row">-->
-<!--                <div class="main">-->
-<!--                  <i class="icon shopee-icon">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">-->
-<!--                      <path-->
-<!--                        d="M13.473 10.365c2.035 1.298 1.368 2.653-1.092 4.015-2.337 1.294-5.135-.642-7.889-3.396l-.417-.424-.413-.436c-2.29-2.47-3.72-4.93-2.561-7.024C2.462.64 3.818-.027 5.116 2.007c1.119 1.754.801 2.468.432 3.065l-.176.28c-.278.463-.675.85-.566 1.316.045.192.47.876 1.596 2.027l.184.186c1.263 1.263 2.048 1.752 2.227 1.794.424.1.782-.22 1.19-.488l.478-.298.143-.08.151-.075c.546-.24 1.284-.271 2.698.63zm-2.355.313l-.107.06-.46.286-.387.263-.177.108c-.452.26-.897.372-1.402.254-.463-.109-1.3-.715-2.302-1.666l-.408-.4-.385-.393c-.959-1.005-1.545-1.812-1.658-2.295-.105-.448-.028-.85.173-1.25l.125-.226.305-.457.31-.498c.243-.424.234-.743-.263-1.58l-.21-.339-.137-.204c-.65-.91-1.106-.66-2.16 1.243-.808 1.462.13 3.498 2.813 6.275l.411.418c2.997 2.997 5.163 4.078 6.697 3.228l.37-.21c1.62-.94 1.73-1.376.776-2.018l-.286-.181c-.923-.566-1.3-.598-1.638-.418z"></path>-->
-<!--                    </svg>-->
-<!--                  </i>-->
-<!--                  <div class="desc width-info">-->
-<!--                    <div class="title">Số điện thoại</div>-->
-<!--                  </div>-->
-<!--                  <div class="info">-->
-<!--                    <input class="info-input" [disabled]="disabeled" [(ngModel)]="account.merchant.phone" value="{{account.merchant.phone}}">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              <div class="setting-card-row">-->
-<!--                <div class="main"><i class="icon shopee-icon">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">-->
-<!--                    <path-->
-<!--                      d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zm0 1.6L8.277 8.416a.5.5 0 0 1-.467.047l-.087-.047L2 4.601V12h12V4.6zm-.903-.6H2.902L8 7.4 13.097 4z"></path>-->
-<!--                  </svg>-->
-<!--                </i>-->
-<!--                  <div class="desc width-info">-->
-<!--                    <div class="title">Email</div>-->
-<!--                  </div>-->
-<!--                  <div class="info">-->
-<!--                    <input class="info-input" [disabled]="disabeled" [(ngModel)]="account.email" value="{{account.email}}">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              <div class="setting-card-row">-->
-<!--                <div class="main"><i class="icon shopee-icon">-->
-<!--                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">-->
-<!--                    <path fill-rule="evenodd"-->
-<!--                          d="M8 1a4 4 0 0 1 4 4v1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5a4 4 0 0 1 4-4zm5 6H3v7h10V7zM8 9a.5.5 0 0 1 .5.5v2a.5.5 0 1 1-1 0v-2A.5.5 0 0 1 8 9zm0-7a3 3 0 0 0-2.995 2.824L5 5v1h6V5a3 3 0 0 0-2.824-2.995L8 2z"></path>-->
-<!--                  </svg>-->
-<!--                </i>-->
-<!--                  <div class="desc width-info">-->
-<!--                    <div class="title">Mật khẩu đăng nhập</div>-->
-<!--                  </div>-->
-<!--                  <div class="info">-->
-<!--                    <input class="info-input subtitle" [disabled]="disabeled" [(ngModel)]="account.password" value="{{account.password}}">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              <div class="setting-card-row">-->
-<!--                <div class="main">-->
-<!--                  <i class="shopee-icon-i fa-regular fa-clock"></i>-->
-<!--                  <div class="desc width-info">-->
-<!--                    <div class="title">Giờ hoạt động</div>-->
-<!--                  </div>-->
-<!--                  <div class="info">-->
-<!--                    <input class="info-input-opentime info-input" [disabled]="disabeled" [(ngModel)]="account.merchant.openTime" value="{{account.merchant.openTime}}">-->
-<!--                    <span>&#45;&#45;</span>-->
-<!--                    <input class="info-input-closetime info-input" [disabled]="disabeled" [(ngModel)]="account.merchant.closeTime" value="{{account.merchant.closeTime}}">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-
-<!--        <button type="button" class="right-button" (click)="showFormUpdate()">-->
-<!--          <span>Cập nhật</span>-->
-<!--        </button>-->
-<!--        <button type="button" class="right-button-2" (click)="updateMerchantInfo()">-->
-<!--          <span>Lưu</span>-->
-<!--        </button>-->
-<!--      </div>-->
-
-
-<!--&lt;!&ndash;      -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-<!--<div class="now-container-coporation" >-->
-<!--  <p class="seo-footer-link__head">Danh mục</p>-->
-<!--  <div class="seo-footer-link__body">-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Thuốc</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-hoa-my-pham-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Hoá mỹ phẩm</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-bcs-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">BCS</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-thiet-bi-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Thiết bị</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-thuoc-tay-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Thuốc tây</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-khau-trang-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Khẩu trang</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/medicine/danh-sach-dia-diem-phuc-vu-khan-cap-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Khẩn cấp</a></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Thú cưng</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Thú cưng</a></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Đồ ăn HN</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Đồ ăn HN</a></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Đặt bàn HN</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Thực phẩm HN</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Sản phẩm HN</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="#">-->
-<!--      <p class="seo-footer-link__title">Sản phẩm</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Mỹ phẩm</a><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Đồ chơi</a><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Sữa</a><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Tã bỉm</a><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Dụng cụ</a><a-->
-<!--        href="#"-->
-<!--        class="seo-footer-link__sub-item">Quần áo</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-giay-dep-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Giày dép</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-dien-tu-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Điện tử</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/fmcg/danh-sach-dia-diem-phuc-vu-trang-suc-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Trang sức</a></ul>-->
-<!--    </div>-->
-<!--    <div class="seo-footer-link__item"><a href="https://shopeefood.vn/ha-noi/flowers">-->
-<!--      <p class="seo-footer-link__title">Hoa</p>-->
-<!--    </a>-->
-<!--      <ul class="seo-footer-link__sub-item-wrapper"><a-->
-<!--        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-chia-buon-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Chia buồn</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-cay-canh-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Cây cảnh</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-chuc-mung-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Chúc mừng</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-sinh-nhat-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Sinh nhật</a><a-->
-<!--        href="https://shopeefood.vn/ha-noi/flowers/danh-sach-dia-diem-phuc-vu-tinh-yeu-giao-tan-noi"-->
-<!--        class="seo-footer-link__sub-item">Tình yêu</a></ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div class="now-container-coporation" style="margin-top: 0px;">-->
-<!--  <div class="container-inner">-->
-
-<!--    <div class="block-last">-->
-<!--      <p class="title-block">Địa chỉ công ty</p>-->
-<!--      <span>-->
-<!--                                <p>Công Ty Cổ Phần Foody</p>-->
-<!--                                <p>Lầu G, Tòa nhà Jabes 1,</p>-->
-<!--                                <p>số 244 đường Cống Quỳnh, phường Phạm Ngũ Lão, Quận 1, TPHCM</p>-->
-<!--                                <p>Giấy CN ĐKDN số: 0311828036</p>-->
-<!--                                <p>do Sở Kế hoạch và Đầu tư TP.HCM cấp ngày 11/6/2012,</p>-->
-<!--                                <p>sửa đổi lần thứ 23, ngày 10/12/2020</p>-->
-<!--                                <p>Số điện thoại: 1900 2042</p>-->
-<!--                                <p>Email: <a href="mailto:support@shopeefood.vn"> support@shopeefood.vn</a></p>-->
-<!--                            </span>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<hr>-->
-
-
-
-

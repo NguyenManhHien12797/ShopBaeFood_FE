@@ -67,6 +67,9 @@ export class AccountService {
   updateAccountMerchant(id: number, acc: Account):Observable<any>{
     return this.http.patch<any>(`${API_URL}/api/account/merchant/${id}`, acc);
   }
+  updateAccountUser(id: number, acc: Account):Observable<any>{
+    return this.http.patch<any>(`${API_URL}/api/account/user/${id}`, acc);
+  }
 
 
   forgotpass(mail:any): Observable<any>{

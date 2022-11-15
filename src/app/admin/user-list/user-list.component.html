@@ -23,17 +23,17 @@
     </ul>
 
     <!-- content -->
-    <div *ngIf="url==='/admin/merchant-list'; then thenBlock else elseBlock"></div>
+    <div *ngIf="url==='/admin/user-list'; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
         <tr>
           <th scope="col">id</th>
-          <th scope="col">Avatar</th>
-          <th scope="col">Name</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
-          <th scope="col" colspan="2">Action</th>
+          <th scope="col">Ảnh</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Điện thoại</th>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col" colspan="2">Khóa</th>
         </tr>
         </thead>
         <tbody>

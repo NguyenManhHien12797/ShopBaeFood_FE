@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.getAllMerchant();
+    this.getAllUser();
   }
   ngDoCheck(): void {
     this.url = this.router.url;
@@ -27,9 +27,9 @@ export class UserListComponent implements OnInit {
   url: string = this.router.url;
   users: AppUser[] = [];
 
-  getAllMerchant(){
+  getAllUser(){
     this.userService.getAllUser().subscribe(user =>{
-      this.users = user.filter(value => value.status === 'active');
+      this.users = user.filter(value => value.status === 'active'&& value.name!=='admin');
       // console.log(merchant)
     })
   }

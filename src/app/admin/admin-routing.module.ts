@@ -27,6 +27,22 @@ const routes: Routes = [{
         component: MerchantListBlockComponent,
       }
     ]
+  },{
+    path: "user-list",
+    component: MerchantListComponent,
+    children: [{
+      path: "pending",
+      component: MerchantListPendingComponent,
+    },
+      {
+        path: "active",
+        component: MerchantListActiveComponent,
+      },
+      {
+        path: "block",
+        component: MerchantListBlockComponent,
+      }
+    ]
   }]
 }
 ]

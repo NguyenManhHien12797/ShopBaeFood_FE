@@ -3,13 +3,12 @@
     <thead>
     <tr>
       <th scope="col">id</th>
-      <th scope="col">Avatar</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">OpenTime</th>
-      <th scope="col">CloseTime</th>
-      <th scope="col" colspan="2">Action</th>
+      <th scope="col">Ảnh</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Điện thoại</th>
+      <th scope="col">Địa chỉ</th>
+      <th scope="col">Thời gian</th>
+      <th scope="col" colspan="2">Hành động</th>
     </tr>
     </thead>
     <tbody>
@@ -21,8 +20,7 @@
       <td class="merchant-item">{{merchant.name}}</td>
       <td class="merchant-item">{{merchant.phone}}</td>
       <td class="merchant-item">{{merchant.address}}</td>
-      <td class="merchant-item">{{merchant.openTime}}</td>
-      <td class="merchant-item">{{merchant.closeTime}}</td>
+      <td class="merchant-item" size="50px">Mở:{{merchant.openTime}}  Đóng:{{merchant.closeTime}}</td>
       <td class="action-icon" (click)="acceptMerchant(merchant.id, merchant)"><i class="fa-solid fa-check"></i> Đồng ý</td>
       <td class="action-icon" (click)="refuseMerchant(merchant.id, merchant)"><i class="fa-solid fa-x"></i> Từ chối</td>
     </tr>

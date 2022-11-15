@@ -165,3 +165,11 @@ th{
 td{
   text-align: center;
 }
+.selected{
+  /*border-bottom: 2px solid #ee4d2d;*/
+padding-bottom: 10px;
+  /*transform: translateX(20px);*/
+  background-color: #ee4d2d;
+  color: white;
+}
+

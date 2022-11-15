@@ -72,7 +72,7 @@ export class ProductCreateComponent implements OnInit {
   create() {
     const form = this.createForm.value;
     console.log(form)
-    swal("Thêm thành công", "good", "success")
+    swal("Thêm thành công", "", "success")
     this.productService.createProduct(form)
       .subscribe(() => {
         this.router.navigate(['/merchant/product-list'])

@@ -141,29 +141,59 @@
 
 <div class="now-container-coporation now-container-content">
   <div class="row">
+<!--    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">-->
+<!--      <div class="position-sticky pt-3 sidebar-sticky">-->
+<!--        <ul class="nav flex-column">-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link active" aria-current="page" href="#">-->
+<!--              <span data-feather="home" class="align-text-bottom"></span>-->
+<!--              Dashboard-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" routerLink="merchant-list">-->
+<!--              <span data-feather="file" class="align-text-bottom"></span>-->
+<!--              Quản lý người bán-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="#">-->
+<!--              <span data-feather="shopping-cart" class="align-text-bottom"></span>-->
+<!--              Quản lý người dùng-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="#">-->
+<!--              <span data-feather="users" class="align-text-bottom"></span>-->
+<!--              Quản lý đơn vị vận chuyển-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </nav>-->
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+          <li class="nav-item" >
+            <a class="nav-link active" aria-current="page" routerLink="merchant-dashboard" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">
               <span data-feather="home" class="align-text-bottom"></span>
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="merchant-list">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="merchant-list/active" routerLinkActive="selected">
               <span data-feather="file" class="align-text-bottom"></span>
-              Quản lý người bán
+              Quản lý nguời bán
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="user-list" routerLinkActive="selected">
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               Quản lý người dùng
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item " >
+            <a class="nav-link nav-item-hover" routerLink="merchant-transport" routerLinkActive="selected">
               <span data-feather="users" class="align-text-bottom"></span>
               Quản lý đơn vị vận chuyển
             </a>
@@ -171,7 +201,6 @@
         </ul>
       </div>
     </nav>
-
 <!--    <app-merchant-list class="col-md-9 ms-sm-auto col-lg-10 px-md-4"></app-merchant-list>-->
    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
      <router-outlet></router-outlet>

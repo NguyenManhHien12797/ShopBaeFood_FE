@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
+import swal from "sweetalert";
+import {MailService} from "../../service/mail/mail.service";
 
 @Component({
   selector: 'app-register',
@@ -11,13 +13,14 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     userName: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
     password: new FormControl("", [Validators.required]),
-    email: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required,Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$")]),
     name: new FormControl("",[Validators.required]),
-    phone: new FormControl("", [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z]+$")]),
+    phone: new FormControl("", [Validators.required, Validators.minLength(9)]),
     address: new FormControl("",[Validators.required]),
   })
   message:string;
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+              private mailService: MailService) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +45,16 @@ export class RegisterComponent implements OnInit {
         if(data==null){
           this.message="Đăng ký thành công"
         }
+        swal("Đăng ký thành công")
+        console.log(this.registerForm.value.email),
+        console.log(this.registerForm.value.userName),
+        this.mailService.acceptRegistration(this.registerForm.value.email,this.registerForm.value.userName).subscribe(()=>{
+          swal("Đã gửi mail xác nhận cho bạn!")
+        },error => {
+          swal("Gửi mail lỗi nhưng người dùng đã được chấp nhận")
+        })
+      }, error => {
+        swal("Lỗi rồi, có thể user name đã được đăng ký")
       })
   }
 }

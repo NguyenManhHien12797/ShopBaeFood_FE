@@ -29,45 +29,82 @@ export class MerchantListPendingComponent implements OnInit {
   }
 
   acceptMerchant(id: number, merchant:Merchant){
-    const mer= merchant;
-    mer.status = 'active';
-
-    this.merchantService.updateMerchant(id,mer).subscribe(() =>{
-      this.accountService.getAccountToMerchant(id).subscribe(data =>{
-        console.log(data);
-        let mail= data.email;
-        this.mailService.acceptRegistration(mail, merchant.name).subscribe(() =>{
-          swal("Đã gửi mail thông báo cho người bán!")
-      },error => {
-          swal("Gửi mail bị lỗi, nhưng người dùng đã được chấp nhận");
-        })
-      swal("Chấp nhận cho người dùng "+ merchant.name+ " đăng ký thành người bán")
-      this.getAllMerchant();
-
+    swal({
+      title: "Bạn có chắc muốn xác nhận",
+      text: "Merchant:"+merchant.name,
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
     })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, bạn đã xác nhận thành công", {
+            icon: "success",
+          });
+          const mer= merchant;
+          mer.status = 'active';
+
+          this.merchantService.updateMerchant(id,mer).subscribe(() =>{
+            this.accountService.getAccountToMerchant(id).subscribe(data =>{
+              console.log(data);
+              let mail= data.email;
+              this.mailService.acceptRegistration(mail, merchant.name).subscribe(() =>{
+                swal("Đã gửi mail thông báo cho người bán!")
+              },error => {
+                swal("Gửi mail bị lỗi, nhưng người dùng đã được chấp nhận");
+              })
+              swal("Chấp nhận cho người dùng "+ merchant.name+ " đăng ký thành người bán")
+              this.getAllMerchant();
+
+            })
 
 
-    });
+          });
+
+        } else {
+          swal("Vâng, bạn đã hủy chọn");
+        }
+      });
+
 
   }
 
   refuseMerchant(id: number, merchant:Merchant){
-    const mer= merchant;
-    mer.status = 'refuse';
-    this.merchantService.updateMerchant(id,mer).subscribe(() =>{
-      this.accountService.getAccountToMerchant(id).subscribe(data =>{
-        let mail= data.email;
-        this.mailService.refuseToRegister(mail).subscribe(() =>{
-          swal("Đã gửi mail thông báo cho người bán!")
-        },error => {
-          swal("Gửi mail bị lỗi");
-        })
-        swal("Từ chối cho người dùng "+ merchant.name+ " đăng ký thành người bán")
-        this.getAllMerchant();
+    swal({
+      title: "Bạn có chắc muốn không muốn phê duyệt",
+      text: "Merchant:"+merchant.name,
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, bạn đã hủy phê duyệt người bán", {
+            icon: "success",
+          });
+          const mer= merchant;
+          mer.status = 'refuse';
+          this.merchantService.updateMerchant(id,mer).subscribe(() =>{
+            this.accountService.getAccountToMerchant(id).subscribe(data =>{
+              let mail= data.email;
+              this.mailService.refuseToRegister(mail).subscribe(() =>{
+                swal("Đã gửi mail thông báo cho người bán!")
+              },error => {
+                swal("Gửi mail bị lỗi");
+              })
+              swal("Từ chối cho người dùng "+ merchant.name+ " đăng ký thành người bán")
+              this.getAllMerchant();
 
-      })
+            })
 
-    });
+          });
+        } else {
+          swal("Vâng, bạn đã hủy chọn");
+        }
+      });
+
 
   }
 

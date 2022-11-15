@@ -3,8 +3,10 @@ import {Router} from "@angular/router";
 import {AccountToken} from "../../model/accountToken";
 import {Role} from "../../model/role";
 import {Product} from "../../model/product";
-import {Cart} from "../../model/cart";
 import {CartService} from "../../service/cart/cart.service";
+import {MerchantService} from "../../service/merchant/merchant.service";
+import {Merchant} from "../../model/merchant";
+import {Cart} from "../../model/cart";
 
 @Component({
   selector: 'app-home',
@@ -14,8 +16,8 @@ import {CartService} from "../../service/cart/cart.service";
 export class HomeComponent implements OnInit {
 
   constructor( private router: Router,
-               private cartService: CartService) {
-    this.getCartByUserId();
+               private cartService: CartService,
+               private merchantService: MerchantService) {
 
   }
 
@@ -26,12 +28,15 @@ export class HomeComponent implements OnInit {
   role: Role;
   products: Product[] = [];
   carts: Cart[] =[];
+  merchants: Merchant[]=[];
+  i: number = 9;
 
   ngOnInit(): void {
-
+    this.getMerchant()
   }
 
   ngDoCheck(): void {
+    console.log(this.merchants)
     this.url = this.router.url;
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
@@ -88,5 +93,18 @@ export class HomeComponent implements OnInit {
   logout(){
     window.localStorage.clear();
     this.router.navigate(['/home'])
+  }
+
+  private getMerchant() {
+    this.merchantService.getAllMerchant().subscribe((merchant)=>{
+      this.merchants=merchant
+    })
+  }
+
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=9;
   }
 }

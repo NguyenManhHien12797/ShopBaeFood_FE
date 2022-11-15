@@ -12,6 +12,7 @@ import {Role} from "../../model/role";
   styleUrls: ['./all-merchant-list.component.css']
 })
 export class AllMerchantListComponent implements OnInit {
+  i:number=15;
 
   constructor( private merchantService: MerchantService,
                private router: Router) { }
@@ -68,5 +69,10 @@ export class AllMerchantListComponent implements OnInit {
       this.merchants = merchant;
     })
   }
-
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=15;
+  }
 }

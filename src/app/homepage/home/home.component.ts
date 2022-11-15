@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AccountToken} from "../../model/accountToken";
 import {Role} from "../../model/role";
+import {Product} from "../../model/product";
+import {Cart} from "../../model/cart";
+import {CartService} from "../../service/cart/cart.service";
 
 @Component({
   selector: 'app-home',
@@ -10,21 +13,29 @@ import {Role} from "../../model/role";
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private router: Router) { }
+  constructor( private router: Router,
+               private cartService: CartService) {
+    this.getCartByUserId();
+
+  }
 
   acc: AccountToken;
   data: any;
   message: string;
+  messagecart: string;
   role: Role;
+  products: Product[] = [];
+  carts: Cart[] =[];
 
   ngOnInit(): void {
+
   }
 
   ngDoCheck(): void {
     this.url = this.router.url;
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
-      // this.router.navigate(['/home'])
+      // this.router.navigate(['/login'])
     }else {
       if(this.getAccountToken().roles.includes("ROLE_USER")){
         this.acc = this.getAccountToken().user;
@@ -39,7 +50,6 @@ export class HomeComponent implements OnInit {
         this.message= "admin";
       }
 
-
     }
   }
 
@@ -48,6 +58,30 @@ export class HomeComponent implements OnInit {
   getAccountToken(){
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
+
+  }
+
+
+
+  getCartByUserId(){
+    let data = JSON.parse(localStorage.getItem("data")!);
+    if(data != null){
+      this.cartService.getCartByUserId(data.user.id).subscribe(data =>{
+        if(data.length == 0){
+          this.messagecart = "khong co du lieu";
+        } else {
+          this.carts = data;
+          console.log(this.carts)
+          for (let i =0; i<this.carts.length; i++){
+            this.carts[i].price= this.carts[i].product.oldPrice;
+            this.carts[i].totalPrice= this.carts[i].price*this.carts[i].quantity;
+          }
+
+        }
+      },error => {
+        this.messagecart = "khong co du lieu";
+      })
+    }
 
   }
 

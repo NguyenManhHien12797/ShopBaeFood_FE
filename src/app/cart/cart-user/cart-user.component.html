@@ -1,3 +1,170 @@
+<header class="main-header">
+
+  <div class="container-header">
+    <div class="container">
+      <div class="header-content navbar row  justify-content-between align-items-center">
+        <div class="logo-now col-auto">
+          <span>
+            <a href="index.html"><img src="./assets/img/shopeefoodvn.png" alt="ShopeeFood"></a>
+          </span>
+          <strong class="logo-now-name">Giỏ hàng</strong>
+        </div>
+
+        <div class="user-acc col-auto user-acc-wr">
+          <div *ngIf="message === 'chua dang nhap'; then thenBlockAcc else elseBlockAcc"></div>
+          <ng-template #thenBlockAcc>
+            <a routerLink="/login"><button type="button"  class="btn btn-none-bg btn-login">
+              <span class="font14">Đăng nhập</span>
+            </button></a>
+          </ng-template>
+
+          <ng-template #elseBlockAcc>
+
+            <div class="user-acc-contain">
+              <img class="user-acc-img" src="{{acc.avatar}}" alt="">
+              <span>{{acc.name}}</span>
+              <div class="user-acc-dropdown">
+
+                <div *ngIf="message == 'merchant'; then thenBlockMerchant else elseBlockMerchant"></div>
+                <ng-template #thenBlockMerchant>
+                  <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-store"></i> Kênh người bán</a>
+                </ng-template>
+                <ng-template #elseBlockMerchant>
+                  <a class="user-acc-admin" routerLink="/register/merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
+                  <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
+                </ng-template>
+
+                <div *ngIf="message == 'admin'; then thenBlockAdmin"></div>
+                <ng-template #thenBlockAdmin>
+                  <a class="user-acc-admin" routerLink="/admin"> <i class="fa-solid fa-lock"></i> Kênh admin</a>
+                </ng-template>
+
+                <hr>
+                <span (click)="logout()"><i class="fa-solid fa-right-to-bracket"></i> Đăng xuất</span>
+              </div>
+
+
+
+            </div>
+
+            <div class="nav-bar-cart" ><i class="fa-solid fa-cart-shopping" routerLink="/cart"></i>
+
+              <div class="cart-detail" >
+                <span class="cart-detail-span">Sản phẩm trong giỏ hàng</span>
+                <div *ngIf="messagecart === 'khong co du lieu'; then thenBlockCartDetail else elseBlockACartDetail"></div>
+                <ng-template #thenBlockCartDetail>
+                  <img class="nocart-img" src="https://taphoa.cz/static/media/cart-empty-img.8b677cb3.png" alt="">
+                </ng-template>
+                <ng-template #elseBlockACartDetail>
+                  <div class="cart-detai-item-container">
+                    <div class="cart-detai-item" *ngFor="let product of carts">
+                      <img src="{{product.product.image}}" alt="">
+                      <span class="cart-detai-item-span">{{product.product.name}}</span>
+                      <span>{{product.product.newPrice}} đ</span>
+                    </div>
+                  </div>
+                </ng-template>
+                <div class="cart-detail-btn">
+                  <span>Tổng: {{carts.length}} sản phẩm</span>
+                  <button class="btn btn-cart" routerLink="/cart">Xem giỏ hàng</button>
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-search" id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="modal-search-form"><span class="sub-title">Đặt Đồ ăn, giao hàng từ 20'... có
+                                    37422 địa điểm ở Hà Nội từ 00:00 - 23:59</span>
+          <form><input class="search-input" name="search-input" type="text" autocomplete="off"
+                       value=""></form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-new-app" id="modal-new-app" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="img-now"><img
+          src="#"
+          alt="App now"></div>
+        <div class="info-now"><span>
+                                    <h3 style="font-size: 36px;font-weight: lighter;margin-bottom: 0;">Hello you!</h3>
+                                    <p style="font-size: 15px;margin-top: 9px;margin-bottom: 9px;">We are pleased to
+                                        inform you that our application<span class="bold"> ShopeeFood</span> is changed
+                                        its name to</p><span class="btn btn-red font18" title="ShopeeFood"
+                                                             style="cursor: pointer;font-size: 18px !important;background-color: #cf2127;color: #fff;border-color: #cf2127;"><span
+          class="txt-bold"
+          style="font-weight: 700 !important;">ShopBeaFood</span></span>
+                                </span>
+          <p class="update-version">Cập nhật phiên bản mới</p>
+          <div class="down-apps"><a target="_blank" rel="noopener noreferrer"
+                                    href="https://itunes.apple.com/us/app/deliverynow/id1137866760" class="down-app"
+                                    title="App Store"><span class="icon icon-app-store-sm"></span></a><a
+            target="_blank" rel="noopener noreferrer"
+            href="https://play.google.com/store/apps/details?id=com.deliverynow"
+            class="down-app" title="Google play"><span
+            class="icon icon-gg-play-sm"></span></a></div>
+        </div>
+        <div class="box-now-merchant clearfix">
+          <div class="img-merchant">
+            <div class="float-left mar-right10"><span class="icon icon-merchant-lg"></span>
+            </div>
+            <div class="float-left"><a target="_blank" rel="noopener noreferrer"
+                                       href="https://itunes.apple.com/US/app/id1296706589?mt=8" class="down-apps"
+                                       title="App Store"><span class="icon icon-app-store-sm"></span></a><a
+              target="_blank" rel="noopener noreferrer"
+              href="https://play.google.com/store/apps/details?id=com.sea.foody.nowmerchant&amp;amp;hl=vi"
+              class="down-apps" title="Google play"><span
+              class="icon icon-gg-play-sm"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-get-local" id="userLocationId" tabindex="-1" role="dialog"
+       data-backdrop="static" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content"><span class="close" data-dismiss="modal">x</span>
+        <div class="modal-header">Bạn muốn giao đến đâu?</div>
+        <div class="modal-body">
+          <div class="search-local">
+            <div class="primary-local">
+              <div class="row align-items-center no-gutters">
+                <div class="col-auto"><i class="icon icon-search-gray"></i></div>
+                <div class="col"><input type="text" id="address" name="address"
+                                        placeholder="Nhập địa chỉ giao hàng" value=""></div>
+                <div class="col-auto"><i class="icon icon-location"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="list-local">
+            <div class="suggest-local">
+              <div class="location-items"></div>
+              <div class="find-map">
+                <div class="row align-items-center no-gutters">
+                  <div class="col-auto"><i class="icon icon-thumbtack"></i></div>
+                  <div class="col pl-3"><span class="txt-blue link">Tìm trên bản đồ</span>
+                  </div>
+                  <div class="col-auto mr-3"><i class="icon-arrow-thin right"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
 
 <section class="h-100 gradient-custom">
   <div class="container py-5">
@@ -8,8 +175,12 @@
             <h5 class="mb-0">Cart - 2 items</h5>
           </div>
           <div class="card-body">
+            <div *ngIf="messagecart === 'khong co du lieu'; then thenBlockCart else elseBlockACart"></div>
+            <ng-template #thenBlockCart>
+              <img class="card-body-noimage" src="https://taphoa.cz/static/media/cart-empty-img.8b677cb3.png" alt="">
+            </ng-template>
             <!-- Single item -->
-              <ng-template [ngIf]="message !== 'khong co du lieu'">
+              <ng-template #elseBlockACart>
 
                 <div class="row" *ngFor="let product of carts">
                   <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -44,7 +215,7 @@
                     <!-- Quantity -->
                     <div class="d-flex mb-4" style="max-width: 300px">
                       <button class="btn btn-primary px-3 me-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decress(product.quantity)">
                         <i class="fas fa-minus"></i>
                       </button>
 
@@ -55,7 +226,7 @@
                       </div>
 
                       <button class="btn btn-primary px-3 ms-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()" >
                         <i class="fas fa-plus"></i>
                       </button>
                     </div>
@@ -63,7 +234,7 @@
 
                     <!-- Price -->
                     <p class="text-start text-md-center">
-                      <strong>{{product.totalPrice}} đ</strong>
+                      <strong>{{product.totalPrice }} đ</strong>
                     </p>
                     <!-- Price -->
                   </div>
@@ -71,13 +242,6 @@
                 <!-- Single item -->
 
               </ng-template>
-
-
-
-
-
-
-
 
           </div>
         </div>
@@ -99,9 +263,6 @@
             <img class="me-2" width="45px"
                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
                  alt="Mastercard" />
-            <img class="me-2" width="45px"
-                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-                 alt="PayPal acceptance mark" />
           </div>
         </div>
       </div>

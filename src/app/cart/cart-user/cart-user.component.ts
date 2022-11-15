@@ -47,6 +47,7 @@ export class CartUserComponent implements OnInit {
   message:string;
   products: Product[] = [];
   carts: Cart[] =[];
+  totalPrice: number = 0;
 
 
 
@@ -57,13 +58,16 @@ export class CartUserComponent implements OnInit {
         if(data.length == 0){
           this.messagecart = "khong co du lieu";
           console.log(this.messagecart)
+          console.log("Tong tien: "+ this.totalPrice)
         } else {
           this.carts = data;
           console.log(this.carts)
           for (let i =0; i<this.carts.length; i++){
-            this.carts[i].price= this.carts[i].product.oldPrice;
+            this.carts[i].price= this.carts[i].product.newPrice;
             this.carts[i].totalPrice= this.carts[i].price*this.carts[i].quantity;
+            this.totalPrice = this.totalPrice + this.carts[i].totalPrice;
           }
+          console.log("Tong tien: "+ this.totalPrice)
 
         }
       },error => {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
@@ -21,6 +21,7 @@ export class MerchantDetailComponent implements OnInit {
   products: Product[] = [];
   nameSearch: string;
   cart: Cart;
+  cartDTO: CartDTO;
   user: AppUser;
   listCart: Cart[];
   // @ts-ignore
@@ -42,6 +43,11 @@ export class MerchantDetailComponent implements OnInit {
       // this.findCartByUserID();
     })
 
+  }
+
+  @Output() newCartEvent = new EventEmitter<any>();
+  addNewCart(){
+    this.newCartEvent.emit()
   }
 
   private getMerchant(id: any) {
@@ -77,11 +83,12 @@ export class MerchantDetailComponent implements OnInit {
     let quantity = 1;
     let totalPrice = (product.newPrice * quantity);
     let cart = new CartDTO(quantity,price, totalPrice,user_id, product.id);
-
+    this.cartDTO = cart;
 
 
     this.cartService.findCartByProuct(product.id).subscribe(data =>{
       this.cartService.upDateToCart(product.id, data).subscribe(data =>{
+
         swal("Đã thêm "+product.name+" vào giỏ hàng")
       }, error => {
         console.log("loi up to cart")
@@ -89,6 +96,9 @@ export class MerchantDetailComponent implements OnInit {
     }, error => {
 
       this.cartService.addToCart(cart).subscribe(data =>{
+        console.log("day la add cart kkk")
+        console.log(data)
+        console.log("day la cart kkk")
         swal("Đã thêm "+product.name+" vào giỏ hàng")
       }, error => {
         console.log("loi add to cart")

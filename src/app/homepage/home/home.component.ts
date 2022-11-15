@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
 
   getCartByUserId(){
     let data = JSON.parse(localStorage.getItem("data")!);
-    if(data != null){
+    if(data.user !== null){
       this.cartService.getCartByUserId(data.user.id).subscribe(data =>{
         if(data.length == 0){
           this.messagecart = "khong co du lieu";

@@ -23413,17 +23413,14 @@ input.required-data, select.required-data {
   cursor: pointer;
 }
 
-
+.nav-bar-cart:hover{
+  cursor: pointer;
+}
 .nav-bar-cart{
   font-size: 20px;
   color: #525252;
   margin: 0 20px;
 }
-
-.nav-bar-cart:hover{
-  cursor: pointer;
-}
-
 .cart-detail{
   position: absolute;
   width: 400px;
@@ -23434,6 +23431,11 @@ input.required-data, select.required-data {
   border-radius: 5px;
   box-shadow: 5px 5px 8px #ddd;
   border: 1px solid #ddd;
+
+}
+
+.nav-bar-cart:hover .cart-detail{
+  display: block;
 
 }
 
@@ -23457,10 +23459,7 @@ input.required-data, select.required-data {
   cursor: pointer;
   background-color: #ededed;
 }
-.nav-bar-cart:hover .cart-detail{
-  display: block;
 
-}
 
 .cart-detai-item img{
   width: 45px;

@@ -71,30 +71,34 @@
 
                 </div>
 
-                <div class="nav-bar-cart" ><i class="fa-solid fa-cart-shopping" routerLink="/cart"></i>
+                <div *ngIf="message === 'user'; then thenBlockCart"></div>
+                <ng-template #thenBlockCart>
+                  <div class="nav-bar-cart" ><i class="fa-solid fa-cart-shopping" routerLink="/cart"></i>
 
-                  <div class="cart-detail" >
-                    <span class="cart-detail-span">Sản phẩm trong giỏ hàng</span>
-                    <div *ngIf="messagecart === 'khong co du lieu'; then thenBlockCartDetail else elseBlockACartDetail"></div>
-                    <ng-template #thenBlockCartDetail>
-                      <img class="nocart-img" src="https://taphoa.cz/static/media/cart-empty-img.8b677cb3.png" alt="">
-                    </ng-template>
-                    <ng-template #elseBlockACartDetail>
-                      <div class="cart-detai-item-container">
-                        <div class="cart-detai-item" *ngFor="let product of carts">
-                          <img src="{{product.product.image}}" alt="">
-                          <span class="cart-detai-item-span">{{product.product.name}}</span>
-                          <span>{{product.product.newPrice}} đ</span>
+                    <div class="cart-detail" >
+                      <span class="cart-detail-span">Sản phẩm trong giỏ hàng</span>
+                      <div *ngIf="messagecart === 'khong co du lieu'; then thenBlockCartDetail else elseBlockACartDetail"></div>
+                      <ng-template #thenBlockCartDetail>
+                        <img class="nocart-img" src="https://taphoa.cz/static/media/cart-empty-img.8b677cb3.png" alt="">
+                      </ng-template>
+                      <ng-template #elseBlockACartDetail>
+                        <div class="cart-detai-item-container">
+                          <div class="cart-detai-item" *ngFor="let product of carts">
+                            <img src="{{product.product.image}}" alt="">
+                            <span class="cart-detai-item-span">{{product.product.name}}</span>
+                            <span>{{product.product.newPrice}} đ</span>
+                          </div>
                         </div>
+                      </ng-template>
+                      <div class="cart-detail-btn">
+                        <span>Tổng: {{carts.length}} sản phẩm</span>
+                        <button class="btn btn-cart" routerLink="/cart">Xem giỏ hàng</button>
                       </div>
-                    </ng-template>
-                    <div class="cart-detail-btn">
-                      <span>Tổng: {{carts.length}} sản phẩm</span>
-                      <button class="btn btn-cart" routerLink="/cart">Xem giỏ hàng</button>
                     </div>
-                  </div>
 
-                </div>
+                  </div>
+                </ng-template>
+
               </ng-template>
 
 

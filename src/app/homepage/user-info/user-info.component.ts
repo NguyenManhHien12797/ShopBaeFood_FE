@@ -101,11 +101,15 @@ message:any;
     this.accountService.updateAccountUser(this.account.id, this.account).subscribe(() =>{
       console.log("update thanh cong");
       console.log(this.account);
+      console.log(this.account.user.id)
+      console.log(this.user.id);
       this.getAccountToId();
       this.disabeled = true;
     });
-    this.userService.updateUser(this.user.id, this.account.user).subscribe(() =>{
+
+    this.userService.updateUser(this.account.user.id, this.account.user).subscribe(() =>{
       console.log("update thanh cong lan 2");
+      this.disabeled=true;
     })
   }
 

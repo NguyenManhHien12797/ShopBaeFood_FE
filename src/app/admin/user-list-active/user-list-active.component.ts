@@ -18,13 +18,13 @@ export class UserListActiveComponent implements OnInit {
               private mailService: MailService) { }
 
   ngOnInit(): void {
-    this.getAllMerchant();
+    this.getAllUser();
   }
 
   users: AppUser[]= [];
 
 
-  getAllMerchant(){
+  getAllUser(){
     this.userService.getAllUser().subscribe(user =>{
       this.users = user.filter(value => value.status === 'active'&& value.name!=='admin');
     })
@@ -58,7 +58,7 @@ export class UserListActiveComponent implements OnInit {
                 swal("Gửi mail bị lỗi, nhưng người dùng đã bị khóa");
               })
               swal("Đã khóa người dùng"+ user.name+ " thành công")
-              this.getAllMerchant();
+              this.getAllUser();
 
             })
 

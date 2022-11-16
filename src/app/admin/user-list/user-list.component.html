@@ -37,16 +37,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let merchant of users">
-          <td>{{merchant.id}}</td>
-          <td><img src="{{merchant.avatar}}" alt="" style="height: 40px;
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td><img src="{{user.avatar}}" alt="" style="height: 40px;
     width: 40px;
     border-radius: 50%;"></td>
-          <td class="merchant-item">{{merchant.name}}</td>
-          <td class="merchant-item">{{merchant.phone}}</td>
-          <td class="merchant-item">{{merchant.address}}</td>
-          <td class="action-icon"><a href="#"><i class="fa-regular fa-pen-to-square"></i></a></td>
-          <td class="action-icon"><a href="#"><i class="fa-solid fa-trash"></i></a></td>
+          <td class="merchant-item">{{user.name}}</td>
+          <td class="merchant-item">{{user.phone}}</td>
+          <td class="merchant-item">{{user.address}}</td>
+          <td class="action-icon"><a (click)="blockUser(user.id,user)"><i class="fa-regular fas fa-lock"></i></a></td>
         </tr>
 
         </tbody>

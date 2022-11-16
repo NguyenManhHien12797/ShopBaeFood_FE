@@ -40,7 +40,7 @@ export class UserListBlockComponent implements OnInit {
     })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Vâng, bạn đã khóa thành công", {
+          swal("Vâng, bạn đã mở khóa thành công", {
             icon: "success",
           });
           const mer= user;
@@ -56,7 +56,7 @@ export class UserListBlockComponent implements OnInit {
               },error => {
                 swal("Gửi mail bị lỗi, nhưng người dùng đã bị khóa");
               })
-              swal("Đã khóa người dùng"+ user.name+ " thành công")
+              swal("Đã mở khóa người dùng"+ user.name+ " thành công")
               this.getAllMerchant();
 
             })

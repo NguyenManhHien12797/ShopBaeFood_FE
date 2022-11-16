@@ -24,6 +24,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUser();
+    this.router.navigate(["/admin/user-list/active"])
   }
   ngDoCheck(): void {
     this.url = this.router.url;

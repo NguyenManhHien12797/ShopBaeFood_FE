@@ -13,6 +13,7 @@ import {AppUser} from "../../model/appUser";
   styleUrls: ['./user-list-active.component.css']
 })
 export class UserListActiveComponent implements OnInit {
+  private i: number=5;
   constructor(private userService: UserService,
               private accountService: AccountService,
               private mailService: MailService) { }
@@ -70,5 +71,11 @@ export class UserListActiveComponent implements OnInit {
       });
 
 
+  }
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=5;
   }
 }

@@ -39,8 +39,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let merchant of merchants">
-        <td>{{merchant.id}}</td>
+      <tr *ngFor="let merchant of merchants; index as i">
+        <td>{{i+1}}</td>
         <td><img src="{{merchant.avatar}}" alt="" style="height: 40px;
     width: 40px;
     border-radius: 50%;"></td>

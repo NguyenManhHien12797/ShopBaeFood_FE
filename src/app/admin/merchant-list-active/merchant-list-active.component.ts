@@ -11,6 +11,7 @@ import {MailService} from "../../service/mail/mail.service";
   styleUrls: ['./merchant-list-active.component.css']
 })
 export class MerchantListActiveComponent implements OnInit {
+  private i: number=5;
 
   constructor(private merchantService: MerchantService,
               private accountService: AccountService,
@@ -68,5 +69,12 @@ export class MerchantListActiveComponent implements OnInit {
       });
 
 
+  }
+
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=5;
   }
 }

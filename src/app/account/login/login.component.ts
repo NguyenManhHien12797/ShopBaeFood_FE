@@ -16,13 +16,22 @@ export class LoginComponent implements OnInit {
 
   })
   message : string = "";
+  nameD: any;
+  passD: any;
+  disable: boolean=true;
+
 
   constructor(private accountService: AccountService,
               private router: Router) {}
 
   ngOnInit(): void {
-  }
 
+  }
+  ngDoCheck():void{
+    console.log(this.nameD)
+    console.log(this.passD)
+    this.check();
+  }
   get username() {
     return this.loginForm.get("userName")
   }
@@ -57,6 +66,17 @@ export class LoginComponent implements OnInit {
       }
       )
 
+  }
 
+  check() {
+    if((this.nameD==null||"")||(this.passD==null||"")){
+      this.disable=true;
+    }else {
+        this.disable=false;
+    }
+    if(this.nameD==""||this.passD==""){
+      this.disable=true;
+    }
+    console.log(this.disable)
   }
 }

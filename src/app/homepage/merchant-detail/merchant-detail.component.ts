@@ -26,6 +26,7 @@ export class MerchantDetailComponent implements OnInit {
   listCart: Cart[];
   // @ts-ignore
   // idMerchant:any=this.merchant.id
+  private i: number=5;
   constructor(private activatedRoute: ActivatedRoute,
               private merchantService: MerchantService,
               private productService: ProductService,
@@ -113,5 +114,10 @@ export class MerchantDetailComponent implements OnInit {
   //     return null;
   //   })
   // }
-
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=5;
+  }
 }

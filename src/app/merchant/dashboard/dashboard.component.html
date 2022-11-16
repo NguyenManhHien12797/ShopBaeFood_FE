@@ -1,23 +1,31 @@
 <div class="container-fluid m-md-5">
+  <table>
+    <tr>
+      <td>  <h6>Color</h6>
+        <input type="color" class="form-control-color" #element (input)="setColor(element.value)"/></td>
+      <td>  <div>
+        <h6>Type</h6>
+        <div *ngIf="type!=='bar'; then thenBlock else elseBlock"></div>
+
+        <ng-template #thenBlock>
+          <button class="btn btn-danger " (click)="setType()">bar</button>
+        </ng-template>
+        <ng-template #elseBlock>
+          <button class="btn btn-danger" (click)="convert()">rada</button>
+        </ng-template>
+      </div></td>
+    </tr>
+    <tr></tr>
+    <tr><div style="width: 1100px;height: 1100px;">
+      <canvas id="myChart"></canvas>
+    </div></tr>
+  </table>
   <div>
 
-  <h6>Color</h6>
-  <input type="color" class="form-control-color" #element (input)="setColor(element.value)"/>
-  <div>
-  <h6>Type</h6>
-  <div *ngIf="type!=='bar'; then thenBlock else elseBlock"></div>
 
-<ng-template #thenBlock>
-  <button class="btn btn-danger " (click)="setType()">bar</button>
-</ng-template>
-  <ng-template #elseBlock>
-    <button class="btn btn-danger" (click)="convert()">Rada</button>
-  </ng-template>
-</div>
+
 </div>
 
-  <div style="width: 1100px;height: 1100px;">
-    <canvas id="myChart"></canvas>
-  </div>
+
 </div>
 

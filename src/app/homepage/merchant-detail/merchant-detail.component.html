@@ -127,7 +127,7 @@
             <div id="restaurant-item">
               <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List"
                    role="grid" tabindex="0"
-                   style="box-sizing: border-box; direction: ltr; height: auto; position: relative; width: 100%; will-change: transform; overflow: auto; outline: none;">
+                   style="box-sizing: border-box; direction: ltr; height: auto; position: relative; width: 100%; will-change: transform; outline: none;">
                 <div class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup"
                      style="width: 100%; height: auto; max-height: 6097px; position: relative;">
                   <div class="menu-group" id="section-group-menu-1001658"
@@ -136,8 +136,8 @@
                   </div>
 
                   <table style="width: 100%">
-                  <div *ngFor="let product of products">
-                  <tr><td><div class="item-restaurant-row "
+                  <div *ngFor="let product of products; index as i">
+                  <tr [hidden]="hidden(i)"><td><div class="item-restaurant-row "
                        style="height: 88px; left: 0px; position: absolute; top: 144px; width: 100%;"
                                style="height: 81px; left: 0px;  top: 50px; width: 100%;">
                     <div class="row" style="width: 750px">
@@ -170,9 +170,13 @@
                   </td>
                     </tr>
                   </div>
+                    <br>
+                    <br>
+                    <br>
 <!--                  end for-->
                   </table>
-
+                  <div class="txt-center mt-2"><button (click)="plus()" class="btn-none btn-load-more link"><span
+                    class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button></div>
                 </div>
               </div>
             </div>
@@ -182,5 +186,6 @@
     </div>
 
   </div>
-
 </div>
+<br>
+

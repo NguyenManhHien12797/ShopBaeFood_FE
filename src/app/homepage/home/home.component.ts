@@ -32,11 +32,11 @@ export class HomeComponent implements OnInit {
   i: number = 9;
 
   ngOnInit(): void {
-    this.getMerchant()
+    this.getMerchant();
+    this.getCartByUserId();
   }
 
   ngDoCheck(): void {
-    console.log(this.merchants)
     this.url = this.router.url;
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";

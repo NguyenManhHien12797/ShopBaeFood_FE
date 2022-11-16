@@ -85,28 +85,19 @@ export class MerchantDetailComponent implements OnInit {
     let cart = new CartDTO(quantity,price, totalPrice,user_id, product.id);
     this.cartDTO = cart;
 
-
-    this.cartService.findCartByProuct(product.id).subscribe(data =>{
-      this.cartService.upDateToCart(product.id, data).subscribe(data =>{
-
-        swal("Đã thêm "+product.name+" vào giỏ hàng")
-      }, error => {
-        console.log("loi up to cart")
-      })
+    this.cartService.addToCart(cart).subscribe(data =>{
+      if(data.message === 'Co cart roi'){
+        console.log("Da co cart roi")
+        this.cartService.upDateToCart(product.id, user_id).subscribe(data =>{
+          swal("Đã thêm "+product.name+" vào giỏ hàng")
+        }, error => {
+          console.log("loi up to cart")
+        })
+      }
+      swal("Đã thêm "+product.name+" vào giỏ hàng")
     }, error => {
-
-      this.cartService.addToCart(cart).subscribe(data =>{
-        console.log("day la add cart kkk")
-        console.log(data)
-        console.log("day la cart kkk")
-        swal("Đã thêm "+product.name+" vào giỏ hàng")
-      }, error => {
-        console.log("loi add to cart")
-      });
-
-    })
-
-
+      console.log("loi add to cart")
+    });
 
   }
 

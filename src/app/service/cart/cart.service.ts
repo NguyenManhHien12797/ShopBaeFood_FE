@@ -21,7 +21,7 @@ export class CartService {
     return this.http.get<any>( `${API_URL}/api/public/cart/user/${id}`);
   }
 
-  addToCart(cart: CartDTO):Observable<CartDTO>{
+  addToCart(cart: CartDTO):Observable<any>{
     return this.http.post<any>( `${API_URL}/api/cart`,cart);
   }
 
@@ -33,8 +33,8 @@ export class CartService {
     return this.http.get<any>(`${API_URL}/api/public/cart/user/${id}`);
   }
 
-  upDateToCart(id: number,cart: Cart):Observable<Cart>{
-    return this.http.patch<any>( `${API_URL}/api/cart/${id}`,cart);
+  upDateToCart(id: number,user_id: number):Observable<CartDTO>{
+    return this.http.post<any>( `${API_URL}/api/cart/${id}/`,user_id);
   }
 
   deleteProductCart(id: number): Observable<any>{

@@ -1,0 +1,22 @@
+.action-icon{
+  font-size: 26px;
+  width: 50px;
+}
+.action-icon a{
+  color: #3f3f3f;
+}
+.action-icon a:hover{
+  color: #a19f9f;
+}
+.merchant-item{
+  padding-top: 10px;
+  font-size: 20px;
+}
+th{
+  font-size: 21px;
+  text-align: center;
+}
+
+td{
+  text-align: center;
+}

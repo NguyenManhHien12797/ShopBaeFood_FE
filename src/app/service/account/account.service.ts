@@ -60,6 +60,10 @@ export class AccountService {
     return this.http.get<any>(`${API_URL}/api/account/merchant/${id}`);
   }
 
+  getAccountToUser(id: number | undefined):Observable<any>{
+    return this.http.get<any>(`${API_URL}/api/account/user/${id}`);
+  }
+
   getAccountToId(id: number):Observable<any>{
     return this.http.get<any>(`${API_URL}/api/account/${id}`);
   }

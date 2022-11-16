@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
 import {Router} from "@angular/router";
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
+        swal("Đăng nhập thành công","","success");
         for (let i = 0; i <data.roles.length ; i++) {
           if(data.roles[i]=='ROLE_ADMIN'){
             this.router.navigate(['/admin']);
@@ -69,13 +71,10 @@ export class LoginComponent implements OnInit {
   }
 
   check() {
-    if((this.nameD==null||"")||(this.passD==null||"")){
+    if((this.nameD==null||this.nameD=="")||(this.passD==null||this.passD=="")){
       this.disable=true;
     }else {
         this.disable=false;
-    }
-    if(this.nameD==""||this.passD==""){
-      this.disable=true;
     }
     console.log(this.disable)
   }

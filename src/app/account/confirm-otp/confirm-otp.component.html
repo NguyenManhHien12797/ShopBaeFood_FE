@@ -195,28 +195,29 @@
     <!--form login-->
     <div class="now-login">
       <div class="content">
-        <div class="title">Quên mật khẩu</div>
-<!--        <div class="login-via">-->
-<!--          <div class="item phone"><span class="fas fa-mobile-alt"></span>Số điện thoại</div>-->
-<!--          <div class="item fb"><span class="fab fa-facebook-f"></span>Facebook</div>-->
-<!--          <form id="google-login-form" action="https://accounts.google.com/o/oauth2/v2/auth" method="GET"><input-->
-<!--            type="hidden" name="client_id"-->
-<!--            value="229327170580-69v69v4s94p2tvf4qi3g0qb901b2pg99.apps.googleusercontent.com"><input-->
-<!--            type="hidden" name="redirect_uri" value="https://shopeefood.vn/account/login"><input type="hidden"-->
-<!--                                                                                                 name="scope" value="email profile openid"><input type="hidden" name="state" value="/"><input-->
-<!--            type="hidden" name="response_type" value="permission id_token"><input type="hidden"-->
-<!--                                                                                  name="fetch_basic_profile" value="true"><input type="hidden" name="nonce"-->
-<!--                                                                                                                                 value="AO9thoqUvirPjVc4KOM61c001.snqMhG">-->
-<!--            <div class="item plus"><i class="fab fa-google-plus-g"></i>Google</div>-->
-<!--          </form>-->
-<!--        </div>-->
-        <p class="text">Hãy nhập địa chỉ tài khoản của bạn</p>
+        <div class="title">Xác thực và đổi mật khẩu</div>
+        <!--        <div class="login-via">-->
+        <!--          <div class="item phone"><span class="fas fa-mobile-alt"></span>Số điện thoại</div>-->
+        <!--          <div class="item fb"><span class="fab fa-facebook-f"></span>Facebook</div>-->
+        <!--          <form id="google-login-form" action="https://accounts.google.com/o/oauth2/v2/auth" method="GET"><input-->
+        <!--            type="hidden" name="client_id"-->
+        <!--            value="229327170580-69v69v4s94p2tvf4qi3g0qb901b2pg99.apps.googleusercontent.com"><input-->
+        <!--            type="hidden" name="redirect_uri" value="https://shopeefood.vn/account/login"><input type="hidden"-->
+        <!--                                                                                                 name="scope" value="email profile openid"><input type="hidden" name="state" value="/"><input-->
+        <!--            type="hidden" name="response_type" value="permission id_token"><input type="hidden"-->
+        <!--                                                                                  name="fetch_basic_profile" value="true"><input type="hidden" name="nonce"-->
+        <!--                                                                                                                                 value="AO9thoqUvirPjVc4KOM61c001.snqMhG">-->
+        <!--            <div class="item plus"><i class="fab fa-google-plus-g"></i>Google</div>-->
+        <!--          </form>-->
+        <!--        </div>-->
+        <p class="text">Hãy nhập thông tin</p>
 
         <!--        form login-->
         <form >
           <div class="form-login-input">
             <div class="field-group">
-              <div class="input-group"><i class="far fa-user"></i><input class="input100" id="userName" type="text" name="userName" placeholder="Tên tài khoản của bạn" [(ngModel)]="mail" >
+              <div class="input-group"><i class="far fa-clock"></i><input class="input100"  type="text" name="userName" placeholder="Mời nhập mã otp" [(ngModel)]="otp" ></div>
+<!--              <i class="far fa-lock"></i><input class="input100"  type="pass" name="userName" placeholder="Mời nhập mật khẩu mới"  [(ngModel)]="pass">-->
 
 
                 <!--          <div class="wrap-input100 validate-input">-->
@@ -228,37 +229,46 @@
                 <!--						</span>-->
                 <!--          </div>-->
                 <!--valid user-->
-<!--                <div *ngIf="!username?.valid && username?.touched">-->
-<!--                  <div [hidden]="!username?.errors?.['required']">-->
-<!--                    <p style="color: red"> This field is required </p>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                <div *ngIf="!username?.valid && username?.touched">-->
+                <!--                  <div [hidden]="!username?.errors?.['required']">-->
+                <!--                    <p style="color: red"> This field is required </p>-->
+                <!--                  </div>-->
+                <!--                </div>-->
 
-<!--                <div class="input-group"><i class="fas fa-lock"></i><input class="input100" type="password" name="password" placeholder="Mật khẩu" formControlName="password"></div>-->
-<!--                &lt;!&ndash;              valid&ndash;&gt;-->
-<!--                <div *ngIf="!password?.valid && password?.touched">-->
-<!--                  <div [hidden]="!password?.errors?.['required']">-->
-<!--                    <p style="color: red"> Password is required </p>-->
-<!--                  </div>-->
-<!--                  <div [hidden]="!password?.errors?.['minLength']">-->
-<!--                    <p style="color: red"> Password need at least 6 words </p>-->
-<!--                  </div>-->
-<!--                  <div [hidden]="!password?.errors?.['minLength']">-->
-<!--                    <p style="color: red"> First letter should be capitalized, number should in the end</p>-->
-<!--                  </div>-->
-                </div>
-              </div><button class="btn btn-danger" (click)="forgotpass()" [disabled]="disable">Gửi</button>
-            {{message}}
+                <!--                <div class="input-group"><i class="fas fa-lock"></i><input class="input100" type="password" name="password" placeholder="Mật khẩu" formControlName="password"></div>-->
+                <!--                &lt;!&ndash;              valid&ndash;&gt;-->
+                <!--                <div *ngIf="!password?.valid && password?.touched">-->
+                <!--                  <div [hidden]="!password?.errors?.['required']">-->
+                <!--                    <p style="color: red"> Password is required </p>-->
+                <!--                  </div>-->
+                <!--                  <div [hidden]="!password?.errors?.['minLength']">-->
+                <!--                    <p style="color: red"> Password need at least 6 words </p>-->
+                <!--                  </div>-->
+                <!--                  <div [hidden]="!password?.errors?.['minLength']">-->
+                <!--                    <p style="color: red"> First letter should be capitalized, number should in the end</p>-->
+                <!--                  </div>-->
+              <div class="input-group"><i class="fas fa-lock"></i><input class="input100"  type="pass" name="userName" placeholder="Mời nhập mật khẩu mới"  [(ngModel)]="pass"></div>
             </div>
+            <button class="btn btn-danger" (click)="confirmpass()" >Gửi</button>
+            &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp;
+            &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp;
+            <button [disabled]="disable" (click)="sotp()" >Gửi lại mã ({{i}})</button>
+          </div>
 
-<!--            <div class="form-group clearfix">-->
-<!--              <div class="float-left"><input type="checkbox" id="RememberMe" checked=""><label for="RememberMe">Lưu-->
-<!--                thông tin đăng nhập</label></div><span class="float-right"><a routerLink="/forgotPassword">Quên mật-->
-<!--                                    khẩu?</a></span>-->
-<!--            </div><button class="btn btn-block btn-submit">Đăng nhập</button>-->
-<!--            {{message}}-->
-<!--            <a routerLink="/register" class="btn btn-block btn-dark">Đăng ký</a>-->
-<!--          </div><br>-->
+          <!--            <div class="form-group clearfix">-->
+          <!--              <div class="float-left"><input type="checkbox" id="RememberMe" checked=""><label for="RememberMe">Lưu-->
+          <!--                thông tin đăng nhập</label></div><span class="float-right"><a routerLink="/forgotPassword">Quên mật-->
+          <!--                                    khẩu?</a></span>-->
+          <!--            </div><button class="btn btn-block btn-submit">Đăng nhập</button>-->
+          <!--            {{message}}-->
+          <!--            <a routerLink="/register" class="btn btn-block btn-dark">Đăng ký</a>-->
+          <!--          </div><br>-->
 
         </form>
 

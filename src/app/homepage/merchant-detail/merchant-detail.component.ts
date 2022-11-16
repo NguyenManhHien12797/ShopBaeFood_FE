@@ -86,6 +86,7 @@ export class MerchantDetailComponent implements OnInit {
     this.cartDTO = cart;
 
     this.cartService.addToCart(cart).subscribe(data =>{
+      swal("Đã thêm "+product.name+" vào giỏ hàng")
       if(data.message === 'Co cart roi'){
         console.log("Da co cart roi")
         this.cartService.upDateToCart(product.id, user_id).subscribe(data =>{
@@ -94,7 +95,7 @@ export class MerchantDetailComponent implements OnInit {
           console.log("loi up to cart")
         })
       }
-      swal("Đã thêm "+product.name+" vào giỏ hàng")
+
     }, error => {
       console.log("loi add to cart")
     });

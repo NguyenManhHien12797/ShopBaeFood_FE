@@ -17,6 +17,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {MerchantOrderPendingComponent} from "./merchant-order-pending/merchant-order-pending.component";
 import {MerchantOrderReceiveComponent} from "./merchant-order-receive/merchant-order-receive.component";
 import {MerchantOrderSendComponent} from "./merchant-order-send/merchant-order-send.component";
+import {MerchantOrderDetailComponent} from "./merchant-order-detail/merchant-order-detail.component";
 
 const routes: Routes = [{
   path: "merchant",
@@ -33,22 +34,29 @@ const routes: Routes = [{
     {
       path: "merchant-order",
       component: MerchantOrderListComponent,
-      children:[{
-        path:"pending",
+      children: [{
+        path: "pending",
         component: MerchantOrderPendingComponent
       },
         {
-          path:"receive",
+          path: "receive",
           component: MerchantOrderReceiveComponent
-        },{
-          path:"send",
+        },
+        {
+          path: "send",
           component: MerchantOrderSendComponent
-        }]
+        }
+      ]
     },
     {
-    path: "product-list",
-    component: ProductListComponent
-  },
+      path: "detail/:id",
+      component: MerchantOrderDetailComponent
+    },
+    {
+      path: "product-list",
+      component: ProductListComponent
+    }
+    ,
     {
       path: "product-edit/:id",
       component: ProductEditComponent

@@ -13,27 +13,27 @@
         <a class="nav-link link fw-bold" id="pills-profile-tab" data-toggle="pill" routerLink="receive" role="tab"  routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Đã nhận đơn</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link link fw-bold" id="pills-contact-tab" data-toggle="pill" routerLink="send" role="tab"  routerLinkActive="selected">Đang chuyển đi</a>
+        <a class="nav-link link fw-bold" id="pills-contact-tab" data-toggle="pill" routerLink="send" role="tab"  routerLinkActive="selected">Chờ người mua xác nhận</a>
       </li>
     </ul>
 
     <!-- content -->
-    <div *ngIf="url==='/merchant/merchant-order'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Ảnh</th>
-          <th scope="col">Tên </th>
-          <th scope="col">Điện thoại</th>
-          <th scope="col">Địa chỉ</th>
-          <th scope="col">Thời gian</th>
-          <!--        <th scope="col">CloseTime</th>-->
-          <th scope="col" colspan="2">Hành động</th>
-        </tr>
-        </thead>
-        <tbody>
+<!--    <div *ngIf="url==='/merchant/merchant-order'; then thenBlock else elseBlock"></div>-->
+<!--    <ng-template #thenBlock class="table-responsive">-->
+<!--      <table class="table table-striped table-sm">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th scope="col">id</th>-->
+<!--          <th scope="col">Ảnh</th>-->
+<!--          <th scope="col">Tên </th>-->
+<!--          <th scope="col">Điện thoại</th>-->
+<!--          <th scope="col">Địa chỉ</th>-->
+<!--          <th scope="col">Thời gian</th>-->
+<!--          &lt;!&ndash;        <th scope="col">CloseTime</th>&ndash;&gt;-->
+<!--          <th scope="col" colspan="2">Hành động</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
 <!--        <tr *ngFor="let merchant of merchants">-->
 <!--          <td>{{merchant.id}}</td>-->
 <!--          <td><img src="{{merchant.avatar}}" alt="" style="height: 40px;-->
@@ -47,12 +47,12 @@
 <!--          <td class="action-icon"><a (click)="blockMerchant(merchant.id,merchant)"><i class="fa-regular fas fa-lock"></i></a></td>-->
 <!--        </tr>-->
 
-        </tbody>
-      </table>
-    </ng-template>
-    <ng-template #elseBlock>
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </ng-template>-->
+<!--    <ng-template #elseBlock>-->
       <router-outlet ></router-outlet>
-    </ng-template>
+<!--    </ng-template>-->
   </div>
 </main>
 

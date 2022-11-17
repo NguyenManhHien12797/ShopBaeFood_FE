@@ -21,4 +21,16 @@ export class OrderService {
   getOrder(): Observable<IOrder[]>{
     return this.http.get<any>(`${API_URL}/api/public/orders`);
   }
+
+  updateOrderStatus(order: Order, id: number): Observable<IOrder[]>{
+    return this.http.patch<any>(`${API_URL}/api/public/orders/${id}`,order);
+  }
+
+  getOrderByUser(id: number): Observable<IOrder[]>{
+    return this.http.get<any>(`${API_URL}/api/public/orders/user/${id}`);
+  }
+
+  deleteOrder(id: number): Observable<any>{
+    return this.http.delete<any>(`${API_URL}/api/public/orders/${id}`);
+  }
 }

@@ -8,8 +8,7 @@
       <th scope="col">Điện thoại</th>
       <th scope="col">Địa chỉ</th>
       <th scope="col">Thời gian</th>
-      <!--        <th scope="col">CloseTime</th>-->
-      <th scope="col" colspan="2">Hành động</th>
+      <th scope="col" >Hành động</th>
     </tr>
     </thead>
     <tbody>
@@ -22,9 +21,8 @@
           <td class="merchant-item">{{order.appUser.phone}}</td>
           <td class="merchant-item">{{order.appUser.address}}</td>
           <td class="merchant-item" size="50px">{{order.orderdate}} </td>
-          <td class="action-icon"><a >Nhận đơn</a></td>
+          <td class="action-icon show-detail"><a [routerLink]="['/merchant/detail',order.id]"><i class="fa-solid fa-eye fa-solid-icon"></i></a></td>
         </tr>
-
     </tbody>
   </table>
 </div>

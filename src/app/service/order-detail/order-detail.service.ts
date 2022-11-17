@@ -17,4 +17,8 @@ export class OrderDetailService {
     console.log(orderDetail)
     return this.http.post<any>(`${API_URL}/api/public/orderdetails`,orderDetail);
   }
+
+  getOrderDetailByOrder(id: number): Observable<any>{
+    return this.http.get<any>(`${API_URL}/api/public/orderdetails/order/${id}`);
+  }
 }

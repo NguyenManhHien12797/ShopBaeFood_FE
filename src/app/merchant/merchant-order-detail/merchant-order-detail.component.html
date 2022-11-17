@@ -1,0 +1,27 @@
+<div class="table-responsive container">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Ảnh món</th>
+      <th scope="col">Tên món </th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Đơn giá</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let orderDetail of orderDetails">
+      <td>{{orderDetail.id}}</td>
+      <td><img src="{{orderDetail.product.image}}" alt="" style="height: 40px;
+        width: 40px;
+        border-radius: 50%;"></td>
+      <td class="merchant-item">{{orderDetail.product.name}}</td>
+      <td class="merchant-item">{{orderDetail.quantity}}</td>
+      <td class="merchant-item">{{orderDetail.product.newPrice}}</td>
+    </tr>
+    </tbody>
+  </table>
+ <button class="btn-primary btn-orderDetail" (click)="receiveOrderStatus(orderDetails[0].order)">Nhận đơn</button>
+ <button class="btn-primary btn-orderDetail" (click)="refuseOrderStatus(orderDetails[0].order)">Từ chối</button>
+</div>
+

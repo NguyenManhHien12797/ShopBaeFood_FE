@@ -9,7 +9,7 @@
       <th scope="col">Địa chỉ</th>
       <th scope="col">Thời gian</th>
       <!--        <th scope="col">CloseTime</th>-->
-      <th scope="col" colspan="2">Hành động</th>
+      <th scope="col" colspan="2">Trạng thái</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
       <td class="merchant-item">{{order.appUser.phone}}</td>
       <td class="merchant-item">{{order.appUser.address}}</td>
       <td class="merchant-item" size="50px">{{order.orderdate}} </td>
-      <td class="action-icon"><a >Đã gửi</a></td>
+      <td class="merchant-item" size="50px">{{order.status}} </td>
     </tr>
 
     </tbody>

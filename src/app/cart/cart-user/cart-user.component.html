@@ -252,7 +252,7 @@
                   <th scope="col">Tổng tiền</th>
                   <th scope="col">Thời gian</th>
                   <th scope="col" >Trạng thái</th>
-                  <th scope="col" colspan="2">Hành động</th>
+                  <th scope="col" colspan="2" style="text-align: center;">Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -264,8 +264,16 @@
                   <td class="merchant-item">{{order.totalPrice}} đ</td>
                   <td class="merchant-item">{{order.orderdate}}</td>
                   <td class="merchant-item" size="50px">{{order.status}} </td>
-                  <td class="merchant-item" size="50px"><button class="btn-order" (click)="receiveOrderStatus(order, order.id)">Nhận hàng</button></td>
-                  <td class="merchant-item" size="50px"><button class="btn-order" (click)="refuseOrderStatus(order, order.id)">Từ chối</button></td>
+                  <div *ngIf="order.status === 'Người bán nhận order'; then thenBlockStatus else elseBlockAStatus"></div>
+                  <ng-template #thenBlockStatus>
+                    <td class="merchant-item" size="50px" style="width: 101px;"><button class="btn-order" (click)="receiveOrderStatus(order, order.id)">Nhận hàng</button></td>
+                    <td class="merchant-item" size="50px" style="width: 80px;"><button class="btn-order" (click)="refuseOrderStatus(order, order.id)">Từ chối</button></td>
+                  </ng-template>
+                  <ng-template #elseBlockAStatus>
+                    <td class="merchant-item"></td>
+                    <td class="merchant-item" size="50px"></td>
+                  </ng-template>
+
                   <td class="merchant-item" size="50px"><button class="btn-order" (click)="deleteOrder(order.id)"><i class="fa-solid fa-trash"></i></button></td>
                 </tr>
                 </tbody>
@@ -332,8 +340,12 @@
                     <th scope="col" >{{totalPrice}} đ</th>
                   </tr>
                   <tr>
-                    <th scope="col">Ghi chú </th>
-                    <th scope="col" colspan="2"><input type="text" placeholder="Ghi chú"></th>
+                    <td scope="col">Ghi chú </td>
+                    <td scope="col" colspan="2"><input class="note" type="text" placeholder="Ghi chú" [(ngModel)]="note"></td>
+                  </tr>
+                  <tr>
+                    <td scope="col">Địa chỉ</td>
+                    <td scope="col" colspan="2"><input class="note" type="text" placeholder="Địa chỉ giao hàng" [(ngModel)]="address"></td>
                   </tr>
                   </tbody>
                 </table>

@@ -27,14 +27,11 @@ data:any;
 
   ngOnInit(): void {
     this.data = localStorage.getItem("data");
-    console.log("data "+this.data!==null);
     if(this.data!==null){
       this.router.navigate(["/home"])
     }
   }
   ngDoCheck():void{
-    console.log(this.nameD)
-    console.log(this.passD)
     this.check();
   }
   get username() {

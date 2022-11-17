@@ -8,6 +8,7 @@ import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
 import {Cart} from "../../model/cart";
 import swal from "sweetalert";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router,
               private cartService: CartService,
-              private merchantService: MerchantService) {
+              private merchantService: MerchantService,
+              private userService: UserService) {
 
   }
 
@@ -35,37 +37,63 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getMerchant();
     this.getCartByUserId();
-  }
 
-  ngDoCheck(): void {
-    this.url = this.router.url;
+
     if (this.getAccountToken() == null) {
       this.message = "chua dang nhap";
       // this.router.navigate(['/login'])
     } else {
       if (this.getAccountToken().roles.includes("ROLE_USER")) {
-        this.acc = this.getAccountToken().user;
+        // this.acc = this.getAccountToken().user;
+        this.getUserById();
         this.message = "user";
       }
       if (this.getAccountToken().roles.includes("ROLE_MERCHANT")) {
-        this.acc = this.getAccountToken().merchant;
+        this.getMerchantById();
         this.message = "merchant";
       }
       if (this.getAccountToken().roles.includes("ROLE_ADMIN")) {
-        this.acc = this.getAccountToken().user;
+       this.getUserById();
         this.message = "admin";
       }
 
+    }
+
+  }
+
+  ngDoCheck(): void {
+    this.url = this.router.url;
+    if( this.getAccountToken() ===null){
+      this.message = "chua dang nhap";
     }
   }
 
   url: string = this.router.url;
   name: any;
 
+  getUserById(){
+    if( this.getAccountToken() !==null){
+      let user_id = this.getAccountToken().user.id;
+      this.userService.getUserById(user_id).subscribe(data =>{
+       this.data =data;
+      })
+    }
+
+  }
+
+  getMerchantById(){
+    if( this.getAccountToken() !==null){
+      let merchant_id = this.getAccountToken().merchant.id;
+      this.merchantService.findMerchantById(merchant_id).subscribe(data =>{
+        this.data =data;
+      })
+    }
+
+  }
+
   getAccountToken() {
     this.data = localStorage.getItem("data")!;
-    return JSON.parse(this.data);
-
+      return JSON.parse(this.data);
   }
 
 
@@ -77,7 +105,6 @@ export class HomeComponent implements OnInit {
           this.messagecart = "khong co du lieu";
         } else {
           this.carts = data;
-          console.log(this.carts)
           for (let i = 0; i < this.carts.length; i++) {
             this.carts[i].price = this.carts[i].product.oldPrice;
             this.carts[i].totalPrice = this.carts[i].price * this.carts[i].quantity;
@@ -93,6 +120,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     window.localStorage.clear();
+    this.message = "chua dang nhap";
     this.router.navigate(['/home'])
   }
 
@@ -115,7 +143,6 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
-    console.log("search:" + this.name)
     this.merchantService.findAllMerchantBySearch(this.name).subscribe(merchants => {
       this.merchants = merchants;
     }, error => {

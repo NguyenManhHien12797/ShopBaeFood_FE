@@ -8,7 +8,7 @@
       <th scope="col">Điện thoại</th>
       <th scope="col">Địa chỉ</th>
       <th scope="col">Thời gian</th>
-      <!--        <th scope="col">CloseTime</th>-->
+      <th scope="col">Ghi chú</th>
       <th scope="col">Trạng thái</th>
       <th scope="col">Xem chi tiết</th>
     </tr>
@@ -23,6 +23,7 @@
       <td class="merchant-item">{{order.appUser.phone}}</td>
       <td class="merchant-item">{{order.appUser.address}}</td>
       <td class="merchant-item" size="50px">{{order.orderdate}} </td>
+      <td class="merchant-item" size="50px">{{order.note}} </td>
       <td class="merchant-item" size="50px">{{order.status}} </td>
       <td class="action-icon show-detail"><a [routerLink]="['/merchant/detail',order.id]"><i class="fa-solid fa-eye fa-solid-icon"></i></a></td>
 

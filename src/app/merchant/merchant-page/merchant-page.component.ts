@@ -54,6 +54,7 @@ this.router.navigate(["/merchant/merchant-dashboard"])
 
   logout(){
     window.localStorage.clear();
+    this.message = "chua dang nhap";
     this.router.navigate(['/home'])
   }
 

@@ -5,6 +5,8 @@ import {environment} from "../../../environments/environment";
 import {Cart} from "../../model/cart";
 import {Product} from "../../model/product";
 import {CartDTO} from "../../model/cartDTO";
+import {Order} from "../../model/order";
+import {AppUser} from "../../model/appUser";
 
 
 const API_URL= environment.apiUrl
@@ -43,6 +45,12 @@ export class CartService {
 
   existsCartByProductId(id: number): Observable<any>{
     return this.http.get<any>(`${API_URL}/public/existsCartByProductId/${id}`);
+  }
+
+
+
+  deleteAllCartByUser(user_id: number):Observable<any>{
+    return this.http.delete<any>(`${API_URL}/api/cart/user/${user_id}`);
   }
 
 }

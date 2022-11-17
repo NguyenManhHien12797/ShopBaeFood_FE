@@ -132,9 +132,7 @@ message:any;
     })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Vâng, chờ xíu nhé tui đang gửi otp", {
-            icon: "success",
-          });
+          swal("Vâng, chờ xíu nhé tui đang gửi otp");
           this.accountService.forgotpass(this.account.userName).subscribe(value => {
             if(value==true){
               localStorage.setItem("name",this.account.userName);

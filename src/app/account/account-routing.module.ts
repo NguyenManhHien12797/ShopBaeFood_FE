@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ForgotpassComponent} from "./forgotpass/forgotpass.component";
 import {RegisterMerchantComponent} from "./register-merchant/register-merchant.component";
+import {ConfirmOtpComponent} from "./confirm-otp/confirm-otp.component";
 
 
 let routes: Routes = [
@@ -23,6 +24,10 @@ let routes: Routes = [
   {
     path: "forgotpass",
     component: ForgotpassComponent
+  },
+  {
+    path: "confirm-otp",
+    component: ConfirmOtpComponent
   },
 
 ];

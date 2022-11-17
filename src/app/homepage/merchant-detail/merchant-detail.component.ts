@@ -26,6 +26,7 @@ export class MerchantDetailComponent implements OnInit {
   listCart: Cart[];
   // @ts-ignore
   // idMerchant:any=this.merchant.id
+  private i: number=5;
   constructor(private activatedRoute: ActivatedRoute,
               private merchantService: MerchantService,
               private productService: ProductService,
@@ -85,28 +86,20 @@ export class MerchantDetailComponent implements OnInit {
     let cart = new CartDTO(quantity,price, totalPrice,user_id, product.id);
     this.cartDTO = cart;
 
+    this.cartService.addToCart(cart).subscribe(data =>{
+      swal("Đã thêm "+product.name+" vào giỏ hàng")
+      if(data.message === 'Co cart roi'){
+        console.log("Da co cart roi")
+        this.cartService.upDateToCart(product.id, user_id).subscribe(data =>{
+          swal("Đã thêm "+product.name+" vào giỏ hàng")
+        }, error => {
+          console.log("loi up to cart")
+        })
+      }
 
-    this.cartService.findCartByProuct(product.id).subscribe(data =>{
-      this.cartService.upDateToCart(product.id, data).subscribe(data =>{
-
-        swal("Đã thêm "+product.name+" vào giỏ hàng")
-      }, error => {
-        console.log("loi up to cart")
-      })
     }, error => {
-
-      this.cartService.addToCart(cart).subscribe(data =>{
-        console.log("day la add cart kkk")
-        console.log(data)
-        console.log("day la cart kkk")
-        swal("Đã thêm "+product.name+" vào giỏ hàng")
-      }, error => {
-        console.log("loi add to cart")
-      });
-
-    })
-
-
+      console.log("loi add to cart")
+    });
 
   }
 
@@ -121,5 +114,10 @@ export class MerchantDetailComponent implements OnInit {
   //     return null;
   //   })
   // }
-
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=5;
+  }
 }

@@ -4,4 +4,5 @@ export interface AppUser {
   address?: string,
   phone?: string,
   avatar?: string,
+  status?:string
 }

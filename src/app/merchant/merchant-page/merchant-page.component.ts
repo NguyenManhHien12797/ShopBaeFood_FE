@@ -27,7 +27,7 @@ export class MerchantPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+this.router.navigate(["/merchant/merchant-dashboard"])
   }
 
 

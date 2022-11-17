@@ -9,6 +9,7 @@ import {UserService} from "../../service/user/user.service";
 import {AppUser} from "../../model/appUser";
 import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-user-info',
@@ -101,11 +102,15 @@ message:any;
     this.accountService.updateAccountUser(this.account.id, this.account).subscribe(() =>{
       console.log("update thanh cong");
       console.log(this.account);
+      console.log(this.account.user.id)
+      console.log(this.user.id);
       this.getAccountToId();
       this.disabeled = true;
     });
-    this.userService.updateUser(this.user.id, this.account.user).subscribe(() =>{
+
+    this.userService.updateUser(this.account.user.id, this.account.user).subscribe(() =>{
       console.log("update thanh cong lan 2");
+      this.disabeled=true;
     })
   }
 
@@ -116,5 +121,32 @@ message:any;
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
   }
+  setLocalStorage(){
+    swal({
+      title: "Bạn có chắc muốn đổi mật khẩu",
+      text: "Chúng tôi sẽ gửi otp mã xác nhận về email của bạn để tăng tính minh bạch bảo mật",
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, chờ xíu nhé tui đang gửi otp");
+          this.accountService.forgotpass(this.account.userName).subscribe(value => {
+            if(value==true){
+              localStorage.setItem("name",this.account.userName);
+              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+              this.router.navigate(["/confirm-otp"])
+            }
+          },error => {
+            swal("lỗi rồi huhu","","error")
+          });
+        } else {
+          swal("Vâng bạn chọn hủy!");
+        }
+      });
 
+
+  }
 }

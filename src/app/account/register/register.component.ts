@@ -42,17 +42,19 @@ export class RegisterComponent implements OnInit {
   register() {
       this.accountService.register(this.registerForm.value).subscribe((data)=>{
         console.log(data)
-        if(data==null){
-          this.message="Đăng ký thành công"
+        if(data=="Đăng ký tài khoản thành công"){
+          swal(data.message)
+          console.log(this.registerForm.value.email),
+            console.log(this.registerForm.value.userName),
+            this.mailService.acceptRegistration(this.registerForm.value.email,this.registerForm.value.userName).subscribe(()=>{
+              swal("Đã gửi mail xác nhận cho bạn!")
+            },error => {
+              swal("Gửi mail lỗi nhưng người dùng đã được chấp nhận")
+            })
+        }else {
+          swal(data.message)
         }
-        swal("Đăng ký thành công")
-        console.log(this.registerForm.value.email),
-        console.log(this.registerForm.value.userName),
-        this.mailService.acceptRegistration(this.registerForm.value.email,this.registerForm.value.userName).subscribe(()=>{
-          swal("Đã gửi mail xác nhận cho bạn!")
-        },error => {
-          swal("Gửi mail lỗi nhưng người dùng đã được chấp nhận")
-        })
+
       }, error => {
         swal("Lỗi rồi, có thể user name đã được đăng ký")
       })

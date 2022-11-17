@@ -60,6 +60,10 @@ export class AccountService {
     return this.http.get<any>(`${API_URL}/api/account/merchant/${id}`);
   }
 
+  getAccountToUser(id: number | undefined):Observable<any>{
+    return this.http.get<any>(`${API_URL}/api/account/user/${id}`);
+  }
+
   getAccountToId(id: number):Observable<any>{
     return this.http.get<any>(`${API_URL}/api/account/${id}`);
   }
@@ -72,8 +76,12 @@ export class AccountService {
   }
 
 
-  forgotpass(mail:any): Observable<any>{
+  forgotpass(name:any): Observable<any>{
     // @ts-ignore
-    return  this.http.post<any>(`${API_URL}/api/public/mail/forgotpass?email=`+mail)
+    return  this.http.post<any>(`${API_URL}/api/public/mail/chkncotp?name=`+name)
+  }
+  confirmPass(name:any,otp:any,pass:any): Observable<any>{
+    // @ts-ignore
+    return  this.http.post<any>(`${API_URL}/api/public/mail/confirmOtp?name=${name}&otp=${otp}&pass=${pass}`)
   }
 }

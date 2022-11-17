@@ -210,13 +210,13 @@
 <!--            <div class="item plus"><i class="fab fa-google-plus-g"></i>Google</div>-->
 <!--          </form>-->
 <!--        </div>-->
-        <p class="text">Hãy nhập địa chỉ email bạn muốn nhận password</p>
+        <p class="text">Hãy nhập địa chỉ tài khoản của bạn</p>
 
         <!--        form login-->
         <form >
           <div class="form-login-input">
             <div class="field-group">
-              <div class="input-group"><i class="far fa-envelope"></i><input class="input100" id="userName" type="text" name="userName" placeholder="Email của bạn" [(ngModel)]="mail" (change)="forgotpass()" >
+              <div class="input-group"><i class="far fa-user"></i><input class="input100" id="userName" type="text" name="userName" placeholder="Tên tài khoản của bạn" [(ngModel)]="mail" >
 
 
                 <!--          <div class="wrap-input100 validate-input">-->
@@ -247,7 +247,8 @@
 <!--                    <p style="color: red"> First letter should be capitalized, number should in the end</p>-->
 <!--                  </div>-->
                 </div>
-              </div>
+              </div><button class="btn btn-danger" (click)="forgotpass()" [disabled]="disable">Gửi</button>
+            {{message}}
             </div>
 
 <!--            <div class="form-group clearfix">-->

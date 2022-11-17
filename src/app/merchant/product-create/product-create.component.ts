@@ -25,7 +25,7 @@ export class ProductCreateComponent implements OnInit {
   })
   imgSrc: any = '../../../assets/img/favicon.png';
   selectedImage: any = null;
-
+  disable: Boolean=false;
   constructor(private productService: ProductService,
               private merchantSevice: MerchantService,
               private router: Router,
@@ -80,6 +80,7 @@ export class ProductCreateComponent implements OnInit {
   }
 
   showPreview(event: any) {
+    this.disable=!this.disable;
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
@@ -95,6 +96,7 @@ export class ProductCreateComponent implements OnInit {
         this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
+              this.disable=!this.disable;
               console.log("url" + url)
               this.createForm.patchValue({image: url})
               console.log(this.createForm)

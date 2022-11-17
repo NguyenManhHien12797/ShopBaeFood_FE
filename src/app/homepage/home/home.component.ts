@@ -36,7 +36,8 @@ export class HomeComponent implements OnInit {
   nameSearch: string;
 
   ngOnInit(): void {
-    this.getMerchant()
+    this.getMerchant();
+    this.getCartByUserId();
   }
 
   ngDoCheck(): void {

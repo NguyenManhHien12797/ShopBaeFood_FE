@@ -18,6 +18,7 @@ export class AdminpageComponent implements OnInit {
   constructor( private router: Router) { }
 
   ngOnInit(): void {
+    this.router.navigate(["/admin/merchant-list/active"])
   }
 
 

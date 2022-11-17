@@ -112,6 +112,7 @@ export class HomeComponent implements OnInit {
 
   quickSearch(qs: any) {
     this.name = qs;
+    this.search();
   }
 
   search() {

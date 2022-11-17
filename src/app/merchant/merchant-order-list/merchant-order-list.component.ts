@@ -13,6 +13,7 @@ export class MerchantOrderListComponent implements OnInit {
   url: string = this.router.url;
 
   ngOnInit(): void {
+    this.router.navigate(["merchant/merchant-order/pending"])
   }
 
   ngDoCheck(): void {

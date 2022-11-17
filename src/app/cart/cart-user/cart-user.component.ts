@@ -83,9 +83,6 @@ export class CartUserComponent implements OnInit {
 
   }
 
-  decress(quantity: number){
-    quantity = quantity-1;
-  }
 
 
   deleteProductCart(id: number){
@@ -129,6 +126,7 @@ export class CartUserComponent implements OnInit {
     });
   }
 
+
   id: number
   orderDetails: OrderDetail[] = [];
   getOrderByUser(){
@@ -150,6 +148,15 @@ export class CartUserComponent implements OnInit {
 
   receiveOrderStatus(order: Order, order_id: number){
     order.status = "Người dùng đã nhận hàng";
+    this.orderService.updateOrderStatus(order, order_id).subscribe(data =>{
+      console.log("update ")
+      console.log(data)
+      console.log("update ")
+    })
+  }
+
+  refuseOrderStatus(order: Order, order_id: number){
+    order.status = "Người dùng không nhận hàng";
     this.orderService.updateOrderStatus(order, order_id).subscribe(data =>{
       console.log("update ")
       console.log(data)

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {OrderDetail} from "../../model/order-detail";
 import {OrderService} from "../../service/order/order.service";
 import {OrderDetailService} from "../../service/order-detail/order-detail.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Order} from "../../model/order";
-
+import swal from "sweetalert";
 @Component({
   selector: 'app-merchant-order-detail',
   templateUrl: './merchant-order-detail.component.html',
@@ -14,48 +14,45 @@ export class MerchantOrderDetailComponent implements OnInit {
 
   constructor(private orderService: OrderService,
               private orderDetailService: OrderDetailService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
-      console.log("helo orderdetail")
       this.getOrderDetail(this.id);
     })
 
   }
+
+  ngDoCheck(): void {
+    this.url = this.router.url;
+  }
+
+  url: string = this.router.url;
   id: number
   orderDetails: OrderDetail[] = [];
+  status: string;
 
   getOrderDetail(id: number){
-    console.log("id "+id)
     this.orderDetailService.getOrderDetailByOrder(id).subscribe(orderDetail =>{
       this.orderDetails = orderDetail;
-      console.log(this.orderDetails);
+      this.status = orderDetail[0].order.status;
+      console.log(this.status)
     })
   }
 
   receiveOrderStatus(order: Order){
     order.status = "Người bán nhận order";
-    console.log("order")
-    console.log(order)
-    console.log("order")
     this.orderService.updateOrderStatus(order, this.id).subscribe(data =>{
-      console.log("update ")
-      console.log(data)
-      console.log("update ")
+      swal("Đã nhậm đơn hàng");
     })
   }
   refuseOrderStatus(order: Order){
     order.status = "Người bán từ chối order";
-    console.log("order")
-    console.log(order)
-    console.log("order")
     this.orderService.updateOrderStatus(order, this.id).subscribe(data =>{
-      console.log("update ")
-      console.log(data)
-      console.log("update ")
+      swal("Đã từ chối đơn hàng");
     })
   }
 }

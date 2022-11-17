@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private chartService: ChartService) {
-    this.color = "red";
+    this.color = "#ee4d2d";
     this.type= "bar"
     console.log(this.nameProducts)
     console.log(this.numberOrder)

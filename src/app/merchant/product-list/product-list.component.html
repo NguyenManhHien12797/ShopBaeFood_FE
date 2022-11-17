@@ -29,8 +29,8 @@
       <th scope="col" colspan="2">Hành động</th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let product of products; index as i" >
+    <tbody *ngFor="let product of products; index as i">
+    <tr [hidden]="hidden(i)">
       <td>{{i+1}}</td>
       <td><img src="{{product.image}}" alt="" style="height: 40px;
     width: 40px;
@@ -47,4 +47,6 @@
   </table>
 </div>
 </div>
+<div class="txt-center mt-2"><button (click)="plus()" class="btn-none btn-load-more link"><span
+  class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button></div>
 

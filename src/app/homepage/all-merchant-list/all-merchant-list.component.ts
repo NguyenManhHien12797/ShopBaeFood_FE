@@ -12,14 +12,13 @@ import {Role} from "../../model/role";
   styleUrls: ['./all-merchant-list.component.css']
 })
 export class AllMerchantListComponent implements OnInit {
+  i:number=15;
 
   constructor( private merchantService: MerchantService,
                private router: Router) { }
 
   ngOnInit(): void {
     this.getAllProduct();
-    console.log("all")
-    console.log( this.getAllProduct())
   }
 
   acc: AccountToken;
@@ -30,7 +29,6 @@ export class AllMerchantListComponent implements OnInit {
 
   ngDoCheck(): void {
     this.url = this.router.url;
-    console.log(this.url)
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
     }else {
@@ -49,7 +47,6 @@ export class AllMerchantListComponent implements OnInit {
 
 
     }
-    console.log(this.message);
   }
 
   url: string = this.router.url;
@@ -70,8 +67,12 @@ export class AllMerchantListComponent implements OnInit {
   getAllProduct(){
     this.merchantService.getAllMerchant().subscribe(merchant =>{
       this.merchants = merchant;
-      console.log(merchant)
     })
   }
-
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=15;
+  }
 }

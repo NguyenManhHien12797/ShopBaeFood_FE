@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
-
+import swal from "sweetalert";
 @Component({
   selector: 'app-register-merchant',
   templateUrl: './register-merchant.component.html',
@@ -42,6 +42,9 @@ export class RegisterMerchantComponent implements OnInit {
       if(!data==null){
         this.message="Đăng ký thành công"
       }
+      swal("Đăng ký thành công! Vui lòng đợi Admin xác nhận")
+    }, error => {
+      swal("Lỗi rồi, , có thể user name đã được đăng ký")
     })
   }
 }

@@ -11,6 +11,9 @@ import { MerchantInfoComponent } from './merchant-info/merchant-info.component';
 import { MerchantOrderListComponent } from './merchant-order-list/merchant-order-list.component';
 import { MerchantTransportComponent } from './merchant-transport/merchant-transport.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MerchantOrderPendingComponent } from './merchant-order-pending/merchant-order-pending.component';
+import { MerchantOrderReceiveComponent } from './merchant-order-receive/merchant-order-receive.component';
+import { MerchantOrderSendComponent } from './merchant-order-send/merchant-order-send.component';
 
 
 
@@ -23,7 +26,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MerchantInfoComponent,
     MerchantOrderListComponent,
     MerchantTransportComponent,
-    DashboardComponent
+    DashboardComponent,
+    MerchantOrderPendingComponent,
+    MerchantOrderReceiveComponent,
+    MerchantOrderSendComponent
   ],
     exports: [
         ProductListComponent,

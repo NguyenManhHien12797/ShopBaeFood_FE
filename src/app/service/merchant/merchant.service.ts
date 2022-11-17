@@ -28,11 +28,7 @@ export class MerchantService {
     return JSON.parse(localStorage.getItem("data")).merchant.id;
   }
   getAllMerchant(): Observable<Merchant[]>{
-    // let token = 'Bearer '+ JSON.parse(localStorage.getItem("token")!);
-    // console.log("vao merchant")
-    // console.log(token)
-    // const headers = new HttpHeaders().set("Authorization",token);
-    // console.log(headers)
+    console.log("alo")
     return this.http.get<any>(API_URL+ '/api/public/merchant');
   }
   // updateActiveMerchant(id: number, merchant: Merchant): Observable<Merchant> {

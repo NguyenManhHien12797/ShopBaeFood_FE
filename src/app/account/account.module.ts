@@ -7,11 +7,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AccountRoutingModule} from "./account-routing.module";
 import { RegisterMerchantComponent } from './register-merchant/register-merchant.component';
 import { ForgotpassComponent } from './forgotpass/forgotpass.component';
+import { ConfirmOtpComponent } from './confirm-otp/confirm-otp.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent,RegisterComponent, RegisterMerchantComponent, ForgotpassComponent],
+  declarations: [LoginComponent,RegisterComponent, RegisterMerchantComponent, ForgotpassComponent, ConfirmOtpComponent],
     imports: [
         CommonModule,
         HttpClientModule,

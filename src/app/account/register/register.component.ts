@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../service/account/account.service";
+import swal from "sweetalert";
+import {MailService} from "../../service/mail/mail.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,8 @@ export class RegisterComponent implements OnInit {
     address: new FormControl("",[Validators.required]),
   })
   message:string;
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+              private mailService: MailService) { }
 
   ngOnInit(): void {
   }
@@ -39,9 +42,21 @@ export class RegisterComponent implements OnInit {
   register() {
       this.accountService.register(this.registerForm.value).subscribe((data)=>{
         console.log(data)
-        if(data==null){
-          this.message="Đăng ký thành công"
+        if(data=="Đăng ký tài khoản thành công"){
+          swal(data.message)
+          console.log(this.registerForm.value.email),
+            console.log(this.registerForm.value.userName),
+            this.mailService.acceptRegistration(this.registerForm.value.email,this.registerForm.value.userName).subscribe(()=>{
+              swal("Đã gửi mail xác nhận cho bạn!")
+            },error => {
+              swal("Gửi mail lỗi nhưng người dùng đã được chấp nhận")
+            })
+        }else {
+          swal(data.message)
         }
+
+      }, error => {
+        swal("Lỗi rồi, có thể user name đã được đăng ký")
       })
   }
 }

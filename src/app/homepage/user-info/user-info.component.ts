@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from "../../service/account/account.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {MerchantService} from "../../service/merchant/merchant.service";
 import {Account} from "../../model/account";
-import {Merchant} from "../../model/merchant";
 import {finalize} from "rxjs";
 import {Router} from "@angular/router";
 import {AccountToken} from "../../model/accountToken";
+import {UserService} from "../../service/user/user.service";
+import {AppUser} from "../../model/appUser";
+import {MerchantService} from "../../service/merchant/merchant.service";
+import {Merchant} from "../../model/merchant";
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-user-info',
@@ -17,7 +20,7 @@ export class UserInfoComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private storage: AngularFireStorage,
-              private merchantService: MerchantService,
+              private userService: UserService,
               private router: Router) {
     this.getAccountToId();
     this.getAccountToken();
@@ -29,26 +32,33 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngDoCheck(): void {
+    if(this.getAccountToken() ==null){
+      this.message = "chua dang nhap";
+    }
   }
-
+acc:any;
   account:Account;
   imgSrc: any;
   selectedImage: any;
-  merchant: Merchant;
-
+  user: AppUser;
+data:any;
   getAccountToId(){
-    let account_id = JSON.parse(localStorage.getItem("data")!).id;
-    this.merchant = JSON.parse(localStorage.getItem("data")!).merchant;
+    if(this.getAccountToken()==null){
+      this.router.navigate(["/home"])
+    }else {
+    let account_id = this.getAccountToken().id;
+    // this.user = JSON.parse(localStorage.getItem("data")!).user;
     this.accountService.getAccountToId(account_id).subscribe(data =>{
       this.account = data;
       console.log("day la acc")
       console.log(data)
       console.log("day la acc")
-      this.imgSrc= this.account.merchant.avatar;
-    });
+      this.imgSrc= this.account.user.avatar;
+    });}
   }
-
+message:any;
   disabeled: boolean = true;
+  adisabeled: boolean = false;
 
   showFormUpdate(){
     this.disabeled= false;
@@ -59,6 +69,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   showPreview(event: any) {
+    this.adisabeled=!this.adisabeled
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
@@ -71,44 +82,71 @@ export class UserInfoComponent implements OnInit {
         this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
-              this.account.merchant.avatar = url;
+              this.account.user.avatar = url;
+              this.adisabeled=!this.adisabeled;
             })
           })
         ).subscribe();
       }
     } else {
-      this.imgSrc = this.merchant.avatar;
+      this.imgSrc = this.user.avatar;
       this.selectedImage = null;
     }
   }
-
-  updateMerchantInfo(){
-    this.account.enabled = true;
-    this.accountService.updateAccountMerchant(this.account.id, this.account).subscribe(() =>{
-      console.log("update thanh cong");
-      console.log(this.account);
-      this.getAccountToId();
-      this.disabeled = true;
-    });
-    this.merchantService.updateMerchant(this.merchant.id, this.account.merchant).subscribe(() =>{
-      console.log("update thanh cong lan 2");
-    })
-  }
-
   logout(){
     window.localStorage.clear();
     this.router.navigate(['/home'])
   }
+  updateUserInfo(){
+    this.account.enabled = true;
+    this.accountService.updateAccountUser(this.account.id, this.account).subscribe(() =>{
+      console.log("update thanh cong");
+      console.log(this.account);
+      console.log(this.account.user.id)
+      console.log(this.user.id);
+      this.getAccountToId();
+      this.disabeled = true;
+    });
 
-  url: string = this.router.url;
-  acc: AccountToken;
-  data: any;
-  message: string;
+    this.userService.updateUser(this.account.user.id, this.account.user).subscribe(() =>{
+      console.log("update thanh cong lan 2");
+      this.disabeled=true;
+    })
+  }
 
+  getAccount(){
+    return this.account;
+  }
   getAccountToken(){
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
+  }
+  setLocalStorage(){
+    swal({
+      title: "Bạn có chắc muốn đổi mật khẩu",
+      text: "Chúng tôi sẽ gửi otp mã xác nhận về email của bạn để tăng tính minh bạch bảo mật",
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, chờ xíu nhé tui đang gửi otp");
+          this.accountService.forgotpass(this.account.userName).subscribe(value => {
+            if(value==true){
+              localStorage.setItem("name",this.account.userName);
+              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+              this.router.navigate(["/confirm-otp"])
+            }
+          },error => {
+            swal("lỗi rồi huhu","","error")
+          });
+        } else {
+          swal("Vâng bạn chọn hủy!");
+        }
+      });
+
 
   }
-
 }

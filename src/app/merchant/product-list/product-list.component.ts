@@ -13,6 +13,7 @@ import swal from "sweetalert";
 export class ProductListComponent implements OnInit {
   id: number
   nameSearch: string;
+  i:number=5;
 
   constructor(private merchantService: MerchantService,
               private productService: ProductService,
@@ -79,5 +80,11 @@ Mô tả: ${this.products[idArr].shortDescription}`,
     this.productService.searchProduct(this.merchantService.getIdUser(), this.nameSearch).subscribe(product => {
       this.products = product;
     })
+  }
+  hidden(i: any): Boolean {
+    return i>=this.i
+  }
+  plus(){
+    this.i+=5;
   }
 }

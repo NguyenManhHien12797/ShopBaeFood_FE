@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CartUserComponent } from './cart-user/cart-user.component';
 import { OderComponent } from './oder/oder.component';
 import {CartRoutingModule} from "./cart-routing.module";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -11,9 +12,10 @@ import {CartRoutingModule} from "./cart-routing.module";
     CartUserComponent,
     OderComponent
   ],
-  imports: [
-    CommonModule,
-    CartRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        CartRoutingModule,
+        FormsModule
+    ]
 })
 export class CartModule { }

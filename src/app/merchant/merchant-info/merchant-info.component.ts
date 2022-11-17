@@ -6,6 +6,8 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Merchant} from "../../model/merchant";
 import {MerchantService} from "../../service/merchant/merchant.service";
+import swal from "sweetalert";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-merchant-info',
@@ -16,7 +18,8 @@ export class MerchantInfoComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private storage: AngularFireStorage,
-              private merchantService: MerchantService) {
+              private merchantService: MerchantService,
+              private router: Router) {
     this.getAccountToId();
   }
 
@@ -46,6 +49,7 @@ export class MerchantInfoComponent implements OnInit {
   }
 
   disabeled: boolean = true;
+  adisabeled: boolean = false;
 
   showFormUpdate(){
     this.disabeled= false;
@@ -56,6 +60,7 @@ export class MerchantInfoComponent implements OnInit {
   }
 
   showPreview(event: any) {
+    this.adisabeled=!this.adisabeled
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
@@ -69,6 +74,7 @@ export class MerchantInfoComponent implements OnInit {
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.account.merchant.avatar = url;
+              this.adisabeled=!this.adisabeled;
             })
           })
         ).subscribe();
@@ -102,4 +108,32 @@ export class MerchantInfoComponent implements OnInit {
     this.newAccountEvent.emit(this.account);
   }
 
+  setLocalStorage() {
+    swal({
+      title: "Bạn có chắc muốn đổi mật khẩu",
+      text: "Chúng tôi sẽ gửi otp mã xác nhận về email của bạn để tăng tính minh bạch bảo mật",
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, chờ xíu nhé tui đang gửi otp");
+          this.accountService.forgotpass(this.account.userName).subscribe(value => {
+            if(value==true){
+              localStorage.setItem("name",this.account.userName);
+              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+              this.router.navigate(["/confirm-otp"])
+            }
+          },error => {
+            swal("lỗi rồi huhu","","error")
+          });
+        } else {
+          swal("Vâng bạn chọn hủy!");
+        }
+      });
+
+
+  }
 }

@@ -6,6 +6,9 @@ import {MerchantListComponent} from "./merchant-list/merchant-list.component";
 import {MerchantListPendingComponent} from "./merchant-list-pending/merchant-list-pending.component";
 import {MerchantListActiveComponent} from "./merchant-list-active/merchant-list-active.component";
 import {MerchantListBlockComponent} from "./merchant-list-block/merchant-list-block.component";
+import {UserListComponent} from "./user-list/user-list.component";
+import {UserListActiveComponent} from "./user-list-active/user-list-active.component";
+import {UserListBlockComponent} from "./user-list-block/user-list-block.component";
 
 
 const routes: Routes = [{
@@ -25,6 +28,19 @@ const routes: Routes = [{
       {
         path: "block",
         component: MerchantListBlockComponent,
+      }
+    ]
+  },{
+    path: "user-list",
+    component: UserListComponent,
+    children: [
+      {
+        path: "active",
+        component: UserListActiveComponent,
+      },
+      {
+        path: "block",
+        component: UserListBlockComponent,
       }
     ]
   }]

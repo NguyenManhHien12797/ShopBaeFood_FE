@@ -10,4 +10,5 @@ export interface Product {
   image: string;
   merchant: Merchant;
   deleteFlag: boolean;
+  quantity: number;
 }

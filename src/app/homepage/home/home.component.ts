@@ -22,6 +22,25 @@ export class HomeComponent implements OnInit {
               private merchantService: MerchantService,
               private userService: UserService) {
 
+
+    if (this.getAccountToken() == null) {
+      this.message = "chua dang nhap";
+      // this.router.navigate(['/login'])
+    } else {
+      if (this.getAccountToken().roles.includes("ROLE_USER")) {
+        this.getUserById();
+        this.message = "user";
+      }
+      if (this.getAccountToken().roles.includes("ROLE_MERCHANT")) {
+        this.getMerchantById();
+        this.message = "merchant";
+      }
+      if (this.getAccountToken().roles.includes("ROLE_ADMIN")) {
+        this.getUserById();
+        this.message = "admin";
+      }
+    }
+
   }
 
   acc: AccountToken;
@@ -37,27 +56,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getMerchant();
     this.getCartByUserId();
-
-
-    if (this.getAccountToken() == null) {
-      this.message = "chua dang nhap";
-      // this.router.navigate(['/login'])
-    } else {
-      if (this.getAccountToken().roles.includes("ROLE_USER")) {
-        // this.acc = this.getAccountToken().user;
-        this.getUserById();
-        this.message = "user";
-      }
-      if (this.getAccountToken().roles.includes("ROLE_MERCHANT")) {
-        this.getMerchantById();
-        this.message = "merchant";
-      }
-      if (this.getAccountToken().roles.includes("ROLE_ADMIN")) {
-       this.getUserById();
-        this.message = "admin";
-      }
-
-    }
 
   }
 
@@ -76,6 +74,7 @@ export class HomeComponent implements OnInit {
       let user_id = this.getAccountToken().user.id;
       this.userService.getUserById(user_id).subscribe(data =>{
        this.data =data;
+        console.log(this.data)
       })
     }
 
@@ -86,6 +85,7 @@ export class HomeComponent implements OnInit {
       let merchant_id = this.getAccountToken().merchant.id;
       this.merchantService.findMerchantById(merchant_id).subscribe(data =>{
         this.data =data;
+        console.log(this.data)
       })
     }
 
@@ -140,6 +140,7 @@ export class HomeComponent implements OnInit {
 
   quickSearch(qs: any) {
     this.name = qs;
+    this.search();
   }
 
   search() {

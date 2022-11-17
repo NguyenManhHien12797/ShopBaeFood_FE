@@ -65,7 +65,7 @@ data:any;
         localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
         swal("Đăng nhập thành công","","success");
-        for (let i = 0; i <data.roles.length ; i++) {
+        setTimeout(()=>{for (let i = 0; i <data.roles.length ; i++) {
           if(data.roles[i]=='ROLE_ADMIN'){
             this.router.navigate(['/admin']);
             break;
@@ -75,7 +75,8 @@ data:any;
           }else {
             this.router.navigate(['/home'])
           }
-        }
+        }},1500)
+
       }
     },error => {
       this.message ="Nguoi dung khong ton tai";

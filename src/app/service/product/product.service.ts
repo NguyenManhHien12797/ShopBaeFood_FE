@@ -10,6 +10,7 @@ const API_URL = `${environment.apiUrl}`;
   providedIn: 'root'
 })
 export class ProductService {
+  private httpClient: any;
 
   constructor(private http: HttpClient) { }
 

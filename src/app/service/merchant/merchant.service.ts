@@ -40,4 +40,8 @@ export class MerchantService {
   findMerchantById(id: number): Observable<Merchant>{
     return  this.http.get<Merchant>(`${API_URL}/api/public/merchant/${id}`);
   }
+  searchMerchant(name: string): Observable<Merchant[]> {
+    // @ts-ignore
+    return this.http.get<any>(API_URL+`/api/public/merchant/search?name=`+name);
+  }
 }

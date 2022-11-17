@@ -7,6 +7,8 @@ import {CartService} from "../../service/cart/cart.service";
 import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
 import {Cart} from "../../model/cart";
+import {Category} from "../../model/category";
+
 
 @Component({
   selector: 'app-home',
@@ -30,13 +32,15 @@ export class HomeComponent implements OnInit {
   carts: Cart[] =[];
   merchants: Merchant[]=[];
   i: number = 9;
+  categories: Category[] = [];
+  nameSearch: string;
 
   ngOnInit(): void {
     this.getMerchant()
   }
 
   ngDoCheck(): void {
-    console.log(this.merchants)
+    // console.log(this.merchants)
     this.url = this.router.url;
     if(this.getAccountToken() ==null){
       this.message = "chua dang nhap";
@@ -101,10 +105,18 @@ export class HomeComponent implements OnInit {
     })
   }
 
+
   hidden(i: any): Boolean {
     return i>=this.i
   }
   plus(){
     this.i+=9;
+  }
+
+  searchMerchantByName() {
+    console.log(this.nameSearch)
+    this.merchantService.searchMerchant(this.nameSearch).subscribe(merchant => {
+      this.merchants = merchant;
+    })
   }
 }

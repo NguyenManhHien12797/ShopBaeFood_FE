@@ -68,13 +68,14 @@ export class HomeComponent implements OnInit {
 
   url: string = this.router.url;
   name: any;
-
+  fullname:any;
+  avatar:any;
   getUserById(){
     if( this.getAccountToken() !==null){
       let user_id = this.getAccountToken().user.id;
       this.userService.getUserById(user_id).subscribe(data =>{
-       this.data =data;
-        console.log(this.data)
+       this.fullname=data.name;
+       this.avatar=data.avatar;
       })
     }
 
@@ -84,8 +85,8 @@ export class HomeComponent implements OnInit {
     if( this.getAccountToken() !==null){
       let merchant_id = this.getAccountToken().merchant.id;
       this.merchantService.findMerchantById(merchant_id).subscribe(data =>{
-        this.data =data;
-        console.log(this.data)
+        this.fullname=data.name;
+        this.avatar=data.avatar;
       })
     }
 

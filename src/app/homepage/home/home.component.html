@@ -49,8 +49,8 @@
               <ng-template #elseBlockAcc>
 
                 <div class="user-acc-contain">
-                  <img class="user-acc-img" src="{{data.avatar}}" alt="">
-                  <span>{{data.name}}</span>
+                  <img class="user-acc-img" src="{{avatar}}" alt="">
+                  <span>{{fullname}}</span>
                   <div class="user-acc-dropdown">
 
                     <div *ngIf="message == 'merchant'; then thenBlockMerchant else elseBlockMerchant"></div>

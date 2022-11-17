@@ -92,6 +92,5 @@ data:any;
     }else {
         this.disable=false;
     }
-    console.log(this.disable)
   }
 }

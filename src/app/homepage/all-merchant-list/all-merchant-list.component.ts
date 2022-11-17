@@ -25,7 +25,7 @@ export class AllMerchantListComponent implements OnInit {
   data: any;
   message: string;
   role: Role;
-
+  nameSearch: string
 
   ngDoCheck(): void {
     this.url = this.router.url;
@@ -75,4 +75,5 @@ export class AllMerchantListComponent implements OnInit {
   plus(){
     this.i+=15;
   }
+
 }

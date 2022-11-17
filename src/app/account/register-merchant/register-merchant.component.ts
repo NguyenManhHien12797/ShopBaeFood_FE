@@ -44,7 +44,7 @@ export class RegisterMerchantComponent implements OnInit {
       }
       swal("Đăng ký thành công! Vui lòng đợi Admin xác nhận")
     }, error => {
-      swal("Lỗi rồi")
+      swal("Lỗi rồi, , có thể user name đã được đăng ký")
     })
   }
 }

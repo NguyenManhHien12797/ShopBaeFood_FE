@@ -247,17 +247,14 @@
                 <!--                  <div [hidden]="!password?.errors?.['minLength']">-->
                 <!--                    <p style="color: red"> First letter should be capitalized, number should in the end</p>-->
                 <!--                  </div>-->
-              <div class="input-group"><i class="fas fa-lock"></i><input class="input100"  type="pass" name="userName" placeholder="Mời nhập mật khẩu mới"  [(ngModel)]="pass"></div>
+              <div class="input-group"><i class="fas fa-lock"></i><input class="input100"  type="password" name="userName" placeholder="Mời nhập mật khẩu mới"  [(ngModel)]="pass"></div>
             </div>
             <button class="btn btn-danger" (click)="confirmpass()" >Gửi</button>
             &nbsp; &nbsp; &nbsp;
             &nbsp; &nbsp; &nbsp;
             &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <button [disabled]="disable" (click)="sotp()" >Gửi lại mã ({{i}})</button>
           </div>
 

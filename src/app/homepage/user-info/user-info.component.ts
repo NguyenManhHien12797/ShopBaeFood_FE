@@ -9,6 +9,7 @@ import {UserService} from "../../service/user/user.service";
 import {AppUser} from "../../model/appUser";
 import {MerchantService} from "../../service/merchant/merchant.service";
 import {Merchant} from "../../model/merchant";
+import swal from "sweetalert";
 
 @Component({
   selector: 'app-user-info',
@@ -120,5 +121,34 @@ message:any;
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
   }
+  setLocalStorage(){
+    swal({
+      title: "Bạn có chắc muốn đổi mật khẩu",
+      text: "Chúng tôi sẽ gửi otp mã xác nhận về email của bạn để tăng tính minh bạch bảo mật",
+      icon: "warning",
+      //@ts-ignore
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Vâng, chờ xíu nhé tui đang gửi otp", {
+            icon: "success",
+          });
+          this.accountService.forgotpass(this.account.userName).subscribe(value => {
+            if(value==true){
+              localStorage.setItem("name",this.account.userName);
+              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+              this.router.navigate(["/confirm-otp"])
+            }
+          },error => {
+            swal("lỗi rồi huhu","","error")
+          });
+        } else {
+          swal("Vâng bạn chọn hủy!");
+        }
+      });
 
+
+  }
 }

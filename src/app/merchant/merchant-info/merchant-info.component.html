@@ -83,7 +83,7 @@
               <div class="title">Mật khẩu đăng nhập</div>
             </div>
             <div class="info">
-              <input class="info-input subtitle" [disabled]="disabeled" [(ngModel)]="account.password" value="{{account.password}}">
+              <a class="info-input subtitle btn btn-dark" (click)="setLocalStorage()">Nhận otp xác thực và đổi mật khẩu</a>
             </div>
           </div>
         </div>

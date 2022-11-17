@@ -13,22 +13,27 @@ export class ConfirmOtpComponent implements OnInit {
   constructor(private accountService: AccountService,
               private router: Router) {
     let time = setInterval(() => {
-      if(this.i!==0){
+      if (this.i !== 0) {
         this.i--
-      }else {
-        this.disable=false;
+      } else {
+        this.disable = false;
       }
     }, 1000)
 
   }
-disable=true;
+
+  disable = true;
   i: any = 20;
   otp: any;
   pass: any;
   name: any = localStorage.getItem("name")
+  data: any;
 
   ngOnInit(): void {
-
+    console.log(this.name);
+    if(this.name==null){
+      this.router.navigate(["/home"])
+    }
   }
 
   confirmpass() {
@@ -49,11 +54,12 @@ disable=true;
   setTime() {
     this.i = 20;
   }
-  sotp(){
+
+  sotp() {
     this.setTime();
-    this.accountService.forgotpass(this.name).subscribe(data=>{
-      if(data==true){
-        swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+    this.accountService.forgotpass(this.name).subscribe(data => {
+      if (data == true) {
+        swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu", "", "success")
       }
     })
   }

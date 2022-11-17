@@ -20,13 +20,17 @@ export class LoginComponent implements OnInit {
   nameD: any;
   passD: any;
   disable: boolean=true;
-
+data:any;
 
   constructor(private accountService: AccountService,
               private router: Router) {}
 
   ngOnInit(): void {
-
+    this.data = localStorage.getItem("data");
+    console.log("data "+this.data!==null);
+    if(this.data!==null){
+      this.router.navigate(["/home"])
+    }
   }
   ngDoCheck():void{
     console.log(this.nameD)
@@ -44,9 +48,23 @@ export class LoginComponent implements OnInit {
     const form = this.loginForm.value;
     this.accountService.login(form).subscribe(data => {
       if (data == null || data.message =="Sai roi") {
-        this.message = "Nguoi dung khong ton tai hoac sai mat khau";
+        this.message = data.message;
+        swal(data.message)
         window.localStorage.clear();
-      } else {
+      } else if ( data.message =="Tài khoản của bạn đang bị khóa") {
+          this.message = data.message;
+        swal(data.message)
+          window.localStorage.clear();
+        }else if(data.message=="Admin đã từ chối đăng ký merchant"){
+        this.message = data.message;
+        swal(data.message)
+        window.localStorage.clear();
+      }else if(data.message=="Admin chưa phê duyệt đăng ký merchant"){
+        this.message = data.message;
+        swal(data.message)
+        window.localStorage.clear();
+      }
+        else {
         localStorage.setItem("data",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
         swal("Đăng nhập thành công","","success");
@@ -63,7 +81,7 @@ export class LoginComponent implements OnInit {
         }
       }
     },error => {
-      this.message ="Nguoi dung khong ton tai hoac sai mat khau";
+      this.message ="Nguoi dung khong ton tai";
       window.localStorage.clear();
       }
       )

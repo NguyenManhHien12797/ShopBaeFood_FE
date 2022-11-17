@@ -116,11 +116,9 @@ export class HomeComponent implements OnInit {
 
   search() {
     console.log("search:" + this.name)
-    this.merchants = [];
     this.merchantService.findAllMerchantBySearch(this.name).subscribe(merchants => {
       this.merchants = merchants;
     }, error => {
-      swal("lỗi")
     })
   }
 }

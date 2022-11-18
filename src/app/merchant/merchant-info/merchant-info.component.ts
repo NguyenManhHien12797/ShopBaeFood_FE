@@ -35,6 +35,8 @@ export class MerchantInfoComponent implements OnInit {
   imgSrc: any;
   selectedImage: any;
   merchant: Merchant;
+  fullname: any;
+  avatar: any;
 
   getAccountToId(){
     let account_id = JSON.parse(localStorage.getItem("data")!).id;
@@ -103,6 +105,7 @@ export class MerchantInfoComponent implements OnInit {
   addNewAccount(){
     this.newAccountEvent.emit(this.account);
   }
+
 
   setLocalStorage() {
     swal({

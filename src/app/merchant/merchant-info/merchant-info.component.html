@@ -23,7 +23,7 @@
                     <img [src]="imgSrc" class="account-profile-avatar" >
                   </label>
                   <input type="file" id="image" hidden [disabled]="disabeled" (change)="showPreview($event)" (change)="showimg()" >
-                  <input class="account-profile-text" style="margin-left: 8px;" [disabled]="disabeled" [(ngModel)]="account.merchant.name" value="{{account.merchant.name}}">
+                  <input class="account-profile-text" style="margin-left: 8px;" [disabled]="disabeled" [(ngModel)]="account.merchant.name" value="{{account.merchant.name}}" >
 
                  <div> <img [src]="imgSrc" class="img" height="125" width="100" alt="Img" style='display:{{show}}'><br></div>
 

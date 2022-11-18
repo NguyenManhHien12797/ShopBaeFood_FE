@@ -98,10 +98,6 @@ export class MerchantInfoComponent implements OnInit {
    })
   }
 
-  getAccount(){
-    return this.account;
-  }
-
 
   @Output() newAccountEvent = new EventEmitter<any>();
   addNewAccount(){

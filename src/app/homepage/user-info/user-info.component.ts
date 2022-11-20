@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../service/account/account.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Account} from "../../model/account";
@@ -32,44 +32,50 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    if(this.getAccountToken() ==null){
+    if (this.getAccountToken() == null) {
       this.message = "chua dang nhap";
     }
   }
-acc:any;
-  account:Account;
+
+  acc: any;
+  account: Account;
   imgSrc: any;
   selectedImage: any;
   user: AppUser;
-data:any;
-  getAccountToId(){
-    if(this.getAccountToken()==null){
+  data: any;
+
+  getAccountToId() {
+    if (this.getAccountToken() == null) {
       this.router.navigate(["/home"])
-    }else {
-    let account_id = this.getAccountToken().id;
-    // this.user = JSON.parse(localStorage.getItem("data")!).user;
-    this.accountService.getAccountToId(account_id).subscribe(data =>{
-      this.account = data;
-      console.log("day la acc")
-      console.log(data)
-      console.log("day la acc")
-      this.imgSrc= this.account.user.avatar;
-    });}
+    } else {
+      let account_id = this.getAccountToken().id;
+      // this.user = JSON.parse(localStorage.getItem("data")!).user;
+      this.accountService.getAccountToId(account_id).subscribe(data => {
+        this.account = data;
+        console.log("day la acc")
+        console.log(data)
+        console.log("day la acc")
+        this.imgSrc = this.account.user.avatar;
+      });
+    }
   }
-message:any;
+
+  message: any;
   disabeled: boolean = true;
   adisabeled: boolean = false;
 
-  showFormUpdate(){
-    this.disabeled= false;
+  showFormUpdate() {
+    this.disabeled = false;
   }
+
   show: string = "none";
-  showimg(){
+
+  showimg() {
     this.show = "";
   }
 
   showPreview(event: any) {
-    this.adisabeled=!this.adisabeled
+    this.adisabeled = !this.adisabeled
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
@@ -83,7 +89,7 @@ message:any;
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.account.user.avatar = url;
-              this.adisabeled=!this.adisabeled;
+              this.adisabeled = !this.adisabeled;
             })
           })
         ).subscribe();
@@ -93,13 +99,15 @@ message:any;
       this.selectedImage = null;
     }
   }
-  logout(){
+
+  logout() {
     window.localStorage.clear();
     this.router.navigate(['/home'])
   }
-  updateUserInfo(){
+
+  updateUserInfo() {
     this.account.enabled = true;
-    this.accountService.updateAccountUser(this.account.id, this.account).subscribe(() =>{
+    this.accountService.updateAccountUser(this.account.id, this.account).subscribe(() => {
       console.log("update thanh cong");
       console.log(this.account);
       console.log(this.account.user.id)
@@ -108,20 +116,18 @@ message:any;
       this.disabeled = true;
     });
 
-    this.userService.updateUser(this.account.user.id, this.account.user).subscribe(() =>{
+    this.userService.updateUser(this.account.user.id, this.account.user).subscribe(() => {
       console.log("update thanh cong lan 2");
-      this.disabeled=true;
+      this.disabeled = true;
     })
   }
 
-  getAccount(){
-    return this.account;
-  }
-  getAccountToken(){
+  getAccountToken() {
     this.data = localStorage.getItem("data")!;
     return JSON.parse(this.data);
   }
-  setLocalStorage(){
+
+  setLocalStorage() {
     swal({
       title: "Bạn có chắc muốn đổi mật khẩu",
       text: "Chúng tôi sẽ gửi otp mã xác nhận về email của bạn để tăng tính minh bạch bảo mật",
@@ -134,13 +140,13 @@ message:any;
         if (willDelete) {
           swal("Vâng, chờ xíu nhé tui đang gửi otp");
           this.accountService.forgotpass(this.account.userName).subscribe(value => {
-            if(value==true){
-              localStorage.setItem("name",this.account.userName);
-              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu","","success")
+            if (value == true) {
+              localStorage.setItem("name", this.account.userName);
+              swal("Đã gửi otp, mời bạn xác thực otp và đổi mật khẩu", "", "success")
               this.router.navigate(["/confirm-otp"])
             }
-          },error => {
-            swal("lỗi rồi huhu","","error")
+          }, error => {
+            swal("lỗi rồi huhu", "", "error")
           });
         } else {
           swal("Vâng bạn chọn hủy!");

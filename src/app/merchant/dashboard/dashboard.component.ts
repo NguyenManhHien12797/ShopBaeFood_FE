@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private chartService: ChartService) {
-    this.color = "red";
+    this.color = "#f16464";
     this.type= "bar"
     console.log(this.nameProducts)
     console.log(this.numberOrder)
@@ -22,14 +22,16 @@ export class DashboardComponent implements OnInit {
       product.forEach(item => {
         this.nameProducts.push(item.name);
         this.numberOrder.push(Number(item.numberOrder))
+        this.quantity.push(Number(item.quantity))
       })
-      var myChart = this.chartService.chart(this.nameProducts, this.numberOrder, "Số bán ra",this.type, this.color, "black")
+      var myChart = this.chartService.chart(this.nameProducts, this.numberOrder, "Số bán ra",this.type, this.color, "black","Số tồn kho",this.quantity)
 
     })
   }
 
   nameProducts: string[] = [];
   numberOrder: number[] = [];
+  quantity: number[] = [];
   color: any;
   type:any;
 
@@ -54,7 +56,7 @@ setType(){
         this.nameProducts.push(item.name);
         this.numberOrder.push(Number(item.numberOrder))
       })
-      var myChart = this.chartService.chart(this.nameProducts, this.numberOrder, "Số bán ra",this.type, this.color, "black")
+      var myChart = this.chartService.chart(this.nameProducts, this.numberOrder, "Số bán ra",this.type, this.color, "black","Số tồn kho",this.quantity)
 
     })
   }

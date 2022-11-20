@@ -8,6 +8,9 @@ import {Order} from "../../model/order";
 import {OrderService} from "../../service/order/order.service";
 import {OrderDetailService} from "../../service/order-detail/order-detail.service";
 import {OrderDetail} from "../../model/order-detail";
+import {IOrder} from "../../model/iorder";
+import {UserService} from "../../service/user/user.service";
+import {AppUser} from "../../model/appUser";
 
 @Component({
   selector: 'app-cart-user',
@@ -15,14 +18,26 @@ import {OrderDetail} from "../../model/order-detail";
   styleUrls: ['./cart-user.component.css']
 })
 export class CartUserComponent implements OnInit {
-
+  data: any;
+  messagecart: string;
+  acc: AccountToken;
+  message:string;
+  products: Product[] = [];
+  carts: Cart[] =[];
+  totalPrice: number = 0;
+  orders: IOrder[] = [];
+  note: any;
+  address: string;
+  status: string;
   constructor(private cartService: CartService,
               private router: Router,
               private orderService: OrderService,
-              private orderDetailService: OrderDetailService) { }
+              private orderDetailService: OrderDetailService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.getCartByUserId();
+    this.getOrderByUser();
   }
 
 
@@ -47,15 +62,6 @@ export class CartUserComponent implements OnInit {
 
     }
   }
-  data: any;
-  messagecart: string;
-  acc: AccountToken;
-  message:string;
-  products: Product[] = [];
-  carts: Cart[] =[];
-  totalPrice: number = 0;
-
-
 
   getCartByUserId(){
     let data = JSON.parse(localStorage.getItem("data")!);
@@ -63,7 +69,6 @@ export class CartUserComponent implements OnInit {
       this.cartService.getCartByUserId(data.user.id).subscribe(data =>{
         if(data.length == 0){
           this.messagecart = "khong co du lieu";
-          console.log(this.messagecart)
           this.totalPrice = 0;
           console.log("Tong tien: "+ this.totalPrice)
         } else {
@@ -82,14 +87,10 @@ export class CartUserComponent implements OnInit {
 
   }
 
-  decress(quantity: number){
-    quantity = quantity-1;
-  }
 
 
   deleteProductCart(id: number){
     this.cartService.deleteProductCart(id).subscribe(()=>{
-      console.log("delete");
       this.getCartByUserId();
     })
   }
@@ -108,30 +109,72 @@ export class CartUserComponent implements OnInit {
 
   checkout(){
     this.getCartByUserId();
-    console.log("Cart")
-    console.log("merchant_id"+this.carts[0].product.merchant.id);
-    console.log("totalprice" + this.totalPrice)
     let merchant_id = this.carts[0].product.merchant.id;
     let user = this.getAccountToken().user;
-    console.log(user);
-    let order = new Order(user,'','pending', merchant_id, this.totalPrice);
+    if(this.address !==null){
+      user.address= this.address;
+    }
+    this.updateAddressUser(user);
+    let order = new Order(user,this.note,'Đang chờ duyệt', merchant_id, this.totalPrice);
     this.orderService.checkout(order).subscribe(data =>{
-      console.log("Ok")
-      console.log(data)
       let order = data;
       for(let i = 0; i< this.carts.length; i++){
         let product = this.carts[i].product;
         let quantity = this.carts[i].quantity;
         let orderDetail = new OrderDetail(product,order,quantity);
         this.orderDetailService.addOrderDetail(orderDetail).subscribe(data =>{
-          console.log("add orderdetail");
         })
       }
 
       this.cartService.deleteAllCartByUser(user.id).subscribe(() =>{
         this.getCartByUserId();
       });
+      this.getOrderByUser();
     });
+  }
+
+  updateAddressUser(user: AppUser){
+    this.userService.updateUser(user.id, user).subscribe(()=>{
+      console.log("update thanh cong")
+    })
+  }
+
+  id: number
+  orderDetails: OrderDetail[] = [];
+  getOrderByUser(){
+    let data = this.getAccountToken();
+    if(data !== null){
+      let user_id = data.user.id;
+      this.orderService.getOrderByUser(user_id).subscribe(data =>{
+        this.orders = data;
+        console.log(this.orders)
+        for(let i=0; i<this.orders.length; i++){
+          this.status = this.orders[i].status;
+          this.orderDetailService.getOrderDetailByOrder(this.orders[i].id).subscribe(orderDetail =>{
+            this.orderDetails = orderDetail;
+          })
+        }
+      });
+
+    }
+  }
+
+  receiveOrderStatus(order: Order, order_id: number){
+    order.status = "Người dùng đã nhận hàng";
+    this.orderService.updateOrderStatus(order, order_id).subscribe(data =>{
+    })
+  }
+
+  refuseOrderStatus(order: Order, order_id: number){
+    order.status = "Người dùng không nhận hàng";
+    this.orderService.updateOrderStatus(order, order_id).subscribe(data =>{
+    })
+  }
+
+  deleteOrder(id:number){
+    this.orderService.deleteOrder(id).subscribe(()=>{
+      this.getOrderByUser();
+    })
   }
 
 }

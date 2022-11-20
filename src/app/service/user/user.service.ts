@@ -21,4 +21,8 @@ export class UserService {
   updateUser(id: number | undefined, user: AppUser): Observable<AppUser>{
     return this.http.put<AppUser>(`${API_URL}/api/users/${id}`, user);
   }
+
+  getUserById(id: number): Observable<AppUser>{
+    return this.http.get<any>(API_URL+ `/api/users/${id}`);
+  }
 }

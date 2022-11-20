@@ -1,0 +1,9 @@
+
+.btn-orderDetail{
+  border-radius: 7px;
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  margin-right: 20px;
+  padding: 5px 20px;
+  font-size: 20px;
+}

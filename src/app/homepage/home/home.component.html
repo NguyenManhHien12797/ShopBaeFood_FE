@@ -29,24 +29,28 @@
 
             <div class="main-nav col"><a class="nav-item active" href="/ha-noi/food">Đồ ăn</a><a
               class="nav-item " href="/ha-noi/fresh">Thực phẩm</a><a class="nav-item "
-                                                                     href="/ha-noi/liquor">Bia</a><a class="nav-item " href="/ha-noi/flowers">Hoa</a><a
+                                                                     href="/ha-noi/liquor">Bia</a><a class="nav-item "
+                                                                                                     href="/ha-noi/flowers">Hoa</a><a
               class="nav-item " href="/ha-noi/fmcg">Siêu thị</a><a class="nav-item "
-                                                                   href="/ha-noi/medicine">Thuốc</a><a class="nav-item " href="/ha-noi/pets">Thú
+                                                                   href="/ha-noi/medicine">Thuốc</a><a class="nav-item "
+                                                                                                       href="/ha-noi/pets">Thú
               cưng</a></div>
 
             <div class="user-acc col-auto user-acc-wr">
               <div *ngIf="message === 'chua dang nhap'; then thenBlockAcc else elseBlockAcc"></div>
               <ng-template #thenBlockAcc>
-                <a routerLink="/login"><button type="button"  class="btn btn-none-bg btn-login">
-                  <span class="font14">Đăng nhập</span>
-                </button></a>
+                <a routerLink="/login">
+                  <button type="button" class="btn btn-none-bg btn-login">
+                    <span class="font14">Đăng nhập</span>
+                  </button>
+                </a>
               </ng-template>
 
               <ng-template #elseBlockAcc>
 
                 <div class="user-acc-contain">
-                  <img class="user-acc-img" src="{{acc.avatar}}" alt="">
-                  <span>{{acc.name}}</span>
+                  <img class="user-acc-img" src="{{avatar}}" alt="">
+                  <span>{{fullname}}</span>
                   <div class="user-acc-dropdown">
 
                     <div *ngIf="message == 'merchant'; then thenBlockMerchant else elseBlockMerchant"></div>
@@ -54,8 +58,10 @@
                       <a class="user-acc-admin" routerLink="/merchant"><i class="fa-solid fa-store"></i> Kênh người bán</a>
                     </ng-template>
                     <ng-template #elseBlockMerchant>
-                      <a class="user-acc-admin" routerLink="/register/merchant"><i class="fa-solid fa-user-plus"></i> Đăng ký người bán</a>
-                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang cá nhân</a>
+                      <a class="user-acc-admin" routerLink="/register/merchant"><i class="fa-solid fa-user-plus"></i>
+                        Đăng ký người bán</a>
+                      <a class="user-acc-admin" routerLink="/user-info"><i class="fa-solid fa-address-card"></i> Trang
+                        cá nhân</a>
                     </ng-template>
 
                     <div *ngIf="message == 'admin'; then thenBlockAdmin"></div>
@@ -68,16 +74,16 @@
                   </div>
 
 
-
                 </div>
 
                 <div *ngIf="message === 'user'; then thenBlockCart"></div>
                 <ng-template #thenBlockCart>
-                  <div class="nav-bar-cart" ><i class="fa-solid fa-cart-shopping" routerLink="/cart"></i>
+                  <div class="nav-bar-cart"><i class="fa-solid fa-cart-shopping" routerLink="/cart"></i>
 
-                    <div class="cart-detail" >
+                    <div class="cart-detail">
                       <span class="cart-detail-span">Sản phẩm trong giỏ hàng</span>
-                      <div *ngIf="messagecart === 'khong co du lieu'; then thenBlockCartDetail else elseBlockACartDetail"></div>
+                      <div
+                        *ngIf="messagecart === 'khong co du lieu'; then thenBlockCartDetail else elseBlockACartDetail"></div>
                       <ng-template #thenBlockCartDetail>
                         <img class="nocart-img" src="https://taphoa.cz/static/media/cart-empty-img.8b677cb3.png" alt="">
                       </ng-template>
@@ -291,7 +297,6 @@
           </div>
 
 
-
           <div class="container-inner">
 
             <div class="block-last">
@@ -312,8 +317,8 @@
           <hr>
         </div>
       </div>
-    </ng-template >
-    <ng-template   #thenBlock>
+    </ng-template>
+    <ng-template #thenBlock>
 
 
       <div class="now-banner ver_vi" style=" top: 70px;">
@@ -325,25 +330,24 @@
             </div>
             <div class="form-search">
               <div class="input-group"><input style="color: black;" type="text" id="txtSearchHome"
-                                              placeholder="Tìm địa điểm, món ăn, địa chỉ..." value=""><a
-                href="/ha-noi/danh-sach-dia-diem-giao-tan-noi?q="><button type="button"
-                                                                          class="btn btn-search"><span class="fa fa-search"></span></button></a></div>
+                                              placeholder="Tìm địa điểm, món ăn, địa chỉ..." [(ngModel)]="name"
+                                              (input)="search()"><a>
+                <button disabled="true" type="button"
+                        class="btn btn-search"><span class="fa fa-search"></span></button>
+              </a></div>
             </div>
             <div class="category-list-filter"><a routerLink="list-merchant"><span
-              class="category-item ">All</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi"><span
-              class="category-item ">Đồ ăn</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-drink-giao-tan-noi"><span
-              class="category-item ">Đồ uống</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-vegetarian-giao-tan-noi"><span
+              class="category-item ">All</span></a><a (click)="quickSearch('Đồ ăn')"><span
+              class="category-item ">Đồ ăn</span></a><a (click)="quickSearch('Đồ uống')"><span class="category-item ">Đồ uống</span></a><a
+              (click)="quickSearch('Đồ chay')"><span
               class="category-item ">Đồ chay</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-cake-pastry-giao-tan-noi"><span
+              (click)="quickSearch('Bánh kem')"><span
               class="category-item ">Bánh kem</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-desserts-giao-tan-noi"><span
+              (click)="quickSearch('Tráng miệng')"><span
               class="category-item ">Tráng miệng</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-home-made-giao-tan-noi"><span
+              (click)="quickSearch('Homemade')"><span
               class="category-item ">Homemade</span></a><a
-              href="/ha-noi/danh-sach-dia-diem-phuc-vu-streetfood-giao-tan-noi"><span
+              (click)="quickSearch('Vỉa hè')"><span
               class="category-item ">Vỉa hè</span></a><a
               href="/ha-noi/danh-sach-dia-diem-phuc-vu-pizza-pasta-burger-giao-tan-noi"><span
               class="category-item ">Pizza/Burger</span></a><a
@@ -359,12 +363,15 @@
               class="category-item ">Cơm hộp</span></a></div>
             <div>
               <div class="font18 mb-2 mt-3">Sử dụng App ShopeeFood để có nhiều giảm giá <br>và trải nghiệm
-                tốt hơn</div><a target="_blank" rel="noopener noreferrer"
-                                href="https://itunes.apple.com/us/app/deliverynow/id1137866760" title="App Store"><span
-              class="icon icon-app-store-big"></span></a><a target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            href="https://play.google.com/store/apps/details?id=com.deliverynow"
-                                                            title="Google play"><span class="icon icon-gg-play-big"></span></a>
+                tốt hơn
+              </div>
+              <a target="_blank" rel="noopener noreferrer"
+                 href="https://itunes.apple.com/us/app/deliverynow/id1137866760" title="App Store"><span
+                class="icon icon-app-store-big"></span></a><a target="_blank"
+                                                              rel="noopener noreferrer"
+                                                              href="https://play.google.com/store/apps/details?id=com.deliverynow"
+                                                              title="Google play"><span
+              class="icon icon-gg-play-big"></span></a>
             </div>
           </div>
 
@@ -442,206 +449,217 @@
                       </div>
                     </div>
                     <div *ngFor="let merchant of merchants, index as i">
-                    <div class="item-restaurant" [hidden]="hidden(i)"><a class="item-content"
-                                                    routerLink="home/list-merchant/merchant-detail/{{merchant.id}}">
-                      <div class="img-restaurant">
-                        <div class="tag-preferred"><i class="fa fa-thumbs-up"
-                                                      aria-hidden="true"></i>Yêu thích</div><img
-                        src="{{merchant.avatar}}"
-                        class="">
-                      </div>
-                      <div class="info-restaurant">
-                        <div class="info-basic-res">
-                          <h4 class="name-res" title="A Lẩu - Cháo Lòng">{{merchant.name}}</h4>
-                          <div class="address-res"
-                               title="{{merchant.address}}">{{merchant.address}}</div>
+                      <div class="item-restaurant" [hidden]="hidden(i)"><a class="item-content"
+                                                                           routerLink="home/list-merchant/merchant-detail/{{merchant.id}}">
+                        <div class="img-restaurant">
+                          <div class="tag-preferred"><i class="fa fa-thumbs-up"
+                                                        aria-hidden="true"></i>Yêu thích
+                          </div>
+                          <img
+                            src="{{merchant.avatar}}"
+                            class="">
                         </div>
-<!--                        <p class="content-promotion"><i class="fas fa-tag"></i> Giảm hết 10%</p>-->
-                        <div class="opentime-status"><span class="stt online" title="Mở cửa"
-                                                           style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                        <div class="info-restaurant">
+                          <div class="info-basic-res">
+                            <h4 class="name-res" title="A Lẩu - Cháo Lòng">{{merchant.name}}</h4>
+                            <div class="address-res"
+                                 title="{{merchant.address}}">{{merchant.address}}</div>
+                          </div>
+                          <!--                        <p class="content-promotion"><i class="fas fa-tag"></i> Giảm hết 10%</p>-->
+                          <div class="opentime-status"><span class="stt online" title="Mở cửa"
+                                                             style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                          </div>
                         </div>
-                      </div>
-                    </a></div>
+                      </a></div>
                     </div>
                   </div>
-                  <div class="txt-center mt-2"><button (click)="plus()" class="btn-none btn-load-more link"><span
-                    class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button></div>
+                  <div class="txt-center mt-2">
+                    <button (click)="plus()" class="btn-none btn-load-more link"><span
+                      class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button>
+                  </div>
                 </div>
-<!--                <div class="now-list-restaurant collection collection-tab">-->
-<!--                  <div class="title-wrapper">-->
-<!--                    <h2 class="title">Bộ sưu tập</h2><a class="view-all-deal"-->
-<!--                                                        href="/food/collection-list"><span class="icon-list-deal"><span-->
-<!--                    class="square"></span><span class="square"></span><span-->
-<!--                    class="square"></span><span class="square"></span></span>Xem tất cả</a>-->
-<!--                  </div>-->
-<!--                  <div class="list-restaurant">-->
-<!--                    <div class="now-loading-restaurant  ">-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                      <div class="box-loading">-->
-<!--                        <div class="box-thumbnail"></div>-->
-<!--                        <div class="box-line-df"></div>-->
-<!--                        <div class="box-line-lgx"></div>-->
-<!--                        <div class="box-line-lg"></div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Tiệc sang giá xịn giảm 50%"-->
-<!--                                                      href="/bo-suu-tap/tiec-sang-gia-xin-giam-50">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-d5cd944a-220826155740.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Tiệc sang giá xịn giảm 50%">Tiệc sang giá-->
-<!--                            xịn giảm 50%</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Món gì cũng freeship" href="/bo-suu-tap/mon-gi-cung-freeship">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-a134bf28-220826160037.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Món gì cũng freeship">Món gì cũng freeship-->
-<!--                          </h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Tặng 01 lon Tiger Platinum"-->
-<!--                                                      href="/bo-suu-tap/tang-01-lon-tiger-platinum">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-3201266b-220822173754.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Tặng 01 lon Tiger Platinum">Tặng 01 lon-->
-<!--                            Tiger Platinum</h4>-->
-<!--                          <div class="txt-blue font12">53 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Siêu Tiệc 0Đ, bao ăn xả láng"-->
-<!--                                                      href="/bo-suu-tap/sieu-tiec-0d-bao-an-xa-lang">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-0e9ca533-220826160538.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Siêu Tiệc 0Đ, bao ăn xả láng">Siêu Tiệc 0Đ,-->
-<!--                            bao ăn xả láng</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Thứ 4 - Siêu tiệc giảm 50%" href="/bo-suu-tap/sieu-tiec-giam-50">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-79626c46-220531114957.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Thứ 4 - Siêu tiệc giảm 50%">Thứ 4 - Siêu-->
-<!--                            tiệc giảm 50%</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Freeship tới 35k" href="/bo-suu-tap/freeship-toi-35k">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-a86a408c-220809153141.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Freeship tới 35k">Freeship tới 35k</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Siêu Tiệc Giảm 99K" href="/bo-suu-tap/sieu-tiec-giam-99k">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-1d5cc0cb-220208093155.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Siêu Tiệc Giảm 99K">Siêu Tiệc Giảm 99K</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Quán mới lên sàn deal 0Đ"-->
-<!--                                                      href="/bo-suu-tap/quan-moi-len-san-deal-0d">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-e12ce9e6-220406074410.png"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Quán mới lên sàn deal 0Đ">Quán mới lên sàn-->
-<!--                            deal 0Đ</h4>-->
-<!--                          <div class="txt-blue font12">200 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
-<!--                                                      title="Deal to bao no, giảm đến 40K"-->
-<!--                                                      href="/bo-suu-tap/quan-ngon-voucher-xin-san-deal-30k">-->
-<!--                        <div class="img-restaurant"><img-->
-<!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-cdf3f5e8-220506000949.jpeg"-->
-<!--                          class=""></div>-->
-<!--                        <div class="info-restaurant info-basic-res">-->
-<!--                          <h4 class="name-res" title="Deal to bao no, giảm đến 40K">Deal to bao-->
-<!--                            no, giảm đến 40K</h4>-->
-<!--                          <div class="txt-blue font12">178 địa điểm</div>-->
-<!--                        </div>-->
-<!--                      </a></div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                <div class="now-list-restaurant collection collection-tab">-->
+                <!--                  <div class="title-wrapper">-->
+                <!--                    <h2 class="title">Bộ sưu tập</h2><a class="view-all-deal"-->
+                <!--                                                        href="/food/collection-list"><span class="icon-list-deal"><span-->
+                <!--                    class="square"></span><span class="square"></span><span-->
+                <!--                    class="square"></span><span class="square"></span></span>Xem tất cả</a>-->
+                <!--                  </div>-->
+                <!--                  <div class="list-restaurant">-->
+                <!--                    <div class="now-loading-restaurant  ">-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                      <div class="box-loading">-->
+                <!--                        <div class="box-thumbnail"></div>-->
+                <!--                        <div class="box-line-df"></div>-->
+                <!--                        <div class="box-line-lgx"></div>-->
+                <!--                        <div class="box-line-lg"></div>-->
+                <!--                      </div>-->
+                <!--                    </div>-->
+                <!--                    <div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Tiệc sang giá xịn giảm 50%"-->
+                <!--                                                      href="/bo-suu-tap/tiec-sang-gia-xin-giam-50">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-d5cd944a-220826155740.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Tiệc sang giá xịn giảm 50%">Tiệc sang giá-->
+                <!--                            xịn giảm 50%</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Món gì cũng freeship" href="/bo-suu-tap/mon-gi-cung-freeship">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-a134bf28-220826160037.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Món gì cũng freeship">Món gì cũng freeship-->
+                <!--                          </h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Tặng 01 lon Tiger Platinum"-->
+                <!--                                                      href="/bo-suu-tap/tang-01-lon-tiger-platinum">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-3201266b-220822173754.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Tặng 01 lon Tiger Platinum">Tặng 01 lon-->
+                <!--                            Tiger Platinum</h4>-->
+                <!--                          <div class="txt-blue font12">53 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Siêu Tiệc 0Đ, bao ăn xả láng"-->
+                <!--                                                      href="/bo-suu-tap/sieu-tiec-0d-bao-an-xa-lang">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-0e9ca533-220826160538.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Siêu Tiệc 0Đ, bao ăn xả láng">Siêu Tiệc 0Đ,-->
+                <!--                            bao ăn xả láng</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Thứ 4 - Siêu tiệc giảm 50%" href="/bo-suu-tap/sieu-tiec-giam-50">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-79626c46-220531114957.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Thứ 4 - Siêu tiệc giảm 50%">Thứ 4 - Siêu-->
+                <!--                            tiệc giảm 50%</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Freeship tới 35k" href="/bo-suu-tap/freeship-toi-35k">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-a86a408c-220809153141.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Freeship tới 35k">Freeship tới 35k</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Siêu Tiệc Giảm 99K" href="/bo-suu-tap/sieu-tiec-giam-99k">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-1d5cc0cb-220208093155.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Siêu Tiệc Giảm 99K">Siêu Tiệc Giảm 99K</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Quán mới lên sàn deal 0Đ"-->
+                <!--                                                      href="/bo-suu-tap/quan-moi-len-san-deal-0d">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-e12ce9e6-220406074410.png"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Quán mới lên sàn deal 0Đ">Quán mới lên sàn-->
+                <!--                            deal 0Đ</h4>-->
+                <!--                          <div class="txt-blue font12">200 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                      <div class="item-restaurant"><a target="_blank" class="item-content"-->
+                <!--                                                      title="Deal to bao no, giảm đến 40K"-->
+                <!--                                                      href="/bo-suu-tap/quan-ngon-voucher-xin-san-deal-30k">-->
+                <!--                        <div class="img-restaurant"><img-->
+                <!--                          src="https://images.foody.vn/delivery/collection/s320x200/image-cdf3f5e8-220506000949.jpeg"-->
+                <!--                          class=""></div>-->
+                <!--                        <div class="info-restaurant info-basic-res">-->
+                <!--                          <h4 class="name-res" title="Deal to bao no, giảm đến 40K">Deal to bao-->
+                <!--                            no, giảm đến 40K</h4>-->
+                <!--                          <div class="txt-blue font12">178 địa điểm</div>-->
+                <!--                        </div>-->
+                <!--                      </a></div>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
                 <div class="now-list-restaurant now-list-restaurant-row home-tab">
                   <div class="header-tab row align-items-center">
-                    <div class="col"><button class="item-tab active">Gần tôi</button><button
-                      class="item-tab false">Bán chạy</button><button class="item-tab false">Đánh
-                      giá</button><button class="item-tab false">Giao nhanh</button></div>
+                    <div class="col">
+                      <button class="item-tab active">Gần tôi</button>
+                      <button
+                        class="item-tab false">Bán chạy
+                      </button>
+                      <button class="item-tab false">Đánh
+                        giá
+                      </button>
+                      <button class="item-tab false">Giao nhanh</button>
+                    </div>
                     <div class="col-auto"><select name="districtId">
                       <option value="-1">Chọn quận/ huyện</option>
                       <option value="20">Ba Đình</option>
@@ -731,18 +749,20 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>The
-                              1989 - Trà Sữa Muối Biển</div>
+                              1989 - Trà Sữa Muối Biển
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="count-place-res mb-1">4 địa điểm</div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              19k</div>
+                              19k
+                            </div>
                             <p class="kind-restaurant"> Café/Dessert</p>
                           </div>
                         </div>
@@ -763,19 +783,22 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Trà
-                              Chanh Bụi Phố - Mai Anh Tuấn</div>
+                              Chanh Bụi Phố - Mai Anh Tuấn
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="address-res mb-1">12 Mai Anh Tuấn, P. Ô Chợ Dừa,
-                                  Đống Đa, Hà Nội</div>
+                                  Đống Đa, Hà Nội
+                                </div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              31k</div>
+                              31k
+                            </div>
                             <p class="kind-restaurant"> Café/Dessert</p>
                           </div>
                         </div>
@@ -796,18 +819,20 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Trà
-                              Sữa Pozaa Tea_foody</div>
+                              Sữa Pozaa Tea_foody
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="count-place-res mb-1">65 địa điểm</div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              43k</div>
+                              43k
+                            </div>
                             <p class="content-promotion pt-1 pl-0 pb-0"><i
                               class="fas fa-tag"></i> Đồng giá 28k</p>
                           </div>
@@ -828,19 +853,22 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
-                              Đậu Mai Dung</div>
+                              Đậu Mai Dung
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="address-res mb-1">6 Đặng Xuân Bảng, P. Đại Kim,
-                                  Hoàng Mai, Hà Nội</div>
+                                  Hoàng Mai, Hà Nội
+                                </div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              27k</div>
+                              27k
+                            </div>
                             <p class="kind-restaurant"> Quán ăn</p>
                           </div>
                         </div>
@@ -860,19 +888,22 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Tocotoco
-                              - Lĩnh Nam</div>
+                              - Lĩnh Nam
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="address-res mb-1">40 Lĩnh Nam, P. Mai Động,
-                                  Hoàng Mai, Hà Nội</div>
+                                  Hoàng Mai, Hà Nội
+                                </div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              46k</div>
+                              46k
+                            </div>
                             <p class="content-promotion pt-1 pl-0 pb-0"><i
                               class="fas fa-tag"></i> Giảm hết 40%</p>
                           </div>
@@ -894,19 +925,22 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
-                              Đậu Mắm Tôm - Chính Kinh</div>
+                              Đậu Mắm Tôm - Chính Kinh
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="address-res mb-1">5 Ngõ 12 Chính Kinh, P. Nhân
-                                  Chính, Thanh Xuân, Hà Nội</div>
+                                  Chính, Thanh Xuân, Hà Nội
+                                </div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              45k</div>
+                              45k
+                            </div>
                             <p class="content-promotion pt-1 pl-0 pb-0"><i
                               class="fas fa-tag"></i> Giảm món</p>
                           </div>
@@ -928,18 +962,20 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Anh
-                              Gấu - Mì Trộn Indomie</div>
+                              Gấu - Mì Trộn Indomie
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="count-place-res mb-1">2 địa điểm</div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              38k</div>
+                              38k
+                            </div>
                             <p class="content-promotion pt-1 pl-0 pb-0"><i
                               class="fas fa-tag"></i> Giảm món</p>
                           </div>
@@ -961,18 +997,20 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Bún
-                              Bò Trộn &amp; Bún Mạch Tràng</div>
+                              Bò Trộn &amp; Bún Mạch Tràng
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="count-place-res mb-1">2 địa điểm</div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              48k</div>
+                              48k
+                            </div>
                             <p class="kind-restaurant"> Quán ăn</p>
                           </div>
                         </div>
@@ -993,18 +1031,20 @@
                           <div class="info-restaurant">
                             <div class="name-res"><span class="icon icon-quality-merchant"
                                                         title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"></span>Quán
-                              Chị Chíp - Nem Nướng Nha Trang &amp; Bún Đậu Mẹt</div>
+                              Chị Chíp - Nem Nướng Nha Trang &amp; Bún Đậu Mẹt
+                            </div>
                             <div class="row">
                               <div class="col">
                                 <div class="count-place-res mb-1">2 địa điểm</div>
                               </div>
                               <div class="col-auto">
-                                <div class="item-res-distant"> </div>
+                                <div class="item-res-distant"></div>
                               </div>
                             </div>
                             <div class="item-res-info"><span class="icon icon-price-tag"></span>
                               Tối thiểu 20k<span class="icon icon-money-sm ml-3"></span> Giá
-                              60k</div>
+                              60k
+                            </div>
                             <p class="kind-restaurant"> Quán ăn</p>
                           </div>
                         </div>
@@ -1014,8 +1054,10 @@
                       </div>
                     </a></div>
                   </div>
-                  <div class="txt-center mt-2"><button class="btn-none btn-load-more link"><span
-                    class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button></div>
+                  <div class="txt-center mt-2">
+                    <button class="btn-none btn-load-more link"><span
+                      class="pr-1">Xem thêm</span><i class="fas fa-redo font12 "></i></button>
+                  </div>
                 </div>
                 <div class="end-check-point"></div>
               </div>
@@ -1068,7 +1110,7 @@
             title="bg-deliverynow-dat-mon-truc-tuyen-giao-hang-tan-noi" width="170px"
             data-change-lang="" style="width: 170px;"></div>
         </div>
-        <div class="now-container-coporation " >
+        <div class="now-container-coporation ">
 
           <p class="seo-footer-link__head">Danh mục</p>
           <div class="seo-footer-link__body">
@@ -1200,7 +1242,8 @@
           <div class="modal-body">
             <p class="font15"><span></span></p>
           </div>
-          <div class="modal-footer"><button type="button" class="btn btn-red align-right">Ok</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-red align-right">Ok</button>
           </div>
         </div>
       </div>

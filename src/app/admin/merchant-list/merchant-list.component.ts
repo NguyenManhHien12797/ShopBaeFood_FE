@@ -20,7 +20,7 @@ export class MerchantListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllMerchant();
-    this.router.navigate(["/admin/merchant-list/active"])
+    this.router.navigate(["/admin/merchant-list/pending"])
   }
   ngDoCheck(): void {
     this.url = this.router.url;

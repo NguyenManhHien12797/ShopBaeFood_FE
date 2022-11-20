@@ -293,3 +293,17 @@
   color: #0288d1
 }
 /*footer*/
+
+.btn-order{
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.btn-order:hover{
+  background-color: white;
+}
+.note{
+  width: 100%;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: none;
+}

@@ -8,8 +8,15 @@
       </svg>
       Thêm sản phẩm
     </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <form method="get" class="col-2 " role="search" style="width: 17% ; margin-left: 700px">
-      <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="name" (input)="search()" [(ngModel)]="nameSearch">
+      <input type="search" class="form-control form-control-search" placeholder="Search..." aria-label="Search" name="name" (input)="search()" [(ngModel)]="nameSearch">
 <!--      <button type=""-->
     </form>
   </div>
@@ -22,9 +29,7 @@
       <th scope="col">Stt</th>
       <th scope="col">Ảnh</th>
       <th scope="col">Tên</th>
-      <th scope="col">Giá mới</th>
-      <th scope="col">Giá cũ</th>
-      <th scope="col">Số lượng bán</th>
+      <th scope="col">Giá sản phẩm</th>
       <th scope="col">Mô tả</th>
       <th scope="col" colspan="2">Hành động</th>
     </tr>
@@ -36,12 +41,10 @@
     width: 40px;
     border-radius: 50%;"></td>
       <td class="merchant-item">{{product.name}}</td>
-      <td class="merchant-item">{{product.newPrice}}</td>
-      <td class="merchant-item">{{product.oldPrice}}</td>
-      <td class="merchant-item">{{product.numberOrder}}</td>
+      <td class="merchant-item-price">{{product.newPrice}} đ</td>
       <td class="merchant-item">{{product.shortDescription}}</td>
-      <td ><a [routerLink]="['/merchant/product-edit',product.id]"><i class="fa-regular fa-pen-to-square action-icon"></i></a></td>
-      <td ><a (click)="deleteProduct(i,product.id)"><i class="fa-solid fa-trash action-icon"></i></a></td>
+      <td class="merchant-item-btn"><a [routerLink]="['/merchant/product-edit',product.id]"><i class="fa-regular fa-pen-to-square action-icon"></i></a></td>
+      <td class="merchant-item-btn"><a (click)="deleteProduct(i,product.id)"><i class="fa-solid fa-trash action-icon"></i></a></td>
     </tr>
     </tbody>
   </table>

@@ -1,3 +1,22 @@
 .action-icon:hover{
   cursor: pointer;
+  color: #bcbbbb;
+}
+.action-icon{
+  font-size: 30px;
+  color: #555555;
+}
+.merchant-item-btn{
+  width: 60px;
+}
+.form-control-search{
+  width: 210px;
+}
+.btn-load-more{
+  margin-left: 13px;
+  border-radius: 5px;
+}
+.btn-outline-danger{
+  margin-left: 13px;
+  border-radius: 5px;
 }
